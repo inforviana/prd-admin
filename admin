@@ -1,0 +1,40 @@
+<NotepadPlus>
+    <Session activeView="0">
+        <mainView activeIndex="32">
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="PHP" encoding="-1" filename="Y:\admin\config.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="PHP" encoding="-1" filename="Y:\admin\conteudo.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="PHP" encoding="-1" filename="Y:\admin\editaravaria.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="PHP" encoding="-1" filename="Y:\admin\editarfuncionario.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="PHP" encoding="-1" filename="Y:\admin\editargrupos.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="PHP" encoding="-1" filename="Y:\admin\editarhoras.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="PHP" encoding="-1" filename="Y:\admin\editarmovcombustivel.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="PHP" encoding="-1" filename="Y:\admin\editarviaturas.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="PHP" encoding="-1" filename="Y:\admin\estados.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="PHP" encoding="-1" filename="Y:\admin\extracto_combustivel.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="PHP" encoding="-1" filename="Y:\admin\extracto_horas.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="PHP" encoding="-1" filename="Y:\admin\funcionarios.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="PHP" encoding="-1" filename="Y:\admin\graph.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="PHP" encoding="-1" filename="Y:\admin\grupos.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="PHP" encoding="-1" filename="Y:\admin\index.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="PHP" encoding="-1" filename="Y:\admin\info_funcionario.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="PHP" encoding="-1" filename="Y:\admin\listagem_avarias.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="PHP" encoding="-1" filename="Y:\admin\listagem_combustivel.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="PHP" encoding="-1" filename="Y:\admin\listagem_horas.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="PHP" encoding="-1" filename="Y:\admin\login.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="PHP" encoding="-1" filename="Y:\admin\menu.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="PHP" encoding="-1" filename="Y:\admin\menu_top.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="PHP" encoding="-1" filename="Y:\admin\mod_grafico_horas.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="PHP" encoding="-1" filename="Y:\admin\mod_graficos.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="PHP" encoding="-1" filename="Y:\admin\mod_listacomb.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="PHP" encoding="-1" filename="Y:\admin\mod_listahoras.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="PHP" encoding="-1" filename="Y:\admin\mod_marquee.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="PHP" encoding="-1" filename="Y:\admin\mod_ponto_funcionarios.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="PHP" encoding="-1" filename="Y:\admin\relatorios_viaturas.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="359" startPos="0" endPos="0" selMode="0" lang="PHP" encoding="-1" filename="Y:\admin\splash.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="2608" startPos="1504" endPos="1504" selMode="0" lang="PHP" encoding="-1" filename="Y:\admin\viaturas.php" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="517" startPos="0" endPos="0" selMode="0" lang="Normal Text" encoding="-1" filename="Y:\admin\changelog.txt" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="438" startPos="0" endPos="0" selMode="0" lang="CSS" encoding="-1" filename="Y:\admin\stylesheet.css" />
+        </mainView>
+        <subView activeIndex="0" />
+    </Session>
+</NotepadPlus>

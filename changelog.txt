@@ -1,0 +1,43 @@
+CHANGELOG
+
+06-06-2011 - 0.2h
+FORMULARIOS
+- Alterações no design das tabelas na listagem do combustivel
+BUGS
+- Reformulada formula de calculo para as medias das viaturas: (((Soma_Litros-Ultimo_Abastecimento(!))*100)/Diferenca_H_Kms) ;-)
+
+
+
+31-05-2011 - 0.2g
+
+FORMULARIOS
+- Nova selecção da data nas listagens
+- MOD: Ponto dos Funcionarios
+BUGS
+- Resolvidos erros ao utilizar variaveis nao indexadas
+
+
+18-05-2011 - 0.2f
+
+FORMULARIOS
+- Alteraçao do menu para o topo e grafismo
+- Novos botoes nas listagens
+BUGS
+- Imagem do botao dos ultimos registos nao aparecia
+
+
+02-05-2011 - 0.2e
+SQL
+- Adicionada coluna DEC "preco_hora_normal" as tabelas "funcionario" e "mov_viatura"
+- Adicionada coluna DEC "preco_hora_extra" as tabelas "funcionario" e "mov_viatura"
+FORMULARIOS
+- Adicionados campos para os precos hora nos funcionarios
+
+
+28-04-2011 - 0.2d
+LISTAGENS
+- Redireccionamento para a listagem dos funcionários após alterar ou criar um funcionário
+- Redireccionamento para a listagem dos viaturas após alterar ou criar uma viatura
+- Redireccionamentos em diversas listagens
+FORMULARIOS
+- Melhoramentos na informação do funcionario

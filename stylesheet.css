@@ -1,0 +1,312 @@
+			#hor-minimalist-b
+			{
+				font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+				font-size: 10px;
+				background: #FFF;
+				margin: 15px;
+                                border-color: black;
+                                border-style: dotted;
+                                border-width: 2px;
+				width: 800px;
+				border-collapse: collapse;
+				text-align: left;
+			}
+			#hor-minimalist-b th
+			{
+				font-size: 12px;
+				font-weight: normal;
+				color: #039;
+				padding: 10px 8px;
+				border-bottom: 2px solid #6678b1;
+			}
+			#hor-minimalist-b td
+			{
+				border-bottom: 1px solid #ccc;
+				color: #669;
+				padding: 6px 8px;
+			}
+			#hor-minimalist-b tbody tr:hover td
+			{
+				/*color: #009;*/
+			}
+
+			
+			.tb_header {
+			width:100%;
+			}
+			
+			
+			.td_header {
+			width:33%;
+			}
+			
+
+.botao_splash_horas {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
+	background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+	background-color:#ededed;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	color:#777777;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #ffffff;
+}.botao_splash_horas:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
+	background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
+	background-color:#dfdfdf;
+}.botao_splash_horas:active {
+	position:relative;
+	top:1px;
+}
+
+.botao_splash {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
+	background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+	background-color:#ededed;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	color:#777777;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #ffffff;
+}.botao_splash:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
+	background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
+	background-color:#dfdfdf;
+}.botao_splash:active {
+	position:relative;
+	top:1px;
+}
+
+
+.botao_detalhes {
+	-moz-box-shadow:inset 0px 1px 0px 0px #fff6af;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #fff6af;
+	box-shadow:inset 0px 1px 0px 0px #fff6af;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffec64), color-stop(1, #ffab23) );
+	background:-moz-linear-gradient( center top, #ffec64 5%, #ffab23 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffec64', endColorstr='#ffab23');
+	background-color:#ffec64;
+	-moz-border-radius:22px;
+	-webkit-border-radius:22px;
+	border-radius:22px;
+	border:1px solid #ffaa22;
+	display:inline-block;
+	color:#333333;
+	font-family:arial;
+	font-size:10px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:1px 0px 0px #ffee66;
+}.botao_detalhes:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffab23), color-stop(1, #ffec64) );
+	background:-moz-linear-gradient( center top, #ffab23 5%, #ffec64 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffab23', endColorstr='#ffec64');
+	background-color:#ffab23;
+}.botao_detalhes:active {
+	position:relative;
+	top:1px;
+}
+
+.font_topo{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+}
+
+.font_titulo_listagem{
+	font-family:Arial, Helvetica, sans-serif;
+	font-style:Italic;
+	font-size:20px;
+}
+
+.font_nome{
+	font-family:Arial, Helvetica, sans-serif;
+	font-style:Bold;
+	font-size:12px;
+}
+
+.tr_topo {
+	vertical-align:text-top;
+	text-align:center;
+}
+
+.tabela_resumo{ /* resumo do dia do funcionario*/
+	border-style:solid;
+	border-width:thin;
+	/*vertical-align:top;*/
+        border-radius: 5px;
+	}
+      
+.tabela_resumo th{ /* cabecalho da tabela*/
+        background-color: #cccccc;
+        text-align: center;
+        font-size: 16px;
+}
+	
+.tabela_resumo_topo
+        {
+	color:#ffffff;
+	}
+
+	
+
+div.div_tubos
+{
+	color: #00ff00;
+	width: 800px;
+	background-color: #303030;
+	border-radius: 10px;
+}
+
+table.tab_tubos
+{
+	width:700px;
+}
+
+table.tab_tubos th
+{
+	color: #909090;
+	border-bottom-color:#00ff00;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+}
+
+table.tab_tubos td
+{
+	color: #c0c0c0;
+	text-align: center;
+	font-size:12px;
+	border-bottom-color: #00cc00;
+	border-bottom-style: dotted;
+	border-bottom-width: 1px;
+}
+
+label.but_tub
+{
+	font-size:12px;
+}
+
+.input_desc_comp
+{
+	width: 250px;
+}
+
+.input_ref_tubo
+{
+	text-align: center;
+	font-size: 16px;
+	color: #00ff00;
+	background-color:#000000;
+}
+
+.inp_viatura{ /* inputs do editar viatura */
+   text-align: center;
+   width: 200px;
+}
+.inp_viatura_hora /*preco hora das viaturas*/
+{
+    width:80px;
+    text-align: center;
+    font-size: 30px;
+    color: green;
+}
+
+table.tab_u_t 
+{
+	width:650px;
+}
+
+table.tab_u_t td
+{
+	text-align:center;
+	font-size:12px;
+}
+
+div.div_totais_avarias
+{
+	border-radius:10px;
+	width:320px;
+	color:#ffffff;
+	text-align: center;
+	background-color: #303030;
+} 
+
+.img_viatura{
+    width: 300px;
+    border-radius:15px;
+    border: 2px solid #3366CC;
+}
+
+.inp_tecnico1{
+  width:100px;
+  text-align: center;
+  color: #00cc00;
+  border: 1px #00cc00 solid;
+  width: 50px;
+}
+
+.inp_tecnico2{
+  width:100px;
+  text-align: center;
+  color: #b81900;
+  border: 1px #b81900 solid;
+  width: 50px;
+}
+
+#graph {
+  width: 800px;
+  height: 250px;
+  margin: 20px auto 0 auto;
+}
+
+table.tabela_registo{
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    
+}
+
+table.tabela_registo td{
+    text-align:center;
+    font-size: 12px;
+}
+
+table.tabela_registo th{
+    border-bottom-color: black;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    background-color: #fcefa1; 
+}
+
+/* tabela dos acessorios ao editar a viatura */
+.tabela_acessorios 
+{
+    width: 500px;
+    border-style:solid;
+    border-width:1px;
+    border-color: black;
+}
