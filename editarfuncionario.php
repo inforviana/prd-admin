@@ -219,10 +219,10 @@ limit 2";
 						'.intval(mysql_result($r_mov_horas,$i,'horas_viatura')/60).':'.(mysql_result($r_mov_horas,$i,'horas_viatura')%60).'
 					</td>
 					<td align="center">
-						<a href="/admin/index.php?pagina=editarhoras&id='.mysql_result($r_mov_horas,$i,'id_movviatura').'"><img src="editar.png" border=0></a>
+						<a href="./index.php?pagina=editarhoras&id='.mysql_result($r_mov_horas,$i,'id_movviatura').'"><img src="editar.png" border=0></a>
 					</td>
 					<td align="center">
-						<a href="/admin/index.php?func=apagar&tipo=horas&id='.mysql_result($r_mov_horas,$i,'id_movviatura').'"><img src="delete.gif" border=0></a>
+						<a href="./index.php?func=apagar&tipo=horas&id='.mysql_result($r_mov_horas,$i,'id_movviatura').'"><img src="delete.gif" border=0></a>
 					</td>								
 			</tr>';
 		}
@@ -266,10 +266,10 @@ limit 2";
 						'.mysql_result($r_mov_combustivel,$i,'valor_movimento').' L
 					</td>
 					<td align="center">
-						<a href="/admin/index.php?pagina=editarcomb&id='.mysql_result($r_mov_combustivel,$i,'id_movcombustivel').'"><img src="editar.png" border=0></a>
+						<a href="./index.php?pagina=editarcomb&id='.mysql_result($r_mov_combustivel,$i,'id_movcombustivel').'"><img src="editar.png" border=0></a>
 					</td>
 					<td align="center">
-						<a href="/admin/index.php?func=apagar&tipo=comb&id='.mysql_result($r_mov_combustivel,$i,'id_movcombustivel').'"><img src="delete.gif" border=0></a>
+						<a href="./index.php?func=apagar&tipo=comb&id='.mysql_result($r_mov_combustivel,$i,'id_movcombustivel').'"><img src="delete.gif" border=0></a>
 					</td>							
 			</tr>';
 		}
