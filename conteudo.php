@@ -63,17 +63,17 @@ switch($pagina){
 	case 'tubos':
 		require('tubos.php');
 		break;
-        case 'tecnico':
-                require('tecnico.php');
-                break;
-        case 'avaliacao':
-                require('avaliacao.php');
-                break;
-        case 'ponto':
-                //ponto dos funcionario
-                require 'mod_ponto_funcionarios.php';
-                break;
-        case 'globalviatura':
+                  case 'tecnico':
+                            require('tecnico.php');
+                            break;
+                  case 'avaliacao':
+                            require('avaliacao.php');
+                            break;
+                  case 'ponto':
+                            //ponto dos funcionario
+                            require 'mod_ponto_funcionarios.php';
+                            break;
+                  case 'globalviatura':
                 require 'graficos/lucro_gasto.php';
                 break;
 }

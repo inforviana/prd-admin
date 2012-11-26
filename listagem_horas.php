@@ -135,10 +135,10 @@ echo '
 					</td>
 					
 					<td>
-						<a href="index.php?pagina=listagemhoras&idfuncionario='.mysql_result($r_mov_horas,$i,'id_funcionario').'">'.mysql_result($r_mov_horas,$i,'nome_funcionario').'</a>
+						<a href="./index.php?pagina=listagemhoras&idfuncionario='.mysql_result($r_mov_horas,$i,'id_funcionario').'">'.mysql_result($r_mov_horas,$i,'nome_funcionario').'</a>
 					</td>
 					<td>
-						<a href="index.php?pagina=listagemhoras&idviatura='.mysql_result($r_mov_horas,$i,'id_viatura').'">'.mysql_result($r_mov_horas,$i,'desc_viatura').'</a>
+						<a href="./index.php?pagina=listagemhoras&idviatura='.mysql_result($r_mov_horas,$i,'id_viatura').'">'.mysql_result($r_mov_horas,$i,'desc_viatura').'</a>
 					</td>
 					<td>
 						'.intval(mysql_result($r_mov_horas,$i,'horas_viatura')/60).'H '.(mysql_result($r_mov_horas,$i,'horas_viatura')%60).'M
@@ -146,7 +146,7 @@ echo '
 						<a href="./index.php?pagina=editarhoras&id='.mysql_result($r_mov_horas,$i,'id_movviatura').'"><img src="editar.png" border=0></a>
 					</td>
 					<td align="center">
-						<input type="image" onclick="apagar(\'/admin/index.php?pagina=listagemhoras&idfuncionario='.$id_funcionario.'&func=apagar&tipo=horas&id='.mysql_result($r_mov_horas,$i,'id_movviatura').'\')" src="delete.gif">
+						<input type="image" onclick="apagar(\'./index.php?pagina=listagemhoras&idfuncionario='.$id_funcionario.'&func=apagar&tipo=horas&id='.mysql_result($r_mov_horas,$i,'id_movviatura').'\')" src="delete.gif">
 					</td>								
 			</tr>';
 		}

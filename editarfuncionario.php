@@ -24,9 +24,9 @@
 			fclose($fp);
 		}
 		if($novo!=1){
-			$q_guardar="UPDATE funcionario SET nome_funcionario='".$nome."',grupo_funcionario='".$grupo."',morada_funcionario='".$morada."',cp='".$cp."',localidade='".$localidade."',telefone_funcionario='".$telefone."',telemovel_funcionario='".$telemovel."',pin_funcionario='".$pin."', preco_hora_normal='".$preco_hora_normal."',preco_hora_extra='".$preco_hora_extra."', preco_sabado='".$preco_sabado."', img='".$imgdata."' where id_funcionario=".$id_funcionario;
+			$q_guardar="UPDATE funcionario SET nome_funcionario='".$nome."',grupo_funcionario='".$grupo."',morada_funcionario='".$morada."',cp='".$cp."',localidade='".$localidade."',telefone_funcionario='".$telefone."',telemovel_funcionario='".$telemovel."',pin_funcionario='".$pin."', preco_hora_normal='".$preco_hora_normal."',preco_hora_extra='".$preco_hora_extra."', preco_sabado='".$preco_sabado."' where id_funcionario=".$id_funcionario;
 		}else{
-			$q_guardar="INSERT INTO funcionario (nome_funcionario,grupo_funcionario,morada_funcionario,cp,localidade,telefone_funcionario,telemovel_funcionario,pin_funcionario,preco_hora_normal,preco_hora_extra, preco_sabado, img) VALUES ('".$nome."','".$grupo."','".$morada."','".$cp."','".$localidade."','".$telefone."','".$telemovel."','".$pin."','".$preco_hora_normal."','".$preco_hora_extra."','".$preco_sabado."','".$imgdata."')";
+			$q_guardar="INSERT INTO funcionario (nome_funcionario,grupo_funcionario,morada_funcionario,cp,localidade,telefone_funcionario,telemovel_funcionario,pin_funcionario,preco_hora_normal,preco_hora_extra, preco_sabado) VALUES ('".$nome."','".$grupo."','".$morada."','".$cp."','".$localidade."','".$telefone."','".$telemovel."','".$pin."','".$preco_hora_normal."','".$preco_hora_extra."','".$preco_sabado."')";
 		}
 		if(mysql_query($q_guardar)){
                         
@@ -222,7 +222,7 @@ limit 2";
 						<a href="./index.php?pagina=editarhoras&id='.mysql_result($r_mov_horas,$i,'id_movviatura').'"><img src="editar.png" border=0></a>
 					</td>
 					<td align="center">
-						<a href="./index.php?func=apagar&tipo=horas&id='.mysql_result($r_mov_horas,$i,'id_movviatura').'"><img src="delete.gif" border=0></a>
+						<input type="image" onclick="apagar(\'./index.php?pagina=listagemhoras&idfuncionario='.$id_funcionario.'&func=apagar&tipo=horas&id='.mysql_result($r_mov_horas,$i,'id_movviatura').'\')" src="delete.gif">
 					</td>								
 			</tr>';
 		}

@@ -2,27 +2,6 @@
 /*
  * FUNCOES PARA O TECNICO
  */
-function verificar_bd()
-{
-    $dbc1=mysql_connect("localhost","pcnor_inforviana","plasma2010");
-    mysql_select_db('pcnor_worktruck', $dbc1);
-    $r1=mysql_query("show table status",$dbc1);
-    $n1=mysql_num_rows($r1);
-    $c1=  mysql_num_fields($r1);
-    
-    $resultado="<table border=1>";
-    for($i=0;$i<$n1;$i++)
-    {
-        $resultado=$resultado."<tr>";
-        for($j=0;$j<$c1;$j++)
-        {
-            $resultado=$resultado."<td>".mysql_result($r1,$i,$j)."</td>";
-        }
-        $resultado=$resultado."</tr>";
-    } 
-    $resultado=$resultado."</table>";
-    return $resultado;
-}
 
 function actualizar_precos_hora($cond1,$cond2)
 {
@@ -92,12 +71,6 @@ function actualizar_precos_hora($cond1,$cond2)
               */
              actualizar_precos_hora();
              break;
-             /*
-              * comparar base de dados com versao actual
-              */
-         case 'verificar_db':
-             $tab=verificar_bd();
-             break;
      }
      if(isset($q)){
         if(mysql_query($q)){
@@ -117,7 +90,6 @@ function actualizar_precos_hora($cond1,$cond2)
                 <option value="funcionario_horas">Preencher horas dos funcionarios</option>
                 <option value="viatura_horas">Preencher horas das viaturas</option>
                 <option value="mov_viatura_preco_hora">Preencher trabalhos com precos actuais</option>
-                <option value="verificar_db">Verificar DB</option>
             </select>
             <input class="inp_tecnico2" type="text" name="cond1">
             <input class="inp_tecnico2" type="text" name="cond2">

@@ -211,6 +211,14 @@ order by mov_combustivel.kms_viatura desc";
 				}else{
 					$warn="";
 				}
+                                
+                                                                        if(isset($_GET['idfuncionario']))
+                                                                        {
+                                                                            $redir_apagar="idfuncionario=".$_GET['idfuncionario'];
+                                                                        }else{
+                                                                            $redir_apagar ="idviatura=".mysql_result($r_mov_combustivel,$i,'id_viatura');
+                                                                        }
+                                                                           
 				
 				echo '<tr>
 						<td>
@@ -238,7 +246,7 @@ order by mov_combustivel.kms_viatura desc";
 							<a href="./index.php?pagina=editarcomb&id='.mysql_result($r_mov_combustivel,$i,'id_movcombustivel').'"><img src="editar.png" border=0></a>
 						</td>
 						<td align="center">
-							<input type="image" onclick="apagar(\'/admin/index.php?pagina=listagemcombustivel&idfuncionario='.$id_funcionario.'&func=apagar&tipo=comb&id='.mysql_result($r_mov_combustivel,$i,'id_movcombustivel').'\')" src="delete.gif">
+							<input type="image" onclick="apagar(\'./index.php?pagina=listagemcombustivel&'.$redir_apagar.'&func=apagar&tipo=comb&id='.mysql_result($r_mov_combustivel,$i,'id_movcombustivel').'\')" src="delete.gif">
 						</td>								
 				</tr>';
 		

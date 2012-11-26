@@ -1,4 +1,4 @@
-<?php
+  <?php
 //WORKTRUCK - GESTAO DE FROTA
 //
 //MODULO DE ADMINISTRACAO
@@ -80,13 +80,14 @@ $titulo='WorkTruck '.$VERSAO_APP;
 		<!-- JAVA  -->
 		<script type="text/javascript" src="simpletreemenu.js"></script>
 		<script type="text/javascript" src="menu.js"></script>
-		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 		<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.13.custom.css" rel="stylesheet" />	
 		<link type="text/css" href="css/style.css" rel="stylesheet" />	
-		<script type="text/javascript" src="js/jquery-ui-1.8.13.custom.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/jquery-ui.min.js"></script>
 		<script type="text/javascript" src="jquery.ui.datepicker-pt-BR.js"></script>
 		<script type="text/javascript" src="js/jquery.dropdownPlain.js"></script>
-                <script type="text/javascript" src="js/highcharts.js"></script>
+                                    <script type="text/javascript" src="js/highcharts.js"></script>
+                                    <script type="text/javascript" src="js/modules/exporting.js"></script>
 		<script type="text/javascript">
 		//janela de confirmacao para apagar os registos
 			function apagar(url){
