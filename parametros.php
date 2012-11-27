@@ -13,7 +13,8 @@
 			mysql_query($q_upd);
 		}
 	}
-                   
+                if(isset($_GET['a']))
+                {
                   if($_GET['a']=='gi')
                   {
                                 if($_FILES['inp_imagem']['size']>0) //verifica se foi passada imagem
@@ -27,6 +28,7 @@
                                 
                                 mysql_query("update config set value_img='".$dados_imagem."' where attrib='sem_imagem'");
                   }
+                }
 
 	//obter os valores de configuracao
 	$q_opcoes="select * from config";
