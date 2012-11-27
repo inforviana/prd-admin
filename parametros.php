@@ -1,18 +1,21 @@
 <?php
 
 	//obter os valores a gravar
-	if($_GET['gravar']==1)
-	{
-		$q_opcoes="select * from config";
-		$r_opcoes=mysql_query($q_opcoes);
-		$n_opcoes=mysql_num_rows($r_opcoes);
-		
-		for($i=0;$i<$n_opcoes;$i++){
-			//vai a base de dados para saber quais os POST a receber 
-			$q_upd="update config set value='".$_POST[mysql_result($r_opcoes,$i,'attrib')]."' where attrib='".mysql_result($r_opcoes,$i,'attrib')."'";
-			mysql_query($q_upd);
-		}
-	}
+    if(isset($_GET['gravar']))
+    {
+    	if($_GET['gravar']==1)
+    	{
+    		$q_opcoes="select * from config";
+    		$r_opcoes=mysql_query($q_opcoes);
+    		$n_opcoes=mysql_num_rows($r_opcoes);
+    		
+    		for($i=0;$i<$n_opcoes;$i++){
+    			//vai a base de dados para saber quais os POST a receber 
+    			$q_upd="update config set value='".$_POST[mysql_result($r_opcoes,$i,'attrib')]."' where attrib='".mysql_result($r_opcoes,$i,'attrib')."'";
+    			mysql_query($q_upd);
+    		}
+    	}
+    }
                 if(isset($_GET['a']))
                 {
                   if($_GET['a']=='gi')
