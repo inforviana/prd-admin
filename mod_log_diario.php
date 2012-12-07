@@ -32,17 +32,31 @@
             
             //verificar eventos de registo de horas ou ponto
             $r_eventos_horas = mysql_query("
-                select mov_viatura.id_viatura, mov_viatura.horas_viatura,viaturas.desc_viatura
+                select mov_viatura.id_viatura, mov_viatura.horas_viatura,viaturas.desc_viatura, mov_viatura.id_acessorio, mov_viatura.horas_trab_acessorio
                 from mov_viatura 
                 left join viaturas on viaturas.id_viatura = mov_viatura.id_viatura
                 where date(data)='".$data."' and id_funcionario=".$idfunc);
             $n_eventos_horas = mysql_num_rows($r_eventos_horas);
             $contador_eventos = $n_eventos_horas ;
+            
+            
+            
             if($n_eventos_horas > 0) //se existirem eventos de horas do funcionario
             {
                 for($j=0;$j<$n_eventos_horas;$j++)
                 {
-                    $dados_horas_funcionario=$dados_horas_funcionario."Trabalhou com <b>".mysql_result($r_eventos_horas,$j,'desc_viatura')."</b> ".(mysql_result($r_eventos_horas,$j,'horas_viatura')/60)."H ".(mysql_result($r_eventos_horas,$j,'horas_viatura')%60)."m<br>";
+                    //linha horas
+                    $dados_horas_funcionario=$dados_horas_funcionario."Trabalhou com <b>".mysql_result($r_eventos_horas,$j,'desc_viatura')."</b> ".(mysql_result($r_eventos_horas,$j,'horas_viatura')/60)."H ".(mysql_result($r_eventos_horas,$j,'horas_viatura')%60)."m";
+                    
+                    //mostrar acessorio utilizado
+                    if(mysql_result($r_eventos_horas,$j,'mov_viatura.id_acessorio') > 0)
+                    {
+                        $r_detalhes_acessorio = mysql_query("select * from viaturas where id_viatura = ".mysql_result($r_eventos_horas,$j,'mov_viatura.id_acessorio'));
+                        
+                        $dados_horas_funcionario = " com <b>".mysql_result($r_detalhes_acessorio,$j,'desc_viatura')."</b> ".(mysql_result($r_eventos_horas,$j,'mov_viatura.horas_trab_acessorio')/60)."H".(mysql_result($r_eventos_horas,$j,'mov_viatura.horas_trab_acessorio')%60)."m";
+                    }
+                    
+                    $dados_horas_funcionario = $dados_horas_funcionario."<br>";
                 }
             }
             
