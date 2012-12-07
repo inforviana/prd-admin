@@ -51,7 +51,7 @@
                     {
                         $r_detalhes_acessorio = mysql_query("select * from viaturas where id_viatura = ".mysql_result($r_eventos_horas,$j,'mov_viatura.id_acessorio'));
                         
-                        //$dados_horas_funcionario = " com <b>".mysql_result($r_detalhes_acessorio,$j,'desc_viatura')."</b> ".(mysql_result($r_eventos_horas,$j,'mov_viatura.horas_trab_acessorio')/60)."H".(mysql_result($r_eventos_horas,$j,'mov_viatura.horas_trab_acessorio')%60)."m";
+                        $dados_horas_funcionario = " com <b></b> ".(mysql_result($r_eventos_horas,$j,'mov_viatura.horas_trab_acessorio')/60)."H".(mysql_result($r_eventos_horas,$j,'mov_viatura.horas_trab_acessorio')%60)."m";
                     }
                     
                     $dados_horas_funcionario = $dados_horas_funcionario."<br>";
