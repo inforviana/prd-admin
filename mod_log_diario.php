@@ -39,12 +39,6 @@
             $n_eventos_horas = mysql_num_rows($r_eventos_horas);
             $contador_eventos = $n_eventos_horas ;
             
-            echo "
-                select mov_viatura.id_viatura, mov_viatura.horas_viatura,viaturas.desc_viatura, mov_viatura.id_acessorio, mov_viatura.horas_trab_acessorio
-                from mov_viatura 
-                left join viaturas on viaturas.id_viatura = mov_viatura.id_viatura
-                where date(data)='".$data."' and id_funcionario=".$idfunc;
-            
             if($n_eventos_horas > 0) //se existirem eventos de horas do funcionario
             {
                 for($j=0;$j<$n_eventos_horas;$j++)
