@@ -21,8 +21,8 @@ if($id_funcionario>0){
 	echo "
 	<script>
 		$(function() {
-			$( '#datepicker_inicio' ).datepicker(\"option\",\"dateFormat\",\"yyyy-mm-dd\");
-			$( '#datepicker_fim' ).datepicker(\"option\",\"dateFormat\",\"yyyy-mm-dd\");
+			$( '#datepicker_inicio' ).datepicker(\"option\",\"dateFormat\",\"yy-mm-dd\");
+			$( '#datepicker_fim' ).datepicker(\"option\",\"dateFormat\",\"yy-mm-dd\");
 		});
 	</script>";
 	echo '
