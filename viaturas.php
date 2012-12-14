@@ -6,7 +6,7 @@
 		if (mysql_query($q_apagar)){
 			$msg= '<font class="font_titulo"><img src="ok.gif">Viatura apagado com sucesso!</font>';
 		}else{
-			$msg='<font class="font_titulo_erro"><img src="erro.gif">Erro ao gravar as alterações!</font>';
+			$msg='<font class="font_titulo_erro"><img src="erro.gif">Erro ao gravar as alteraï¿½ï¿½es!</font>';
 		}
 	}
 	@$p_viaturas=$_POST['procura'];
@@ -42,7 +42,11 @@
         echo '</select></form></td></tr></table>';
         
         
-	echo '<table border=1 id="hor-minimalist-b" summary="motd">
+	echo '<form method="POST" action="./index.php?pagina=grafico">
+            <select name="tipo_grafico">
+                <option value="avaliacao_global">Avaliacao Global</option>
+            </select>
+    <table border=1 id="hor-minimalist-b" summary="motd">
 	<thead>
                 <th></th>
 		<th></th>
@@ -51,13 +55,13 @@
 		<th>Marca</th>
 		<th>Modelo</th>
 		<th>Matricula</th>
-		<th colspan=3>Operações</th>
+		<th colspan=3>Operaï¿½ï¿½es</th>
 	</thead>
 	<tbody>'; 
 	//inicio do loop de preenchimento da tabela
 	for($i=0;$i<$n_viaturas;$i++){
 		echo '<tr>';
-                        echo '<td align="center"><input name="sel_'.mysql_result($r_viaturas,$i,'id_viatura').'" value="1" type="checkbox"></td>';
+                        echo '<td align="center"><input name="sel_viatura[]" value="'.mysql_result($r_viaturas,$i,'id_viatura').'" type="checkbox"></td>';
 			echo '<td align="center"><a class="botao_detalhes" href="index.php?pagina=editarviaturas&id='.mysql_result($r_viaturas,$i,'id_viatura').'">Detalhes</a></td>';
 			echo '<td>'.mysql_result($r_viaturas,$i,'desc_viatura').'</td>';
 			echo '<td>';
@@ -75,5 +79,5 @@
 			//echo '<td><input type="image" onclick="apagar(\'index.php?pagina=viaturas&apagar=1&id='.mysql_result($r_viaturas,$i,'id_viatura').'\')" src="delete.gif"></td>';
 		echo '</tr>';
 	}
-	echo '</tbody></table>';
+	echo '</tbody></table></form>';
 ?>
