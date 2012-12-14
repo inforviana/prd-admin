@@ -43,7 +43,7 @@
     
     for($i=0;$i<$n_viaturas;$i++)
     {
-        echo '<div id="draggable'.$i.'" class="ui-widget-content">
+        echo '<div id="draggable'.$i.'" class="draggable ui-widget-content">
                 <p>Drag me to my target</p>
                 </div>';
     }
