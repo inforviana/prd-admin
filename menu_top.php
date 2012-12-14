@@ -1,5 +1,5 @@
 <?php
-		echo '
+		echo '<center>
 				<div style="width:600px;margin-left: auto;margin-right:auto; text-align:center">
 					<ul class="dropdown">
 						<li><a href="index.php"><span>Inicio</span></a></li>
@@ -51,6 +51,7 @@
 			<br><br>
 			<font style="font-family:Arial, Helvetica, sans-serif;font-size:11px;">'.$NOME_APP.' - '.$VERSAO_APP.'</font>					
 		</div>
+        </center>
         <br>
 		';
            
