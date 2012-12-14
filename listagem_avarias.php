@@ -4,6 +4,7 @@
 @$procura=$_GET['procura'];
 @$di=$_POST['data_inicio'];
 @$df=$_POST['data_fim'];
+@$texto_pesquisa = $_POST['inp_pesquisa'];
 
 
 
@@ -25,6 +26,7 @@ if($id_funcionario>0){
 		});
 	</script>";
 	echo '
+    
 Data Inicio: <input  name="data_inicio" size=7 id="datepicker_inicio" type="text"> -> 
 Data Fim: <input  name="data_fim" size=7 id="datepicker_fim" type="text"><br>';
 
@@ -64,6 +66,8 @@ echo '
 		});
 	</script>";
 	echo '
+    <input type="text" placeholder="text a pesquisar" name="inp_pesquisa" style="width:200px;"> 
+    <br>
 Data Inicio: <input  name="data_inicio" size=7 id="datepicker_inicio" type="text"> -> 
 Data Fim: <input  name="data_fim" size=7 id="datepicker_fim" type="text"><br>';
 
@@ -83,7 +87,7 @@ echo '
 						inner join viaturas on viaturas.id_viatura = mov_avarias.id_viatura
 						inner join funcionario on funcionario.id_funcionario=mov_avarias.id_funcionario
 						".$condicao."
-						and date(mov_avarias.data) >= '".@$di."' and date(mov_avarias.data) <= '".@$df."'
+						and mov_avarias.desc_avaria like '%".$texto_pesquisa."%' and date(mov_avarias.data) >= '".@$di."' and date(mov_avarias.data) <= '".@$df."'
 						order by date(mov_avarias.data) desc";	
 
 	//totais custo e horas
@@ -96,7 +100,7 @@ echo '
 						from mov_avarias
 						inner join viaturas on viaturas.id_viatura = mov_avarias.id_viatura
 						inner join funcionario on funcionario.id_funcionario=mov_avarias.id_funcionario
-						".$condicao."
+						".$condicao." and mov_avarias.desc_avaria like '%".$texto_pesquisa."%'
 						order by date(mov_avarias.data) desc";	
 
 		//totais custo e horas
@@ -134,13 +138,13 @@ echo '
 			<th></th>
 			<th>Data e Hora</th>
 			<th>Colaborador</th>
-			<th>Descrição</th>
+			<th>Descriï¿½ï¿½o</th>
 			<th>Categoria</th>
-			<th>Descrição</th>
+			<th>Descriï¿½ï¿½o</th>
 			<th>Custo</th>
 			<th>Concluida</th>
 			<th>Tempo Gasto</th>
-			<th colspan=3>Operações</th>
+			<th colspan=3>Operaï¿½ï¿½es</th>
 		</tr>
 		</thead>
 		<tbody>';
