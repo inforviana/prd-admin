@@ -110,7 +110,7 @@ echo '
 					   ".$condicao;
 					   					
 	}
-	
+	echo $q_mov_avarias;
 	$r_mov_avarias=mysql_query($q_mov_avarias); //resultados da query
 	$n_mov_avarias=mysql_num_rows($r_mov_avarias); //numero de linhas
 	
