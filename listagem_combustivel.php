@@ -30,12 +30,7 @@ echo '<font style="font-family:Arial, Helvetica, sans-serif;font-size:14px;">';
 		Tipo :: </b>'.mysql_result($r_dados,0,'tipo_viatura').'
 		</tr></table>';
 		
-		echo '<br><br><br><form method=POST action="index.php?procura=1&pagina=listagemcombustivel&idviatura='.$id_viatura.'">
-		';
-
-			echo '
-		<button type="submit" value="Filtrar">Filtrar</button>
-		</form></font>';
+		echo '<br><br>';
 		echo '<a id="hor-minimalist-b" href="index.php?pagina=listagemcombustivel&idviatura='.$id_viatura.'">Ver todos os movimentos</a>';
 		$condicao="where mov_combustivel.id_viatura=".$id_viatura;
 	}
