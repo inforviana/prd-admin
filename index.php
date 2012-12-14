@@ -3,26 +3,40 @@
 //
 //MODULO DE ADMINISTRACAO
 //
-//Desenvolvido por Inforviana - Sistemas Informáticos, Lda
+//Desenvolvido por Inforviana - Sistemas Informï¿½ticos, Lda
 //Helder Correia
 //Copyright 2012
 //
 //
 //
 //
-require("config.php"); //ficheiro de configuração (diferente do PRD)
+require("config.php"); //ficheiro de configuraï¿½ï¿½o (diferente do PRD)
 require("include/funcoes.php");
 //
-	//ligar á base de dados
+	//ligar ï¿½ base de dados
 	mysql_connect($DB_HOST,$DB_USER,$DB_PASS);
 	//seleccionar a tabela a utilizar
-	@mysql_select_db($DB_TABLE) or die('Erro de ligação á base de dados!');
+	@mysql_select_db($DB_TABLE) or die('Erro de ligaï¿½ï¿½o ï¿½ base de dados!');
 	
 	//variaveis globais
 	@$accao=$_GET['accao'];
 	@$utilizador=$_POST['utilizador'];
 	@$password=$_POST['password'];
 	
+    
+    //variaveis 
+    if(isset($_GET['a']))
+    {
+        switch($_GET['a'])
+        {
+            case 'datatrabalho':
+                setcookie('data_i',$_POST['data_i'],time()+3600);
+                setcookie('data_f',$_POST['data_f'],time()+3600);
+                break;
+        }
+    }
+    
+    
 if (isset($accao)) { //logout do utilizador 
 	if($accao="sair") {
 		setcookie("utilizador","",time()-3600); //eliminar as cookies
