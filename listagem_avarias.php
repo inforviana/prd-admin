@@ -82,7 +82,7 @@ echo '
 
 
 //ultimos registos do funcionario
-	if($procura==1){ //procura com data
+	if($procura==1&&isset($_POST['data_inicio'])&&isset($_POST['data_fim'])){ //procura com data
 		$q_mov_avarias="select mov_avarias.id_funcionario, mov_avarias.id_viatura, mov_avarias.id_avaria, date(mov_avarias.data) as 'dia', time(mov_avarias.data) as 'horas', mov_avarias.data, viaturas.desc_viatura, mov_avarias.categoria,mov_avarias.desc_avaria,mov_avarias.preco,mov_avarias.estado,mov_avarias.horas as 'tempo',funcionario.nome_funcionario
 						from mov_avarias
 						inner join viaturas on viaturas.id_viatura = mov_avarias.id_viatura
