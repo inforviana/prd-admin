@@ -74,7 +74,7 @@ switch($pagina){
                             require 'mod_ponto_funcionarios.php';
                             break;
                   case 'globalviatura':
-                require 'graficos/lucro_gasto.php';
+                require 'graficos/gasto_combustivel.php';
                 break;
 }
 ?>
