@@ -42,7 +42,8 @@
         echo '</select></form></td></tr></table>';
         
         
-	echo '<form method="POST" action="./index.php?pagina=grafico">
+	echo '
+    <form method="POST" action="./index.php?pagina=grafico">
             <select name="tipo_grafico">
                 <option value="avaliacao_global">Grafico Avaliacao Global</option>
             </select>
@@ -56,7 +57,7 @@
 		<th>Marca</th>
 		<th>Modelo</th>
 		<th>Matricula</th>
-		<th colspan=3>Opera��es</th>
+		<th colspan=3>Operacoes</th>
 	</thead>
 	<tbody>'; 
 	//inicio do loop de preenchimento da tabela
