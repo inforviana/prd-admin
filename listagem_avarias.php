@@ -6,6 +6,16 @@
 @$df=$_POST['data_fim'];
 @$texto_pesquisa = $_POST['inp_pesquisa'];
 
+//formatar datas
+if(isset($_POST['data_inicio']))
+{
+    $di_nf = explode("/",$_POST['data_inicio']);
+    $df_nf = explode("/",$_POST['fim']);
+    
+    $di = $di_nf[2]."-".$di_nf[1]."-".$di_nf[0];
+    $df = $df_nf[2]."-".$df_nf[1]."-".$df_nf[0]; 
+}
+
 
 
 if($id_funcionario>0){
@@ -62,8 +72,8 @@ echo '
 	echo "
 	<script>
 		$(function() {
-			$( '#datepicker_inicio' ).datepicker(\"option\",\"dateFormat\",\"yyyy-mm-dd\");
-			$( '#datepicker_fim' ).datepicker(\"option\",\"dateFormat\",\"yyyy-mm-dd\");
+			$( '#datepicker_inicio' ).datepicker();
+			$( '#datepicker_fim' ).datepicker();
 		});
 	</script>";
 	echo '
