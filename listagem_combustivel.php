@@ -167,6 +167,8 @@ echo '<font style="font-family:Arial, Helvetica, sans-serif;font-size:14px;">';
     				}else{
     					$warn="";
     				}
+                }else{
+                    $var_media=0;
                 }
                                 
                                                                         if(isset($_GET['idfuncionario']))
