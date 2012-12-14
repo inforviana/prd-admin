@@ -7,7 +7,7 @@
     echo '
         <script>
             $(function(){
-                $("#datai #data_f").datepicker();
+                $("#data_i, #data_f").datepicker();
             });
         </script>
         
