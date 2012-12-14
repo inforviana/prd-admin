@@ -73,7 +73,8 @@ if($id_funcionario>0){
 	$n_mov_avarias=mysql_num_rows($r_mov_avarias); //numero de linhas
 	
 	$r_totais=mysql_query($q_totais_avarias);
-
+    echo $q_mov_avarias;
+    
 	$entre_datas=" (entre $data_i e $data_f)";
 
 	echo '<br><br>
