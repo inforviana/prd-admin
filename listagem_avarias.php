@@ -26,7 +26,7 @@ if($id_funcionario>0){
 		});
 	</script>";
 	echo '
-    <input type="text" placeholder="texto a pesquisar" name="inp_pesquisa" style="width:200px; text-align:center; font-size: 12px;"> 
+    <input type="text" placeholder="texto a pesquisar" name="inp_pesquisa" style="width:200px; text-align:center; font-size: 18px;"> 
     <br>
 Data Inicio: <input  name="data_inicio" size=7 id="datepicker_inicio" type="text"> -> 
 Data Fim: <input  name="data_fim" size=7 id="datepicker_fim" type="text"><br>';
@@ -67,7 +67,7 @@ echo '
 		});
 	</script>";
 	echo '
-    <input type="text" placeholder="texto a pesquisar" name="inp_pesquisa" style="width:200px; text-align:center; font-size: 12px;"> 
+    <input type="text" placeholder="texto a pesquisar" name="inp_pesquisa" style="width:200px; text-align:center; font-size: 18px;"> 
     <br>
 Data Inicio: <input  name="data_inicio" size=7 id="datepicker_inicio" type="text"> -> 
 Data Fim: <input  name="data_fim" size=7 id="datepicker_fim" type="text"><br>';
@@ -88,7 +88,7 @@ echo '
 						inner join viaturas on viaturas.id_viatura = mov_avarias.id_viatura
 						inner join funcionario on funcionario.id_funcionario=mov_avarias.id_funcionario
 						".$condicao."
-						and mov_avarias.desc_avaria like '%".$texto_pesquisa."%' and date(mov_avarias.data) >= '".@$di."' and date(mov_avarias.data) <= '".@$df."'
+						 and mov_avarias.desc_avaria like '%".$texto_pesquisa."%' and date(mov_avarias.data) >= '".@$di."' and date(mov_avarias.data) <= '".@$df."'
 						order by date(mov_avarias.data) desc";	
 
 	//totais custo e horas
