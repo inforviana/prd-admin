@@ -31,5 +31,5 @@
 </div>
  
 <div id="droppable" class="ui-widget-header">
-    <p>Drop here</p>
+    <p>Arraste a viatura a verficar para aqui!</p>
 </div>
