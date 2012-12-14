@@ -169,6 +169,7 @@ echo '<font style="font-family:Arial, Helvetica, sans-serif;font-size:14px;">';
     				}
                 }else{
                     $var_media=0;
+                    $warn="";
                 }
                                 
                                                                         if(isset($_GET['idfuncionario']))
