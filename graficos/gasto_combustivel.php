@@ -26,9 +26,21 @@
 </head>
 <body>
  
-<div id="draggable" class="ui-widget-content">
-    <p>Drag me to my target</p>
-</div>
+ 
+ <?php
+    //desenhar as dropboxes para as viaturas
+    $q_viaturas = "select * from viaturas";
+    $r_viaturas = mysql_query($q_viaturas);
+    $n_viaturas = mysql_num_rows($r_viaturas);
+    
+    for($i=0;$i<$n_viaturas;$i++)
+    {
+        echo '<div id="draggable" class="ui-widget-content">
+                <p>Drag me to my target</p>
+                </div>';
+    }
+    
+ ?>
  
 <div id="droppable" class="ui-widget-header">
     <p>Arraste a viatura a verficar para aqui!</p>
