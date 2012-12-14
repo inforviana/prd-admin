@@ -2,8 +2,6 @@
 @$id_funcionario=$_GET['idfuncionario'];
 @$id_viatura=$_GET['idviatura'];
 @$procura=$_GET['procura'];
-@$di=$_POST['data_inicio'];
-@$df=$_POST['data_fim'];
 
 
 //definir a font a usar
@@ -16,19 +14,7 @@ echo '<font style="font-family:Arial, Helvetica, sans-serif;font-size:14px;">';
 		echo '<b>Nome: </b>'.mysql_result($r_dados,0,'nome_funcionario').'<br><b>Grupo: </b>'.mysql_result($r_dados,0,'grupo_funcionario');
 		echo '<br><br><br><form method=POST action="index.php?procura=1&pagina=listagemcombustivel&idfuncionario='.$id_funcionario.'">';
 
-			//codigo insercao data
-			echo "
-			<script>
-				$(function() {
-					$( '#datepicker_inicio' ).datepicker();
-					$( '#datepicker_fim' ).datepicker();
-				});
-			</script>";
 			echo '
-		Data Inicio: <input  name="data_inicio" size=7 id="datepicker_inicio" type="text"> -> 
-		Data Fim: <input  name="data_fim" size=7 id="datepicker_fim" type="text"><br>';
-
-		echo '
 		<button type="submit" value="Filtrar">Filtrar</button>
 		</form>'; //botao filtrar
 		echo '<a id="hor-minimalist-b" href="index.php?pagina=listagemcombustivel&idfuncionario='.$id_funcionario.'">Ver todos os movimentos</a>'; //ver todos os movimentos
@@ -70,7 +56,6 @@ echo '<font style="font-family:Arial, Helvetica, sans-serif;font-size:14px;">';
 	}
 
 		//calcular totais dos kms/horas e litros-------------------------------------
-		if($procura==1){
 			//query com data
 		$q_soma_combustivel="select mov_combustivel.id_movcombustivel, mov_combustivel.data, (max(mov_combustivel.kms_viatura)-min(mov_combustivel.kms_viatura)) as 'dif', sum(mov_combustivel.valor_movimento) as 'soma_litros', viaturas.desc_viatura, funcionario.nome_funcionario
 			from mov_combustivel
@@ -78,20 +63,11 @@ echo '<font style="font-family:Arial, Helvetica, sans-serif;font-size:14px;">';
 			inner join funcionario on funcionario.id_funcionario=mov_combustivel.id_funcionario
 			".$condicao."
 			and mov_combustivel.valor_movimento > 0 and mov_combustivel.kms_viatura > 0
-			and date(mov_combustivel.data) >= '".@$di."' and date(mov_combustivel.data) <= '".@$df."'
-			order by date(mov_combustivel.data) desc";		
-		$q_ultimo_combustivel="select valor_movimento from mov_combustivel ".$condicao." and date(mov_combustivel.data) >= '".@$di."' and date(mov_combustivel.data) <= '".@$df."' and valor_movimento > 0 order by date(data) asc limit 1 ";
-		}else{
-		//query sem data
-		$q_ultimo_combustivel="select valor_movimento from mov_combustivel ".$condicao." and valor_movimento > 0 order by date(data) asc limit 1 ";
-		$q_soma_combustivel="select mov_combustivel.id_movcombustivel, mov_combustivel.data, (max(mov_combustivel.kms_viatura)-min(mov_combustivel.kms_viatura)) as 'dif', sum(mov_combustivel.valor_movimento) as 'soma_litros', viaturas.desc_viatura, funcionario.nome_funcionario
-			from mov_combustivel
-			inner join viaturas on viaturas.id_viatura = mov_combustivel.id_viatura
-			inner join funcionario on funcionario.id_funcionario=mov_combustivel.id_funcionario
-			".$condicao."
-			and mov_combustivel.valor_movimento > 0 and mov_combustivel.kms_viatura > 0
-			order by date(mov_combustivel.data) desc";		
-		}
+			and date(mov_combustivel.data) >= '".$data_i."' and date(mov_combustivel.data) <= '".$data_f."'
+			order by date(mov_combustivel.data) desc";
+            
+		$q_ultimo_combustivel="select valor_movimento from mov_combustivel ".$condicao." and date(mov_combustivel.data) >= '".$data_i."' and date(mov_combustivel.data) <= '".$data_f."' and valor_movimento > 0 order by date(data) asc limit 1 ";
+		
 		$r_soma_combustivel=mysql_query($q_soma_combustivel);
 		$n_soma_combustivel=mysql_num_rows($r_soma_combustivel);
 		//--------------------------------------------------------------------------
@@ -103,7 +79,7 @@ echo '<font style="font-family:Arial, Helvetica, sans-serif;font-size:14px;">';
 		
 		$media_100=@round(((((mysql_result($r_soma_combustivel, 0,'soma_litros')-$ultimos_litros)*100)/mysql_result($r_soma_combustivel, 0,'dif'))), 2);
 		
-		//verifica que tipo de valor é
+		//verifica que tipo de valor ï¿½
 		if($media_100>70){
 			$media_ver=$media_100/100;
 			$uni='L\Hora';
@@ -131,26 +107,16 @@ echo '<font style="font-family:Arial, Helvetica, sans-serif;font-size:14px;">';
 
 
 //ultimos registos do funcionario
-	if($procura==1){
-		//query com data
-		$q_mov_combustivel="select mov_combustivel.id_viatura, mov_combustivel.id_funcionario, mov_combustivel.id_movcombustivel, time(mov_combustivel.data) as 'horas', date(mov_combustivel.data) as 'dia', mov_combustivel.data, mov_combustivel.kms_viatura, mov_combustivel.valor_movimento, viaturas.desc_viatura, funcionario.nome_funcionario
-from mov_combustivel
-inner join viaturas on viaturas.id_viatura = mov_combustivel.id_viatura
-inner join funcionario on funcionario.id_funcionario=mov_combustivel.id_funcionario
-".$condicao."
-and mov_combustivel.valor_movimento > 0
-and date(mov_combustivel.data) >= '".@$di."' and date(mov_combustivel.data) <= '".@$df."'
-order by mov_combustivel.data desc";		
-	}else{
-		//query sem data
-		$q_mov_combustivel="select mov_combustivel.id_viatura, mov_combustivel.id_funcionario, mov_combustivel.id_movcombustivel, time(mov_combustivel.data) as 'horas', date(mov_combustivel.data) as 'dia', mov_combustivel.data, mov_combustivel.kms_viatura, mov_combustivel.valor_movimento, viaturas.desc_viatura, funcionario.nome_funcionario
-from mov_combustivel
-inner join viaturas on viaturas.id_viatura = mov_combustivel.id_viatura
-inner join funcionario on funcionario.id_funcionario=mov_combustivel.id_funcionario
-".$condicao."
-and mov_combustivel.valor_movimento > 0
-order by mov_combustivel.kms_viatura desc";		
-	}
+
+	$q_mov_combustivel="select mov_combustivel.id_viatura, mov_combustivel.id_funcionario, mov_combustivel.id_movcombustivel, time(mov_combustivel.data) as 'horas', date(mov_combustivel.data) as 'dia', mov_combustivel.data, mov_combustivel.kms_viatura, mov_combustivel.valor_movimento, viaturas.desc_viatura, funcionario.nome_funcionario
+        from mov_combustivel
+        inner join viaturas on viaturas.id_viatura = mov_combustivel.id_viatura
+        inner join funcionario on funcionario.id_funcionario=mov_combustivel.id_funcionario
+        ".$condicao."
+        and mov_combustivel.valor_movimento > 0
+        and date(mov_combustivel.data) >= '".$data_i."' and date(mov_combustivel.data) <= '".$data_f."'
+        order by mov_combustivel.data desc";		
+	
 		
 	$r_mov_combustivel=mysql_query($q_mov_combustivel); //resultados da query
 	$n_mov_combustivel=mysql_num_rows($r_mov_combustivel); //numero de linhas
@@ -169,7 +135,7 @@ order by mov_combustivel.kms_viatura desc";
 			<th>Horas / Kms</th>
 			<th>Med. Diaria</th>
 			<th>Litros</th>
-			<th colspan=3>Operações</th>
+			<th colspan=3>Operaï¿½ï¿½es</th>
 		</tr>
 		</thead>
 		<tbody>';
@@ -197,7 +163,7 @@ order by mov_combustivel.kms_viatura desc";
 						$imgvar="./images/up.gif";
 					}
 				
-			//que tipo de media é
+			//que tipo de media ï¿½
 				if($media_diaria>100){
 					$media_diaria=$media_diaria/100;
 					$ext="L/H";
