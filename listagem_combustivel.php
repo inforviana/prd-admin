@@ -12,11 +12,8 @@ echo '<font style="font-family:Arial, Helvetica, sans-serif;font-size:14px;">';
 		$r_dados=mysql_query($q_dados);
 		$n_dados=mysql_num_rows($r_dados);
 		echo '<b>Nome: </b>'.mysql_result($r_dados,0,'nome_funcionario').'<br><b>Grupo: </b>'.mysql_result($r_dados,0,'grupo_funcionario');
-		echo '<br><br><br><form method=POST action="index.php?procura=1&pagina=listagemcombustivel&idfuncionario='.$id_funcionario.'">';
+		echo '<br><br>';
 
-			echo '
-		<button type="submit" value="Filtrar">Filtrar</button>
-		</form>'; //botao filtrar
 		echo '<a id="hor-minimalist-b" href="index.php?pagina=listagemcombustivel&idfuncionario='.$id_funcionario.'">Ver todos os movimentos</a>'; //ver todos os movimentos
 		$condicao="where mov_combustivel.id_funcionario=".$id_funcionario;
 	}else{
