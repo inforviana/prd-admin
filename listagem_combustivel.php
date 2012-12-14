@@ -36,19 +36,7 @@ echo '<font style="font-family:Arial, Helvetica, sans-serif;font-size:14px;">';
 		echo '<br><br><br><form method=POST action="index.php?procura=1&pagina=listagemcombustivel&idviatura='.$id_viatura.'">
 		';
 
-			//teste codigo insercao data
-			echo "
-			<script>
-				$(function() {
-					$( '#datepicker_inicio' ).datepicker();
-					$( '#datepicker_fim' ).datepicker();
-				});
-			</script>";
 			echo '
-		Data Inicio: <input  name="data_inicio" size=10 id="datepicker_inicio" type="text"> -> 
-		Data Fim: <input  name="data_fim" size=10 id="datepicker_fim" type="text"><br>';
-
-		echo '
 		<button type="submit" value="Filtrar">Filtrar</button>
 		</form></font>';
 		echo '<a id="hor-minimalist-b" href="index.php?pagina=listagemcombustivel&idviatura='.$id_viatura.'">Ver todos os movimentos</a>';
