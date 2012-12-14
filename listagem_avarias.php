@@ -4,16 +4,6 @@
 @$procura=$_GET['procura'];
 @$texto_pesquisa = $_POST['inp_pesquisa'];
 
-//formatar datas
-if(isset($_POST['data_inicio'])&&(strlen($_POST['data_inicio'])>1))
-{
-    $di_nf = explode("/",$_POST['data_inicio']);
-    $df_nf = explode("/",$_POST['data_fim']);
-    
-    $di = $di_nf[2]."-".$di_nf[1]."-".$di_nf[0];
-    $df = $df_nf[2]."-".$df_nf[1]."-".$df_nf[0]; 
-}
-
 
 
 if($id_funcionario>0){
@@ -24,24 +14,11 @@ if($id_funcionario>0){
 	echo '<b>Nome :: </b>'.mysql_result($r_dados,0,'nome_funcionario').'<br><b>Grupo :: </b>'.mysql_result($r_dados,0,'grupo_funcionario');
 	echo '<br><br><br>
 	<form method=POST action="index.php?procura=1&pagina=listagemavarias&idfuncionario='.$id_funcionario.'">';
-
-	//teste codigo insercao data
-	echo "
-	<script>
-		$(function() {
-			$( '#datepicker_inicio' ).datepicker(\"option\",\"dateFormat\",\"yyyy-mm-dd\");
-			$( '#datepicker_fim' ).datepicker(\"option\",\"dateFormat\",\"yyyy-mm-dd\");
-		});
-	</script>";
 	echo '
     <input type="text" placeholder="texto a pesquisar" name="inp_pesquisa" style="width:400px; text-align:center; font-size: 24px;"> 
     <br>
-Data Inicio: <input  name="data_inicio" size=7 id="datepicker_inicio" type="text"> -> 
-Data Fim: <input  name="data_fim" size=7 id="datepicker_fim" type="text"><br>';
-
-echo '
-<button type="submit" value="Filtrar">Filtrar</button>
-</form>';//selecao da data
+        <button type="submit" value="Filtrar">Filtrar</button>
+        </form>';
 	
 	echo '<a id=d="hor-minimalist-b" href="index.php?pagina=listagemavarias&idfuncionario='.$id_funcionario.'">Todas as avarias</a>';	
 	$condicao="where mov_avarias.id_funcionario=".$id_funcionario;
@@ -65,24 +42,10 @@ echo '
 	Tipo :: </b>'.mysql_result($r_cat_vi,0,'categoria').'
 	</tr></table>';
 	echo '<br><br><br><form method=POST action="index.php?procura=1&pagina=listagemavarias&idviatura='.$id_viatura.'">';
-            
-	//seleccao data
-	echo "
-	<script>
-		$(function() {
-			$( '#datepicker_inicio' ).datepicker();
-			$( '#datepicker_fim' ).datepicker();
-		});
-	</script>";
 	echo '
-    <input type="text" placeholder="texto a pesquisar" name="inp_pesquisa" style="width:400px; text-align:center; font-size: 24px;"> 
-    <br>
-Data Inicio: <input  name="data_inicio" size=7 id="datepicker_inicio" type="text"> -> 
-Data Fim: <input  name="data_fim" size=7 id="datepicker_fim" type="text"><br>';
-
-echo '
-<button type="submit" value="Filtrar">Filtrar</button>
-</form>';
+         <input type="text" placeholder="texto a pesquisar" name="inp_pesquisa" style="width:400px; text-align:center; font-size: 24px;"> ';
+    echo '<button type="submit" value="Filtrar">Filtrar</button>
+        </form>';
 	echo '<a id=d="hor-minimalist-b" href="index.php?pagina=listagemavarias&idviatura='.$id_viatura.'">Todas as avarias</a>';	
 	$condicao="where mov_avarias.id_viatura=".$id_viatura;
 }
@@ -96,38 +59,23 @@ echo '
 						inner join viaturas on viaturas.id_viatura = mov_avarias.id_viatura
 						inner join funcionario on funcionario.id_funcionario=mov_avarias.id_funcionario
 						".$condicao."
-						 and mov_avarias.desc_avaria like '%".$texto_pesquisa."%' and date(mov_avarias.data) >= '".@$di."' and date(mov_avarias.data) <= '".@$df."'
+						 and mov_avarias.desc_avaria like '%".$texto_pesquisa."%' and date(mov_avarias.data) >= '".$data_i."' and date(mov_avarias.data) <= '".$data_f."'
 						order by date(mov_avarias.data) desc";	
 
 	//totais custo e horas
 		$q_totais_avarias="SELECT sum(mov_avarias.preco) as 'custo', (sum(mov_avarias.horas)/60) as 'horas', (sum(mov_avarias.horas)%60) as 'minutos'
 					   FROM mov_avarias
 					   ".$condicao."
-					   and date(mov_avarias.data) >= '".@$di."' and date(mov_avarias.data) <= '".@$df."'";	
-	}else{ //procura sem data
-		$q_mov_avarias="select mov_avarias.id_funcionario, mov_avarias.id_viatura, mov_avarias.id_avaria, date(mov_avarias.data) as 'dia', time(mov_avarias.data) as 'horas', mov_avarias.data, viaturas.desc_viatura, mov_avarias.categoria,mov_avarias.desc_avaria,mov_avarias.preco,mov_avarias.estado,mov_avarias.horas as 'tempo',funcionario.nome_funcionario
-						from mov_avarias
-						inner join viaturas on viaturas.id_viatura = mov_avarias.id_viatura
-						inner join funcionario on funcionario.id_funcionario=mov_avarias.id_funcionario
-						".$condicao." and mov_avarias.desc_avaria like '%".$texto_pesquisa."%'
-						order by date(mov_avarias.data) desc";	
-
-		//totais custo e horas
-		$q_totais_avarias="SELECT sum(mov_avarias.preco) as 'custo', (sum(mov_avarias.horas)/60) as 'horas', (sum(mov_avarias.horas)%60) as 'minutos'
-					   FROM mov_avarias
-					   ".$condicao;
-					   					
+					   and date(mov_avarias.data) >= '".$data_i."' and date(mov_avarias.data) <= '".$data_f."'";	
 	}
+    
 	$r_mov_avarias=mysql_query($q_mov_avarias); //resultados da query
 	$n_mov_avarias=mysql_num_rows($r_mov_avarias); //numero de linhas
 	
 	$r_totais=mysql_query($q_totais_avarias);
-	
-	if(isset($di)){
-		$entre_datas=" (entre $di e $df)";
-	}else{
-		$entre_datas="";
-	}
+
+	$entre_datas=" (entre $data_i e $data_f)";
+
 	echo '<br><br>
 	<div class="div_totais_avarias">
 	Detalhes '.$entre_datas.'<hr>
@@ -146,13 +94,13 @@ echo '
 			<th></th>
 			<th>Data e Hora</th>
 			<th>Colaborador</th>
-			<th>Descri��o</th>
+			<th>Descricao</th>
 			<th>Categoria</th>
-			<th>Descri��o</th>
+			<th>Descricao</th>
 			<th>Custo</th>
 			<th>Concluida</th>
 			<th>Tempo Gasto</th>
-			<th colspan=3>Opera��es</th>
+			<th colspan=3>Operacoes</th>
 		</tr>
 		</thead>
 		<tbody>';
