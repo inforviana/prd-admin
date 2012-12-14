@@ -72,6 +72,7 @@
         </script>
         
         <form method="POST" action="./index.php?a=datatrabalho">
+            <center>
             <table>
                 <tr>
                     <td><input name="data_i" id="data_i" type="text" placeholder="data inicial" style="width:150px;text-align:center;font-size:18px;" value="'.$data_i.'"></td>
@@ -79,6 +80,7 @@
                     <td><input type="submit" value="OK"></td>
                 </tr>
             </table>
+            </center>
         </form>
         ';
 ?>
