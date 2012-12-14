@@ -2,12 +2,10 @@
 @$id_funcionario=$_GET['idfuncionario'];
 @$id_viatura=$_GET['idviatura'];
 @$procura=$_GET['procura'];
-@$di=$_POST['data_inicio'];
-@$df=$_POST['data_fim'];
 @$texto_pesquisa = $_POST['inp_pesquisa'];
 
 //formatar datas
-if(isset($_POST['data_inicio']))
+if(isset($_POST['data_inicio'])&&(strlen($_POST['data_inicio'])>1))
 {
     $di_nf = explode("/",$_POST['data_inicio']);
     $df_nf = explode("/",$_POST['data_fim']);
