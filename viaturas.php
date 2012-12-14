@@ -43,9 +43,11 @@
         
         
 	echo '
+    <!-- form para seleccionar o grafico a utilizar -->
     <form method="POST" action="./index.php?pagina=grafico">
             <select name="tipo_grafico">
                 <option value="avaliacao_global">Grafico Avaliacao Global</option>
+                <option value="consumo_mensal">Grafico Consumo Combustivel Mensal</option>
             </select>
             <input type="submit" value="Mostrar Grafico">
     <table border=1 id="hor-minimalist-b" summary="motd">
