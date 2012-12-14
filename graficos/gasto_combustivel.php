@@ -12,7 +12,6 @@
     
     <script>
     $(function() {
-        $( "#draggable" ).draggable();
         $( "#droppable" ).droppable({
             drop: function( event, ui ) {
                 $( this )
@@ -32,10 +31,19 @@
     $q_viaturas = "select * from viaturas";
     $r_viaturas = mysql_query($q_viaturas);
     $n_viaturas = mysql_num_rows($r_viaturas);
+    echo '<script>
+            $(function(){';
+    for($i=0;$i<$n_viaturas;$i++)
+    {
+        echo '
+            $( "#draggable'.$i.'" ).draggable();
+        ';
+    }
+    echo '});</script>';
     
     for($i=0;$i<$n_viaturas;$i++)
     {
-        echo '<div id="draggable" class="ui-widget-content">
+        echo '<div id="draggable'.$i.'" class="ui-widget-content">
                 <p>Drag me to my target</p>
                 </div>';
     }
