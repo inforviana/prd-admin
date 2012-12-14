@@ -26,7 +26,7 @@ if($id_funcionario>0){
 		});
 	</script>";
 	echo '
-    <input type="text" placeholder="texto a pesquisar" name="inp_pesquisa" style="width:200px; text-align:center; font-size: 18px;"> 
+    <input type="text" placeholder="texto a pesquisar" name="inp_pesquisa" style="width:400px; text-align:center; font-size: 24px;"> 
     <br>
 Data Inicio: <input  name="data_inicio" size=7 id="datepicker_inicio" type="text"> -> 
 Data Fim: <input  name="data_fim" size=7 id="datepicker_fim" type="text"><br>';
@@ -67,7 +67,7 @@ echo '
 		});
 	</script>";
 	echo '
-    <input type="text" placeholder="texto a pesquisar" name="inp_pesquisa" style="width:200px; text-align:center; font-size: 18px;"> 
+    <input type="text" placeholder="texto a pesquisar" name="inp_pesquisa" style="width:400px; text-align:center; font-size: 24px;"> 
     <br>
 Data Inicio: <input  name="data_inicio" size=7 id="datepicker_inicio" type="text"> -> 
 Data Fim: <input  name="data_fim" size=7 id="datepicker_fim" type="text"><br>';
