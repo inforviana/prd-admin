@@ -160,11 +160,14 @@ echo '<font style="font-family:Arial, Helvetica, sans-serif;font-size:14px;">';
 				}
 				
 				//media do combustivel
-				if($var_media>20){
-					$warn='<img src="./images/warning.jpeg" border=0>';
-				}else{
-					$warn="";
-				}
+                if(isset($var_media))
+                {
+    				if($var_media>20){
+    					$warn='<img src="./images/warning.jpeg" border=0>';
+    				}else{
+    					$warn="";
+    				}
+                }
                                 
                                                                         if(isset($_GET['idfuncionario']))
                                                                         {

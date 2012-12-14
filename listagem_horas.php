@@ -64,7 +64,7 @@ if ($id_funcionario>0){
 			<th>Colaborador</th>
 			<th>Viatura</th>
 			<th>Horas</th>
-			<th colspan=3>Opera��es</th>
+			<th colspan=3>Operacoes</th>
 		</tr>
 		</thead>
 		<tbody>';
