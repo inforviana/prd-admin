@@ -16,6 +16,7 @@
                 <tr>
                     <td><input id="data_i" type="text" placeholder="data inicial" style="width:150px;text-align:center;font-size:18px;"></td>
                     <td><input id="data_f" type="text" placeholder="data final" style="width:150px;text-align:center;font-size:18px;"></td>
+                    <td><input type="submit" value="OK"></td>
                 </tr>
             </table>
         </form>
