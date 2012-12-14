@@ -32,6 +32,7 @@ require("include/funcoes.php");
             case 'datatrabalho':
                 setcookie("data_i",$_POST['data_i'],time()+3600);
                 setcookie("data_f",$_POST['data_f'],time()+3600);
+                header("Location:index.php");
                 break;
         }
     }

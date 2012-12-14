@@ -38,7 +38,7 @@
 								<li><a href="#">Horas por Viatura</a></li>
 							</ul>	
 						</li>
-						<li><a href="index.php"><span>Op��es</span></a>
+						<li><a href="index.php"><span>Opcoes</span></a>
 							<ul class="sub_menu">
 								<li><a href="index.php?pagina=opcoes">Parametros Gerais</a></li>
 								<li><a href="index.php?pagina=utilizadores">Utilizadores</a></li>
