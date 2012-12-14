@@ -53,7 +53,6 @@ if($id_funcionario>0){
 
 
 //ultimos registos do funcionario
-	if($procura==1&&(strlen($_POST['data_inicio'])>1)){ //procura com data
 		$q_mov_avarias="select mov_avarias.id_funcionario, mov_avarias.id_viatura, mov_avarias.id_avaria, date(mov_avarias.data) as 'dia', time(mov_avarias.data) as 'horas', mov_avarias.data, viaturas.desc_viatura, mov_avarias.categoria,mov_avarias.desc_avaria,mov_avarias.preco,mov_avarias.estado,mov_avarias.horas as 'tempo',funcionario.nome_funcionario
 						from mov_avarias
 						inner join viaturas on viaturas.id_viatura = mov_avarias.id_viatura
@@ -66,8 +65,8 @@ if($id_funcionario>0){
 		$q_totais_avarias="SELECT sum(mov_avarias.preco) as 'custo', (sum(mov_avarias.horas)/60) as 'horas', (sum(mov_avarias.horas)%60) as 'minutos'
 					   FROM mov_avarias
 					   ".$condicao."
-					   and date(mov_avarias.data) >= '".$data_i."' and date(mov_avarias.data) <= '".$data_f."'";	
-	}
+					   and date(mov_avarias.data) >= '".$data_i."' and date(mov_avarias.data) <= '".$data_f."'";
+                       
     
 	$r_mov_avarias=mysql_query($q_mov_avarias); //resultados da query
 	$n_mov_avarias=mysql_num_rows($r_mov_avarias); //numero de linhas
