@@ -21,8 +21,8 @@ if($id_funcionario>0){
 	echo "
 	<script>
 		$(function() {
-			$( '#datepicker_inicio' ).datepicker(\"option\",\"dateFormat\",\"yy-mm-dd\");
-			$( '#datepicker_fim' ).datepicker(\"option\",\"dateFormat\",\"yy-mm-dd\");
+			$( '#datepicker_inicio' ).datepicker(\"option\",\"dateFormat\",\"yyyy-mm-dd\");
+			$( '#datepicker_fim' ).datepicker(\"option\",\"dateFormat\",\"yyyy-mm-dd\");
 		});
 	</script>";
 	echo '
@@ -62,8 +62,8 @@ echo '
 	echo "
 	<script>
 		$(function() {
-			$( '#datepicker_inicio' ).datepicker();
-			$( '#datepicker_fim' ).datepicker();
+			$( '#datepicker_inicio' ).datepicker(\"option\",\"dateFormat\",\"yyyy-mm-dd\");
+			$( '#datepicker_fim' ).datepicker(\"option\",\"dateFormat\",\"yyyy-mm-dd\");
 		});
 	</script>";
 	echo '
@@ -110,7 +110,7 @@ echo '
 					   ".$condicao;
 					   					
 	}
-	echo $q_mov_avarias;
+	echo '<br><br>'.$q_mov_avarias;
 	$r_mov_avarias=mysql_query($q_mov_avarias); //resultados da query
 	$n_mov_avarias=mysql_num_rows($r_mov_avarias); //numero de linhas
 	
