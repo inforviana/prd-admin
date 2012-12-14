@@ -2,8 +2,6 @@
 @$id_funcionario=$_GET['idfuncionario'];
  @$id_viatura=$_GET['idviatura'];
 @$procura=$_GET['procura'];
-@$di=$_POST['data_inicio'];
-@$df=$_POST['data_fim'];
 
 if ($id_funcionario>0){
 	//obter detalhes do funcionario
@@ -11,24 +9,7 @@ if ($id_funcionario>0){
 	$r_dados=mysql_query($q_dados);
 	$n_dados=mysql_num_rows($r_dados);
 	echo '<b>Nome: </b>'.mysql_result($r_dados,0,'nome_funcionario').'<br><b>Grupo: </b>'.mysql_result($r_dados,0,'grupo_funcionario');
-	echo '<br><br><br><form method=POST action="index.php?procura=1&pagina=listagemhoras&idfuncionario='.$id_funcionario.'">';
-
-	//teste codigo insercao data
-	echo "
-	<script>
-		$(function() {
-			$( '#datepicker_inicio' ).datepicker();
-			$( '#datepicker_fim' ).datepicker();
-		});
-	</script>";
-	echo '
-Data Inicio: <input  name="data_inicio" size=7 id="datepicker_inicio" type="text"> -> 
-Data Fim: <input  name="data_fim" size=7 id="datepicker_fim" type="text"><br>';
-
-echo '
-<button type="submit" value="Filtrar">Filtrar</button>
-</form>';
-	echo '<a id="hor-minimalist-b" href="index.php?pagina=listagemhoras&idfuncionario='.$id_funcionario.'">Ver todos os registos</a>';
+	echo '<br><br>';
 	$condicao="where mov_viatura.id_funcionario=".$id_funcionario;	
 }else{
 	//obter detalhes da viatura
@@ -44,37 +25,20 @@ echo '
 		Tipo :: </b>'.mysql_result($r_dados,0,'tipo_viatura').'
 		</tr></table>';
 		
-	echo '<br><br><br><form method=POST action="index.php?procura=1&pagina=listagemhoras&idviatura='.$id_viatura.'">';
-
-	//teste codigo insercao data
-	echo "
-	<script>
-		$(function() {
-			$( '#datepicker_inicio' ).datepicker();
-			$( '#datepicker_fim' ).datepicker();
-		});
-	</script>";
-	echo '
-Data Inicio: <input  name="data_inicio" size=7 id="datepicker_inicio" type="text"> -> 
-Data Fim: <input  name="data_fim" size=7 id="datepicker_fim" type="text"><br>';
-
-echo '
-<button type="submit" value="Filtrar">Filtrar</button>
-</form>';
-	echo '<a id="hor-minimalist-b" href="index.php?pagina=listagemhoras&idviatura='.$id_viatura.'">Ver todos os registos</a>';	
+	echo '<br><br>';
+    
 	$condicao="where mov_viatura.id_viatura=".$id_viatura;
 }
 
 
 
 //ultimos registos do funcionario
-	if($procura==1){
 		$q_mov_horas="select time(mov_viatura.data) as 'horas',date(mov_viatura.data) as 'dia', mov_viatura.id_funcionario,mov_viatura.id_viatura, mov_viatura.id_movviatura, mov_viatura.data, funcionario.nome_funcionario, viaturas.desc_viatura, viaturas.marca_viatura, viaturas.modelo_viatura, mov_viatura.horas_viatura
 			from mov_viatura
 			inner join funcionario on funcionario.id_funcionario = mov_viatura.id_funcionario
 			inner join viaturas on viaturas.id_viatura = mov_viatura.id_viatura
 			".$condicao." and mov_viatura.horas_viatura > 0
-			and date(mov_viatura.data) >= '".@$di."' and date(mov_viatura.data) <= '".@$df."'
+			and date(mov_viatura.data) >= '".$data_i."' and date(mov_viatura.data) <= '".$data_f."'
 			order by date(mov_viatura.data) desc";	
  
 		$q_totais="select (sum(horas_viatura)/60) as 'horas', (sum(horas_viatura)%60) as 'minutos' 
@@ -82,23 +46,8 @@ echo '
 			inner join funcionario on funcionario.id_funcionario = mov_viatura.id_funcionario
 			inner join viaturas on viaturas.id_viatura = mov_viatura.id_viatura
 			".$condicao." and mov_viatura.horas_viatura > 0
-			and date(mov_viatura.data) >= '".@$di."' and date(mov_viatura.data) <= '".@$df."'
+			and date(mov_viatura.data) >= '".$data_i."' and date(mov_viatura.data) <= '".$data_f."'
 			order by date(mov_viatura.data) desc";	
-	}else{
-		$q_mov_horas="select  time(mov_viatura.data) as 'horas',date(mov_viatura.data) as 'dia', mov_viatura.id_funcionario, mov_viatura.id_viatura, mov_viatura.id_movviatura, mov_viatura.data, funcionario.nome_funcionario, viaturas.desc_viatura, viaturas.marca_viatura, viaturas.modelo_viatura, mov_viatura.horas_viatura
-			from mov_viatura
-			inner join funcionario on funcionario.id_funcionario = mov_viatura.id_funcionario
-			inner join viaturas on viaturas.id_viatura = mov_viatura.id_viatura
-			".$condicao." and mov_viatura.horas_viatura > 0
-			order by date(mov_viatura.data) desc";		
-			
-		$q_totais="select (sum(horas_viatura)/60) as 'horas', (sum(horas_viatura)%60) as 'minutos' 
-			from mov_viatura
-			inner join funcionario on funcionario.id_funcionario = mov_viatura.id_funcionario
-			inner join viaturas on viaturas.id_viatura = mov_viatura.id_viatura
-			".$condicao." and mov_viatura.horas_viatura > 0
-			order by date(mov_viatura.data) desc";	
-	}
 		
 	$r_mov_horas=mysql_query($q_mov_horas); //resultados da query
 	$n_mov_horas=mysql_num_rows($r_mov_horas); //numero de linhas
@@ -115,7 +64,7 @@ echo '
 			<th>Colaborador</th>
 			<th>Viatura</th>
 			<th>Horas</th>
-			<th colspan=3>Operações</th>
+			<th colspan=3>Operaï¿½ï¿½es</th>
 		</tr>
 		</thead>
 		<tbody>';
