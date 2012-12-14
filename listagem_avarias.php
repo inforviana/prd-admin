@@ -10,7 +10,7 @@
 if(isset($_POST['data_inicio']))
 {
     $di_nf = explode("/",$_POST['data_inicio']);
-    $df_nf = explode("/",$_POST['fim']);
+    $df_nf = explode("/",$_POST['data_fim']);
     
     $di = $di_nf[2]."-".$di_nf[1]."-".$di_nf[0];
     $df = $df_nf[2]."-".$df_nf[1]."-".$df_nf[0]; 
