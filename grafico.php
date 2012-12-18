@@ -8,7 +8,7 @@
 
 
 //devolve o resultado da query em formato array JS ['','',...]
-function array_js($query,$coluna)
+function arrayjs($query,$coluna)
 {
     $res = mysql_query($query); 
     $num = mysql_num_rows($res); //numero de linhas da query
