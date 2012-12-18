@@ -76,5 +76,8 @@ switch($pagina){
                   case 'globalviatura':
                 require 'graficos/gasto_combustivel.php';
                 break;
+    case 'graficos':
+        require('grafico.php');
+        break;
 }
 ?>

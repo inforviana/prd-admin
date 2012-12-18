@@ -49,7 +49,7 @@
                 <option value="avaliacao_global">Grafico Avaliacao Global</option>
                 <option value="consumo_mensal">Grafico Consumo Combustivel Mensal</option>
             </select>
-            <input type="submit" value="Mostrar Grafico">
+            <input type="submit" value="Mostrar Grafico >>">
     <table border=1 id="hor-minimalist-b" summary="motd">
 	<thead>
                 <th></th>
