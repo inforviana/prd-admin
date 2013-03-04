@@ -16,10 +16,12 @@
 		switch($versao_actual)
 		{
 			case '0.1':
+				//cria a tabela de acessorios
 				mysql_query("CREATE TABLE acessorios_viatura(id_acessorios_viatura INT NOT NULL AUTO_INCREMENT PRIMARY KEY, id_viatura INT NOT NULL, id_acessorio INT NOT NULL)");
 				mysql_query("UPDATE config SET value='0.2' WHERE attrib='versao'");
 				break;
 			case '0.2':
+				//actualiza todas as horas facturadas com o preco hora da viatura ate esta actualizacao
 				mysql_query("update mov_viatura, viaturas
 						     set mov_viatura.preco_viatura = viaturas.preco_hora
 							 where mov_viatura.id_viatura = viaturas.id_viatura and mov_viatura.preco_viatura = 0");

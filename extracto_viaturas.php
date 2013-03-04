@@ -18,7 +18,6 @@
 		}else{
 			$cor = "green";
 		}
-		
 		return $cor;
 	}
 	

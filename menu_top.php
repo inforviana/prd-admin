@@ -1,4 +1,9 @@
 <?php
+		//arrays a utilizar para as combo boxes
+	 	$meses = array("Janeiro", "Fevereiro", "Marco","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro");
+	 	$anos = array("2011","2012","2013");
+	
+		//html
 		echo '<center>
 				<div style="width:600px;margin-left: auto;margin-right:auto; text-align:center">
 					<ul class="dropdown">
@@ -42,7 +47,7 @@
 								<li><a href="index.php?pagina=opcoes">Parametros Gerais</a></li>
 								<li><a href="index.php?pagina=utilizadores">Utilizadores</a></li>
 								<li><a href="index.php?pagina=utilizadorestubos">Tubos - Utilizadores</a></li>
-                                                                <li><a href="index.php?pagina=tecnico">Tecnico</a></li>
+                                <li><a href="index.php?pagina=tecnico">Tecnico</a></li>
 							</ul>	
 						</li>
 						<li><a href="index.php?accao=sair"><span>Terminar Sessao</span></a></li>
@@ -63,6 +68,8 @@
         $data_i=date('Y-m-d',strtotime('-1 month'));
         $data_f=date('Y-m-d'); 
     }
+    
+    $data = explode('-',$data_i);
     
     echo '
         <script>
@@ -85,23 +92,40 @@
         <center>
 			<form method="POST" action="./index.php?a=mestrabalho">
 	              <select name="mes">
-	                    	<option value="1">Janeiro</option>
-	                    	<option value="2">Fevereiro</option>
-	                    	<option value="3">Marco</option>
-	                    	<option value="4">Abril</option>
-	                    	<option value="5">Maio</option>
-	                    	<option value="6">Junho</option>
-	                    	<option value="7">Julho</option>
-	                    	<option value="8">Agosto</option>
-	                    	<option value="9">Setembro</option>
-	                    	<option value="10">Outubro</option>
-	                    	<option value="11">Novembro</option>
-	                    	<option value="12">Dezembro</option>
+	                    	';
+    	
+    			//meses do ano
+    			for($i=0;$i<count($meses);$i++)
+    			{
+    				if(($i+1)==$data[1])
+    				{
+    					$sel = ' selected="selected" ';
+    				}else{
+    					$sel="";
+    				}
+    				echo '<option '.$sel.' value="'.($i+1).'">'.$meses[$i].'</option>';
+    			}
+    			
+    			
+    	echo '
 	              </select>
 	              <select name="ano">
-	                    	<option value="2011">2011</option>
-	                    	<option value="2012">2012</option>
-	                    	<option value="2013">2013</option>
+	             	';
+    	
+    			//anos
+    			for($i=0;$i<count($anos);$i++)
+    			{
+    				if($anos[$i]==$data[0])
+    				{
+    					$sel = ' selected="selected" ';
+    				}else{
+    					$sel="";
+    				}
+    				echo '<option '.$sel.' value="'.$anos[$i].'">'.$anos[$i].'</option>';
+    			}
+    	
+    	
+    	echo '
 	              </select>
 	              <input type="submit" value="OK">
         </form>
