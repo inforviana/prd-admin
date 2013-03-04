@@ -29,12 +29,20 @@ require("include/funcoes.php");
     //variaveis 
     if(isset($_GET['a']))
     {
+    	if(isset($_GET['pagina']))
+    	{
+    		$pagina_a_redireccionar = '?pagina='.$_GET['pagina'];
+    	}else{
+    		$pagina_a_redireccionar = '';
+    	}
+    	
+    	
         switch($_GET['a'])
         {
             case 'datatrabalho':
                 setcookie("data_i",$_POST['data_i'],time()+3600);
                 setcookie("data_f",$_POST['data_f'],time()+3600);
-                header("Location:index.php");
+                header("Location:index.php".$pagina_a_redireccionar);
                 break;
             case 'mestrabalho':
            
@@ -82,7 +90,7 @@ require("include/funcoes.php");
             	$data_final = $_POST['ano']."-".$_POST['mes']."-".$dia_final;
             	setcookie("data_i",$data_inicial,time()+3600);
             	setcookie("data_f",$data_final,time()+3600);
-            	header("Location:index.php");
+            	header("Location:index.php".$pagina_a_redireccionar);
             	break;
         }
     }

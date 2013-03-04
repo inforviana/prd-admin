@@ -60,16 +60,16 @@
 		';
            
     //seleccao da data de trabalho
-    if(isset($_COOKIE['data_i']))
+    if(isset($_COOKIE['data_i'])) //verifica se a data esta definida nas cookies
     {
         $data_i=$_COOKIE['data_i'];
         $data_f=$_COOKIE['data_f'];
-    }else{
+    }else{ //se nao estiver usa a data de sistema
         $data_i=date('Y-m-d',strtotime('-1 month'));
         $data_f=date('Y-m-d'); 
     }
     
-    $data = explode('-',$data_i);
+    $data = explode('-',$data_i); //separa a data num array para verificacao do ano e mes para usar nas combo boxes superiores
     
     echo '
         <script>
@@ -78,7 +78,7 @@
             });
         </script>
         
-        <form method="POST" action="./index.php?a=datatrabalho">
+        <form method="POST" action="./index.php?a=datatrabalho&pagina='.$_GET['pagina'].'">
             <center>
             <table>
                 <tr>
@@ -90,11 +90,11 @@
             </center>
         </form>
         <center>
-			<form method="POST" action="./index.php?a=mestrabalho">
+			<form method="POST" action="./index.php?a=mestrabalho&pagina='.$_GET['pagina'].'">
 	              <select name="mes">
 	                    	';
     	
-    			//meses do ano
+    			//combo box meses do ano
     			for($i=0;$i<count($meses);$i++)
     			{
     				if(($i+1)==$data[1])
@@ -112,7 +112,7 @@
 	              <select name="ano">
 	             	';
     	
-    			//anos
+    			//combo box anos
     			for($i=0;$i<count($anos);$i++)
     			{
     				if($anos[$i]==$data[0])
