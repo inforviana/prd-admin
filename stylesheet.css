@@ -310,3 +310,17 @@ table.tabela_registo th{
     border-width:1px;
     border-color: black;
 }
+
+#tabela_extracto_viaturas{
+	border-spacing: 10px 10px;
+}
+
+#tabela_extracto_viaturas th{
+	border-bottom:solid 1px black;
+}
+
+#tabela_extracto_viaturas td{
+	border-bottom: 1px solid gray;
+	background-color: #d8d8d8;
+	text-align: center;
+}

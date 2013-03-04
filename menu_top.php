@@ -7,6 +7,7 @@
 							<ul class="sub_menu">
 								<li><a href="index.php?pagina=funcionarios"><span>Funcionarios</span></a></li>
 								<li><a href="index.php?pagina=grupos"><span>Grupos</span></a></li>
+								<li><a href="index.php?pagina=obras"><span>Obras</span></a></li>
 								<li><a href="index.php?pagina=viaturas"><span>Viaturas</span></a></li>
 								<li><a href="index.php?pagina=tubos"><span>Tubos</span></a></li>
 							</ul>
@@ -20,9 +21,7 @@
 								</li>
 								<li><a href="#">Horas</a>
 									<ul>
-										<li><a href="#">Totais Mensais</a></li>
-										<li><a href="#">Totais Por Viatura</a></li>
-										<li><a href="#">Totais Por Funcionario</a></li>
+										<li><a href="#">Horas</a></li>
 									</ul>
 								</li>
 								<li><a href="#">Ponto</a>
@@ -34,8 +33,8 @@
 						</li>
 						<li><a href="index.php"><span>Extratos</span></a>
 							<ul class="sub_menu">
-								<li><a href="#">Horas por Funcionario</a></li>
-								<li><a href="#">Horas por Viatura</a></li>
+								<li><a href="./index.php?pagina=extractofuncionarios">Horas por Funcionario</a></li>
+								<li><a href="./index.php?pagina=extractoviaturas">Horas por Viatura</a></li>
 							</ul>	
 						</li>
 						<li><a href="index.php"><span>Opcoes</span></a>
@@ -83,5 +82,29 @@
             </table>
             </center>
         </form>
+        <center>
+			<form method="POST" action="./index.php?a=mestrabalho">
+	              <select name="mes">
+	                    	<option value="1">Janeiro</option>
+	                    	<option value="2">Fevereiro</option>
+	                    	<option value="3">Marco</option>
+	                    	<option value="4">Abril</option>
+	                    	<option value="5">Maio</option>
+	                    	<option value="6">Junho</option>
+	                    	<option value="7">Julho</option>
+	                    	<option value="8">Agosto</option>
+	                    	<option value="9">Setembro</option>
+	                    	<option value="10">Outubro</option>
+	                    	<option value="11">Novembro</option>
+	                    	<option value="12">Dezembro</option>
+	              </select>
+	              <select name="ano">
+	                    	<option value="2011">2011</option>
+	                    	<option value="2012">2012</option>
+	                    	<option value="2013">2013</option>
+	              </select>
+	              <input type="submit" value="OK">
+        </form>
+        </center>                    		
         ';
 ?>

@@ -16,7 +16,9 @@ require("include/funcoes.php");
 	//ligar � base de dados
 	mysql_connect($DB_HOST,$DB_USER,$DB_PASS);
 	//seleccionar a tabela a utilizar
-	@mysql_select_db($DB_TABLE) or die('Erro de liga��o � base de dados!');
+	mysql_select_db($DB_TABLE) or die('Erro de ligacao a base de dados!');
+	
+	require('update.php'); //actualizar a base de dados
 	
 	//variaveis globais
 	@$accao=$_GET['accao'];
@@ -34,6 +36,54 @@ require("include/funcoes.php");
                 setcookie("data_f",$_POST['data_f'],time()+3600);
                 header("Location:index.php");
                 break;
+            case 'mestrabalho':
+           
+            	switch($_POST['mes']) //obter ultimo dia do mes
+            	{
+            		case 1:
+            			$dia_final = 31;
+            			break;
+            		case 2:
+            			$dia_final = 29;
+            			break;
+            		case 3:
+            			$dia_final = 31;
+            			break;
+            		case 4;
+            			$dia_final = 30;
+            			break;
+            		case 5:
+            			$dia_final = 31;
+            			break;
+            		case 6:
+            			$dia_final = 30;
+            			break;
+            		case 7:
+            			$dia_final = 31;
+            			break;
+            		case 8:
+            			$dia_final = 31;
+            			break;
+            		case 9:
+            			$dia_final = 30;
+            			break;
+            		case 10:
+						$dia_final = 31;
+						break;
+            		case 11:
+            			$dia_final = 30;
+            			break;
+            		case 12:
+            			$dia_final = 31;
+            			break;
+            	}
+            	
+            	$data_inicial = $_POST['ano']."-".$_POST['mes']."-01";
+            	$data_final = $_POST['ano']."-".$_POST['mes']."-".$dia_final;
+            	setcookie("data_i",$data_inicial,time()+3600);
+            	setcookie("data_f",$data_final,time()+3600);
+            	header("Location:index.php");
+            	break;
         }
     }
     

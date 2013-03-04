@@ -6,6 +6,15 @@ if(!isset($pagina)){ //abrir a pagina inicial
 }
 
 switch($pagina){
+	case 'obras':
+		require 'obras.php';
+		break;
+	case 'extractofuncionarios':
+		require 'extracto_funcionarios.php';
+	break;
+	case 'extractoviaturas':
+		require 'extracto_viaturas.php';
+	break;
 	case 'extracto_combustivel':
 		require('extracto_combustivel.php');
 	break;
