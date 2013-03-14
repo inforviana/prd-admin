@@ -62,7 +62,8 @@
 												$minutos_trabalho='00';
 											}
 											echo '<td align="center">'.$horas_trabalho.':'.$minutos_trabalho.'</td>';											
-										} elseif($j==2){ // HORAS DESLOCAÇÃO
+										} elseif($j==2){ 
+											// HORAS DESLOCAÇÃO
 											$horas_deslocacao=intval(mysql_result($r_relatorio,$i,3)/60);
 											$minutos_deslocacao=intval(mysql_result($r_relatorio,$i,3)%60);
 											if($horas_deslocacao==0){
