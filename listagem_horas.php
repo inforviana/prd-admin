@@ -1,17 +1,24 @@
 <?php 
-@$id_funcionario=$_GET['idfuncionario'];
- @$id_viatura=$_GET['idviatura'];
-@$procura=$_GET['procura'];
 
-if ($id_funcionario>0){
+//verifica se esta definida a procura
+if(isset($_GET['procura']))
+	$procura=$_GET['procura'];
+
+//verifica se e para ver detalhes do funcionario ou da viatura
+if (isset($_GET['idfuncionario'])){
+	
+	$id_funcionario=$_GET['idfuncionario'];
 	//obter detalhes do funcionario
 	$q_dados="select * from funcionario where id_funcionario=".$id_funcionario;
 	$r_dados=mysql_query($q_dados);
 	$n_dados=mysql_num_rows($r_dados);
 	echo '<b>Nome: </b>'.mysql_result($r_dados,0,'nome_funcionario').'<br><b>Grupo: </b>'.mysql_result($r_dados,0,'grupo_funcionario');
 	echo '<br><br>';
-	$condicao="where mov_viatura.id_funcionario=".$id_funcionario;	
-}else{
+	$condicao="where mov_viatura.id_funcionario=".$id_funcionario;
+		
+}elseif(isset($_GET['idviatura'])){
+	
+	$id_viatura=$_GET['idviatura'];
 	//obter detalhes da viatura
 	$q_dados="select * from viaturas where id_viatura=".$id_viatura;
 	$r_dados=mysql_query($q_dados);
@@ -49,8 +56,19 @@ if ($id_funcionario>0){
 			and date(mov_viatura.data) >= '".$data_i."' and date(mov_viatura.data) <= '".$data_f."'
 			order by date(mov_viatura.data) desc";	
 		
-	$r_mov_horas=mysql_query($q_mov_horas); //resultados da query
-	$n_mov_horas=mysql_num_rows($r_mov_horas); //numero de linhas
+	$r_mov_horas = mysql_query($q_mov_horas); //resultados da query
+	$n_mov_horas = mysql_num_rows($r_mov_horas); //numero de linhas
+	
+	
+	$r_totais_horas = mysql_query($q_totais);
+	
+	//tabela com os totais de horas e faturado
+	echo '<table id="tabela_totais_horas">
+			<tr>
+				<td style="background-color: light-gray;border-bottom: 2px solid black;">Total Tempo Trabalhado :: </td>
+				<td style="background-color: #FF9933;border-bottom: 2px solid black;"><font style="color:black;font-size:22px;">'.round(mysql_result($r_totais_horas, 0,0),0).'H'.round(mysql_result($r_totais_horas,0,'minutos'),0).'m</font></td>
+			</tr>
+		  </table>';
 
 	//desenhar tabelas com os registos	
 		echo '<table id="hor-minimalist-b" summary="motd">
