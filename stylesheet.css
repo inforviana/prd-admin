@@ -324,3 +324,16 @@ table.tabela_registo th{
 	background-color: #d8d8d8;
 	text-align: center;
 }
+
+/* edicao das obras */
+#tabela_obras{
+	width: 400px;
+}
+
+#tabela_obras th{
+	border-bottom: solid 1px black;
+}
+
+#tabela_obras td{
+	text-align: center;
+}
