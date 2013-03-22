@@ -169,13 +169,15 @@
                 }else{
                     $checked="";
                 }
-	echo'</select><br><br><input type="checkbox" name="acessorio" value="1" '.$checked.'>Acessorio
+	echo'</select><br><br><input type="checkbox" name="acessorio" value="1" '.$checked.'> Acessorio
 		<br><br>';
 	echo 'Nº Serie: <input type="text" class="inp_viatura" name="nserie" value="'.@mysql_result($r_viatura,0,'nserie').'">
 		<br><br>';
 	echo 'Nº Identificacao: <input type="text" class="inp_viatura"  name="nidentificacao" value="'.@mysql_result($r_viatura,0,'nidentificacao').'">
 		<br><br>';
-        echo 'Preço Hora: Eur <input class="inp_viatura_hora" type="text" name="preco_hora" value="'.@mysql_result($r_viatura,0,'preco_hora').'">
+        echo 'Preço Hora Base : Eur <input class="inp_viatura_hora" type="text" name="preco_hora" value="'.@mysql_result($r_viatura,0,'preco_hora').'">
+        	 <br><br>
+        		<input type="button" value="Precos das Obras desta Viatura" onclick="window.location.href=\'./index.php?pagina=precosobra&idviatura='.$id.'\'">
 		<br><br>';
 	echo '<img class="img_viatura" src="imagem.php?idviatura='.@mysql_result($r_viatura,0,'id_viatura').'"><br>Imagem: <input name="imgfile" type="file" size="20">
 		<br><br>';

@@ -231,7 +231,7 @@ label.but_tub
 {
     width:80px;
     text-align: center;
-    font-size: 30px;
+    font-size: 20px;
     color: green;
 }
 
@@ -336,4 +336,8 @@ table.tabela_registo th{
 
 #tabela_obras td{
 	text-align: center;
+}
+
+#tabela_precos_obra th{
+	border-bottom: solid 1px black;
 }

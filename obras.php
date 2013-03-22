@@ -26,7 +26,9 @@
 	
 
 
-	echo '<br><table id="tabela_obras">
+	echo '<br>
+			<h2>Obras</h2><br>
+			<table id="tabela_obras">
 				<thead>
 					<th>Nome Obra</th>
 					<th>Operacoes</th>
@@ -60,6 +62,8 @@
 			</td>
 		</tr>
 			    </tbody>
+			<th></th>
+			<th></th>
 		  </table>
 		<br><br>';
 ?>

@@ -76,7 +76,7 @@
 			echo '<td>'.mysql_result($r_viaturas,$i,'marca_viatura').'</td>';
 			echo '<td>'.mysql_result($r_viaturas,$i,'modelo_viatura').'</td>';
 			echo '<td>'.mysql_result($r_viaturas,$i,'matricula_viatura').'</td>';
-                                                      //echo '<td><a href="index.php?pagina=avaliacao&grafico=1&via='.mysql_result($r_viaturas,$i,'id_viatura').'"><img height=16 src="gasoleo.png" border=0></a></td>';
+            //echo '<td><a href="index.php?pagina=avaliacao&grafico=1&via='.mysql_result($r_viaturas,$i,'id_viatura').'"><img height=16 src="gasoleo.png" border=0></a></td>';
 			echo '<td><a href="index.php?pagina=listagemcombustivel&idviatura='.mysql_result($r_viaturas,$i,'id_viatura').'"><img height=16 src="gasoleo.png" border=0></a></td>';
 			echo '<td><a href="index.php?pagina=listagemavarias&idviatura='.mysql_result($r_viaturas,$i,'id_viatura').'"><img src="avarias.gif" border=0></a></td>';
 			echo '<td><a href="index.php?pagina=listagemhoras&idviatura='.mysql_result($r_viaturas,$i,'id_viatura').'"><img src="grafico.gif" border=0></a></td>';			

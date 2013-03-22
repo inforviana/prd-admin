@@ -69,6 +69,16 @@
         $data_f=date('Y-m-d'); 
     }
     
+    //parametros a confirmar passagem
+    $idViatura = "";
+    $idFuncionario = "";
+    
+    if(isset($_GET['idviatura']))
+    	$idViatura = '&idviatura='.$_GET['idviatura'];
+    
+    if(isset($_GET['idfuncionario']))
+    	$idFuncionario = '&idfuncionario='.$_GET['idfuncionario'];
+    
     $data = explode('-',$data_i); //separa a data num array para verificacao do ano e mes para usar nas combo boxes superiores
     
     echo '
@@ -78,7 +88,7 @@
             });
         </script>
         
-        <form method="POST" action="./index.php?a=datatrabalho&pagina='.$_GET['pagina'].'">
+        <form method="POST" action="./index.php?a=datatrabalho&pagina='.$_GET['pagina'].''.$idFuncionario.''.$idViatura.'">
             <center>
             <table>
                 <tr>
@@ -90,7 +100,7 @@
             </center>
         </form>
         <center>
-			<form method="POST" action="./index.php?a=mestrabalho&pagina='.$_GET['pagina'].'">
+			<form method="POST" action="./index.php?a=mestrabalho&pagina='.$_GET['pagina'].''.$idFuncionario.''.$idViatura.'">
 	              <select name="mes">
 	                    	';
     	

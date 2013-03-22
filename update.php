@@ -1,5 +1,5 @@
 <?php 
-	$ultima_versao = '0.4'; //definir ultima versao
+	$ultima_versao = '0.6'; //definir ultima versao
 	
 	$r_versao = mysql_query("select value from config where attrib = 'versao'"); //obter a versao actual
 	
@@ -32,6 +32,16 @@
 				mysql_query("CREATE TABLE obras(id_obra INT NOT NULL AUTO_INCREMENT PRIMARY KEY, descricao_obra VARCHAR(200) NULL)");
 				mysql_query("ALTER TABLE mov_viatura ADD id_obra INT NOT NULL");
 				mysql_query("UPDATE config SET value='0.4' WHERE attrib='versao'");
+				break;
+			case '0.4':
+				//seleccionar a obra por defeito
+				mysql_query("ALTER TABLE obras ADD defeito INT NULL");
+				mysql_query("UPDATE config SET value='0.5' WHERE attrib='versao'");
+				break;
+			case '0.5':
+				//criar tabela para guardar os precos das obras por cada viatura
+				mysql_query("CREATE TABLE obras_precos(id_preco_obra INT NOT NULL AUTO_INCREMENT PRIMARY KEY, id_viatura INT NOT NULL, id_obra INT NOT NULL, preco_obra FLOAT(10,2) NOT NULL)");
+				mysql_query("UPDATE config SET value='0.6' WHERE attrib='versao'");
 				break;
 		}
 	}

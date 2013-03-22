@@ -40,10 +40,11 @@ if (isset($_GET['idfuncionario'])){
 
 
 //ultimos registos do funcionario
-		$q_mov_horas="select time(mov_viatura.data) as 'horas',date(mov_viatura.data) as 'dia', mov_viatura.id_funcionario,mov_viatura.id_viatura, mov_viatura.id_movviatura, mov_viatura.data, funcionario.nome_funcionario, viaturas.desc_viatura, viaturas.marca_viatura, viaturas.modelo_viatura, mov_viatura.horas_viatura
+		$q_mov_horas="select time(mov_viatura.data) as 'horas',date(mov_viatura.data) as 'dia', mov_viatura.id_funcionario,mov_viatura.id_viatura, mov_viatura.id_movviatura, mov_viatura.data, funcionario.nome_funcionario, viaturas.desc_viatura, viaturas.marca_viatura, viaturas.modelo_viatura, mov_viatura.horas_viatura, obras.descricao_obra
 			from mov_viatura
 			inner join funcionario on funcionario.id_funcionario = mov_viatura.id_funcionario
 			inner join viaturas on viaturas.id_viatura = mov_viatura.id_viatura
+			left join obras on obras.id_obra = mov_viatura.id_obra
 			".$condicao." and mov_viatura.horas_viatura > 0
 			and date(mov_viatura.data) >= '".$data_i."' and date(mov_viatura.data) <= '".$data_f."'
 			order by date(mov_viatura.data) desc";	
@@ -52,7 +53,7 @@ if (isset($_GET['idfuncionario'])){
 			from mov_viatura
 			inner join funcionario on funcionario.id_funcionario = mov_viatura.id_funcionario
 			inner join viaturas on viaturas.id_viatura = mov_viatura.id_viatura
-			".$condicao." and mov_viatura.horas_viatura > 0
+			".$condicao." and mov_viatura.horas_viatura > 0 and viaturas.acessorio = 0
 			and date(mov_viatura.data) >= '".$data_i."' and date(mov_viatura.data) <= '".$data_f."'
 			order by date(mov_viatura.data) desc";	
 		
@@ -81,6 +82,7 @@ if (isset($_GET['idfuncionario'])){
 			<th>Data e Hora</th>
 			<th>Colaborador</th>
 			<th>Viatura</th>
+			<th>Obra</th>
 			<th>Horas</th>
 			<th colspan=3>Operacoes</th>
 		</tr>
@@ -107,8 +109,12 @@ if (isset($_GET['idfuncionario'])){
 					<td>
 						<a href="./index.php?pagina=listagemhoras&idviatura='.mysql_result($r_mov_horas,$i,'id_viatura').'">'.mysql_result($r_mov_horas,$i,'desc_viatura').'</a>
 					</td>
+					<td style="text-align:center;">
+						'.mysql_result($r_mov_horas,$i,'descricao_obra').'		
+					</td>
 					<td>
 						'.intval(mysql_result($r_mov_horas,$i,'horas_viatura')/60).'H '.(mysql_result($r_mov_horas,$i,'horas_viatura')%60).'M
+					</td>
 					<td align="center">
 						<a href="./index.php?pagina=editarhoras&id='.mysql_result($r_mov_horas,$i,'id_movviatura').'"><img src="editar.png" border=0></a>
 					</td>

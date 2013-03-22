@@ -6,6 +6,9 @@ if(!isset($pagina)){ //abrir a pagina inicial
 }
 
 switch($pagina){
+	case 'precosobra':
+		require 'precosobra.php';
+		break;
 	case 'obras':
 		require 'obras.php';
 		break;
