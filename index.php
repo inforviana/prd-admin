@@ -31,7 +31,11 @@ require("include/funcoes.php");
     {
     	if(isset($_GET['pagina']))
     	{
-    		$pagina_a_redireccionar = '?pagina='.$_GET['pagina'];
+    		if(isset($_GET['idviatura']))
+    			$identidade = "&idviatura=".$_GET['idviatura'];
+    		if(isset($_GET['idfuncionario']))
+    			$identidade = "&idfuncionario=".$_GET['idfuncionario'];
+    		$pagina_a_redireccionar = '?pagina='.$_GET['pagina'].$identidade;
     	}else{
     		$pagina_a_redireccionar = '';
     	}
