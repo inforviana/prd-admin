@@ -22,12 +22,15 @@ echo '<font style="font-family:Arial, Helvetica, sans-serif;font-size:14px;">';
 		$r_dados=mysql_query($q_dados);
 		$n_dados=mysql_num_rows($r_dados);
 		
+		 //categoria da viatura TODO:juntar numa so query
+		 $rCategoriaViatura = mysql_query("select categoria from categorias_viatura where id_categoria = ".mysql_result($r_dados,0,'tipo_viatura')." limit 1");
+		
 		echo '
 		<table><tr>
 		<td><img width=200 src="imagem.php?idviatura='.mysql_result($r_dados,0,'id_viatura').'"></td>
 		<td><b>
 		Viatura :: </b>'.mysql_result($r_dados,0,'desc_viatura').'<br><b>
-		Tipo :: </b>'.mysql_result($r_dados,0,'tipo_viatura').'
+		Tipo :: </b>'.mysql_result($rCategoriaViatura,0,'categoria').'
 		</tr></table>';
 		
 		echo '<br><br>';
