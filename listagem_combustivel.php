@@ -14,7 +14,8 @@ echo '<font style="font-family:Arial, Helvetica, sans-serif;font-size:14px;">';
 		echo '<b>Nome: </b>'.mysql_result($r_dados,0,'nome_funcionario').'<br><b>Grupo: </b>'.mysql_result($r_dados,0,'grupo_funcionario');
 		echo '<br><br>';
 
-		echo '<a id="hor-minimalist-b" href="index.php?pagina=listagemcombustivel&idfuncionario='.$id_funcionario.'">Ver todos os movimentos</a>'; //ver todos os movimentos
+		echo '<a id="hor-minimalist-b" href="./index.php?pagina=listagemcombustivel&idfuncionario='.$id_funcionario.'">Ver todos os movimentos</a>'; //ver todos os movimentos
+		echo '<a id="hor-minimalist-b" href="./index.php?pagina=listagemcombustivel&idfuncionario='.$id_funcionario.'&impressao=1">Versao de Impressao</a>'; //ver todos os movimentos
 		$condicao="where mov_combustivel.id_funcionario=".$id_funcionario;
 	}else{
 			//obter detalhes da viatura--------------------------------------------------------
@@ -25,16 +26,25 @@ echo '<font style="font-family:Arial, Helvetica, sans-serif;font-size:14px;">';
 		 //categoria da viatura TODO:juntar numa so query
 		 $rCategoriaViatura = mysql_query("select categoria from categorias_viatura where id_categoria = ".mysql_result($r_dados,0,'tipo_viatura')." limit 1");
 		
-		echo '
-		<table><tr>
-		<td><img width=200 src="imagem.php?idviatura='.mysql_result($r_dados,0,'id_viatura').'"></td>
-		<td><b>
-		Viatura :: </b>'.mysql_result($r_dados,0,'desc_viatura').'<br><b>
-		Tipo :: </b>'.mysql_result($rCategoriaViatura,0,'categoria').'
-		</tr></table>';
+		if($versao_impressao == 0) //se noa for a versao de impressao mostra o cabecalho da viatura
+		{
+			echo '
+				<table><tr>
+				<td><img width=200 src="imagem.php?idviatura='.mysql_result($r_dados,0,'id_viatura').'"></td>
+				<td><b>
+				Viatura :: </b>'.mysql_result($r_dados,0,'desc_viatura').'<br><b>
+				Tipo :: </b>'.mysql_result($rCategoriaViatura,0,'categoria').'
+				</tr></table>';
+				echo '<br><br>';
+				echo '<a id="hor-minimalist-b" href="index.php?pagina=listagemcombustivel&idviatura='.$id_viatura.'">Ver todos os movimentos</a>';
+				echo '<a id="hor-minimalist-b" href="./index.php?pagina=listagemcombustivel&idviatura='.$id_viatura.'&impressao=1">Versao de Impressao</a>'; //ver todos os movimentos
+		}else{
+			echo '	<h3>Listagem de Combustivel '.$data_i.' a '.$data_f.'</h3>
+					<b>Viatura:</b> '.mysql_result($r_dados,0,'desc_viatura'). "(".mysql_result($rCategoriaViatura,0,'categoria').")";
+		}
 		
-		echo '<br><br>';
-		echo '<a id="hor-minimalist-b" href="index.php?pagina=listagemcombustivel&idviatura='.$id_viatura.'">Ver todos os movimentos</a>';
+		
+		
 		$condicao="where mov_combustivel.id_viatura=".$id_viatura;
 	}
 
@@ -117,9 +127,9 @@ echo '<font style="font-family:Arial, Helvetica, sans-serif;font-size:14px;">';
 			<th>Viatura</th>
 			<th>Horas / Kms</th>
 			<th>Med. Diaria</th>
-			<th>Litros</th>
-			<th colspan=3>Opera��es</th>
-		</tr>
+			<th>Litros</th>';
+			if($versao_impressao == 0) echo '<th colspan=3>Operacoes</th>0';
+		echo '</tr>
 		</thead>
 		<tbody>';
 		$dia_rel='';
@@ -198,12 +208,16 @@ echo '<font style="font-family:Arial, Helvetica, sans-serif;font-size:14px;">';
 							'.mysql_result($r_mov_combustivel,$i,'valor_movimento').' L
 						</td>			
 						<td align="center">
-							<a href="./index.php?pagina=editarcomb&id='.mysql_result($r_mov_combustivel,$i,'id_movcombustivel').'"><img src="editar.png" border=0></a>
-						</td>
-						<td align="center">
+							<a href="./index.php?pagina=editarcomb&id='.mysql_result($r_mov_combustivel,$i,'id_movcombustivel').'">';
+							if($versao_impressao == 0) echo '<img src="editar.png" border=0></a>';
+						echo '</td>';
+				if($versao_impressao == 0)
+				{
+						echo '<td align="center">
 							<input type="image" onclick="apagar(\'./index.php?pagina=listagemcombustivel&'.$redir_apagar.'&func=apagar&tipo=comb&id='.mysql_result($r_mov_combustivel,$i,'id_movcombustivel').'\')" src="delete.gif">
-						</td>								
-				</tr>';
+						</td>';
+				}								
+				echo '</tr>';
 		
 		}
 		}

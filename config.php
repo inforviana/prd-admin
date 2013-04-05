@@ -8,7 +8,7 @@
 	
 	//NOME E VERS�O DO PROGRAMA
 	$NOME_APP="GESTAO INTEGRADA COELHO GOMES E FILHOS, LDA";
-	$VERSAO_APP="GES-0.9.6";
+	$VERSAO_APP="GES-0.9.7a";
 	$IMG_INICIO="menu.png";
 	$IMG_SEL="botao_sel.png";
 	$IMG_FOOTER="banner.jpg";

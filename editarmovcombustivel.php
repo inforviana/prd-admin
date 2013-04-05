@@ -16,9 +16,9 @@
 		}
 
 		if(mysql_query($q_guardar)){
-			$msg= 'Alterações salvas com sucesso!';
+			$msg = 'Alterações salvas com sucesso!';
 		}else{
-			$msg='Erro ao gravar as alterações!\n'.$q_guardar;
+			$msg = 'Erro ao gravar as alterações!\n'.$q_guardar;
 		}
 		echo '
 		<script type="text/javascript">
@@ -70,8 +70,18 @@
 	echo'		</select><br><br>	
 	
 	Data: <input type="text" size=20 name="data" value="'.mysql_result($r_mc,0,'data').'"><br>
-	Horas/Kilometros: <input type="text" size=10 name="kms" value="'.mysql_result($r_mc,0,'kms_viatura').'"><br>
-	Litros:<input type="text" size=3 name="valor" value="'.mysql_result($r_mc,0,'valor_movimento').'">
-		<br><br>';
+	Horas/Kilometros: <input type="text" size=10 name="kms" value="'.mysql_result($r_mc,0,'kms_viatura').'"><br>';
+	
+	//mostrar contagem anterior 
+	
+	
+	echo 'Litros:<input type="text" size=3 name="valor" value="'.mysql_result($r_mc,0,'valor_movimento').'">';
+	
+	//mostrar contagem posterior
+	$rContagemPosterior = mysql_query("select valor_movimento from ");
+	
+	
+	
+	echo '	<br><br>';
 	echo '</td></tr><tr><td align="right">'.@$msg.'<br><button type="submit">Guardar Alterações</button></form></td></tr></tbody></table>';
 ?>
