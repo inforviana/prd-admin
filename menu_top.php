@@ -55,11 +55,6 @@
 											<li><a href="index.php?pagina=globalviatura">Vista Global Por Viatura</a></li>
 										</ul>
 									</li>
-									<li><a href="#">Horas</a>
-										<ul>
-											<li><a href="#">Horas</a></li>
-										</ul>
-									</li>
 									<li><a href="#">Ponto</a>
 										<ul>
 											<li><a href="index.php?pagina=ponto">Registo Diario</a></li>

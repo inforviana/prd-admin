@@ -341,3 +341,7 @@ table.tabela_registo th{
 #tabela_precos_obra th{
 	border-bottom: solid 1px black;
 }
+
+#historico_contagens{
+	font-size: 14px;
+}

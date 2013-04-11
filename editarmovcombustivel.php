@@ -1,7 +1,13 @@
 <?php
 	$id=$_GET['id'];
 	@$guardar=$_GET['guardar'];
-	@$idv=$_GET['idv'];
+	
+	if(isset($_GET['idv']))
+	{
+		$idv=$_GET['idv'];
+	}
+		
+	
 	if($guardar==1){
 		$valor=$_POST['valor'];
 		$kms=$_POST['kms'];
@@ -42,6 +48,35 @@
 	$n_v = mysql_num_rows($r_v);
 	
 	
+	$idViatura = mysql_result($r_mc,0,'id_viatura');
+	
+	//querys para o historico do contador
+	$qContagensAnteriores = "select 
+							    data, kms_viatura, valor_movimento
+							from
+							    mov_combustivel
+							where
+							    id_movcombustivel < ".$id." and id_viatura = ".$idViatura." and valor_movimento > 0
+							order by
+							    id_movcombustivel desc
+							LIMIT 2;";
+	$rContagensAnteriores = mysql_query($qContagensAnteriores);
+	$nContagensAnteriores = mysql_num_rows($rContagensAnteriores);
+	
+	$qContagensPosteriores = "select 
+								    data, kms_viatura, valor_movimento
+								from
+								    mov_combustivel
+								where
+								    id_movcombustivel > ".$id." and id_viatura = ".$idViatura." and valor_movimento > 0
+								order by
+								    id_movcombustivel asc
+								LIMIT 2;";
+	$rContagensPosteriores = mysql_query($qContagensPosteriores);	
+	$nContagensPosteriores = mysql_num_rows($rContagensPosteriores);
+	
+	
+	
 	//desenhar a pagina
 	echo '<table id="hor-minimalist-b" summary="motd"><thead><th>EDITAR MOVIMENTO DE COMBUSTIVEL '.@$id.'</th></thead><tbody><tr></tr><tr><td><form method="POST" action="index.php?pagina=editarcomb&id='.$id.'&guardar=1&idv='.mysql_result($r_mc,0,'id_viatura').'&novo='.@$novo.'">
 	Funcionario: <select name="funcionario">';
@@ -68,18 +103,26 @@
 						echo '<option value="'.mysql_result($r_v,$i,'id_viatura').'" '.$selected.'>'.mysql_result($r_v,$i,'desc_viatura').' - '.mysql_result($r_v,$i,'marca_viatura').' '.mysql_result($r_v,$i,'modelo_viatura').'</option>';
 					}
 	echo'		</select><br><br>	
+	Data: <input type="text" size=20 name="data" value="'.mysql_result($r_mc,0,'data').'"><br><br>';
 	
-	Data: <input type="text" size=20 name="data" value="'.mysql_result($r_mc,0,'data').'"><br>
-	Horas/Kilometros: <input type="text" size=10 name="kms" value="'.mysql_result($r_mc,0,'kms_viatura').'"><br>';
-	
-	//mostrar contagem anterior 
-	
-	
-	echo 'Litros:<input type="text" size=3 name="valor" value="'.mysql_result($r_mc,0,'valor_movimento').'">';
-	
-	//mostrar contagem posterior
-	$rContagemPosterior = mysql_query("select valor_movimento from ");
-	
+		//apresentar contagens do contador anteriores
+		for($i=0;$i<$nContagensAnteriores;$i++)
+		{
+			echo '(-) '.mysql_result($rContagensAnteriores,$i,'data').' - '.mysql_result($rContagensAnteriores,$i,'valor_movimento').' Litros - Contador: '.mysql_result($rContagensAnteriores,$i,'kms_viatura').' H/KM<br>';
+		}
+		
+		//valor do contador da viatura
+		echo 'Horas/Kilometros: <input type="text" style="text-align:center" size=10 name="kms" value="'.mysql_result($r_mc,0,'kms_viatura').'"><br>';	
+		
+		//apresentar contagens do contador posteriores
+		for($i=0;$i<$nContagensPosteriores;$i++)
+		{
+			echo '(+) '.mysql_result($rContagensPosteriores,$i,'data').' - '.mysql_result($rContagensPosteriores,$i,'valor_movimento').' Litros - Contador: '.mysql_result($rContagensPosteriores,$i,'kms_viatura').' H/KM<br>';
+		}
+
+	//litros do movimento
+	echo '<br><br>
+			Litros:<input type="text" size=3 name="valor" value="'.mysql_result($r_mc,0,'valor_movimento').'">';
 	
 	
 	echo '	<br><br>';
