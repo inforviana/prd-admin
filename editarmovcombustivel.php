@@ -59,7 +59,7 @@
 							    id_movcombustivel < ".$id." and id_viatura = ".$idViatura." and valor_movimento > 0
 							order by
 							    id_movcombustivel desc
-							LIMIT 2;";
+							LIMIT ".MAX_HISTORICO_CONTADOR.";";
 	$rContagensAnteriores = mysql_query($qContagensAnteriores);
 	$nContagensAnteriores = mysql_num_rows($rContagensAnteriores);
 	
@@ -71,7 +71,7 @@
 								    id_movcombustivel > ".$id." and id_viatura = ".$idViatura." and valor_movimento > 0
 								order by
 								    id_movcombustivel asc
-								LIMIT 2;";
+								LIMIT ".MAX_HISTORICO_CONTADOR.";";
 	$rContagensPosteriores = mysql_query($qContagensPosteriores);	
 	$nContagensPosteriores = mysql_num_rows($rContagensPosteriores);
 	
@@ -108,7 +108,7 @@
 		//apresentar contagens do contador anteriores
 		for($i=0;$i<$nContagensAnteriores;$i++)
 		{
-			echo '<a href="./index.php?pagina=editarcomb&id='.mysql_result($rContagensAnteriores,$i,'id_movcombustivel').'"> (-) '.mysql_result($rContagensAnteriores,$i,'data').' - '.mysql_result($rContagensAnteriores,$i,'valor_movimento').' Litros - Contador: '.mysql_result($rContagensAnteriores,$i,'kms_viatura').' H/KM</a><br>';
+			echo '<a href="./index.php?pagina=editarcomb&id='.mysql_result($rContagensAnteriores,$i,'id_movcombustivel').'"> <img border=0 src="./images/up.gif"> '.mysql_result($rContagensAnteriores,$i,'data').' - '.mysql_result($rContagensAnteriores,$i,'valor_movimento').' Litros - Contador: '.mysql_result($rContagensAnteriores,$i,'kms_viatura').' H/KM</a><br>';
 		}
 		
 		//valor do contador da viatura
@@ -117,7 +117,7 @@
 		//apresentar contagens do contador posteriores
 		for($i=0;$i<$nContagensPosteriores;$i++)
 		{
-			echo '<a href="./index.php?pagina=editarcomb&id='.mysql_result($rContagensPosteriores,$i,'id_movcombustivel').'"> (+) '.mysql_result($rContagensPosteriores,$i,'data').' - '.mysql_result($rContagensPosteriores,$i,'valor_movimento').' Litros - Contador: '.mysql_result($rContagensPosteriores,$i,'kms_viatura').' H/KM</a><br>';
+			echo '<a href="./index.php?pagina=editarcomb&id='.mysql_result($rContagensPosteriores,$i,'id_movcombustivel').'"> <img border=0 src="./images/dn.gif"> '.mysql_result($rContagensPosteriores,$i,'data').' - '.mysql_result($rContagensPosteriores,$i,'valor_movimento').' Litros - Contador: '.mysql_result($rContagensPosteriores,$i,'kms_viatura').' H/KM</a><br>';
 		}
 
 	//litros do movimento
