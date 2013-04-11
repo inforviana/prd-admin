@@ -36,6 +36,7 @@
 		
 			//html
 			echo '<center>
+					<!--
 					<div style="width:600px;margin-left: auto;margin-right:auto; text-align:center">
 						<ul class="dropdown">
 							<li><a href="index.php"><span>Inicio</span></a></li>
@@ -81,6 +82,13 @@
 				<br><br>
 				<font style="font-family:Arial, Helvetica, sans-serif;font-size:11px;">'.$NOME_APP.' - '.$VERSAO_APP.'</font>					
 			</div>
+			<br>-->
+						<!-- menu 2.0 -->
+						<a href="./index.php?pagina=funcionarios"><img class="menu_topo" border=0 src="./images/funcionarios_small.png"></a>
+						<a href="./index.php?pagina=grupos"><img class="menu_topo" border=0 src="./images/grupos_small.png"></a>
+						<a href="./index.php?pagina=viaturas"><img class="menu_topo" border=0 src="./images/viaturas_small.png"></a>
+						<a href="./index.php?pagina=obras"><img class="menu_topo" border=0 src="./images/obras_small.png"></a>
+						<a href="./index.php?pagina=tubos"><img class="menu_topo" border=0 src="./images/tubos_small.png"></a>
 	        </center>
 	        <br>
 			';

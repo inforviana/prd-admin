@@ -342,6 +342,7 @@ table.tabela_registo th{
 	border-bottom: solid 1px black;
 }
 
-#historico_contagens{
-	font-size: 14px;
+.menu_topo{
+	height:100px;
+	width:100px;
 }
