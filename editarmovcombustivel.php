@@ -52,7 +52,7 @@
 	
 	//querys para o historico do contador
 	$qContagensAnteriores = "select 
-							    data, kms_viatura, valor_movimento
+							    id_movcombustivel, data, kms_viatura, valor_movimento
 							from
 							    mov_combustivel
 							where
@@ -64,7 +64,7 @@
 	$nContagensAnteriores = mysql_num_rows($rContagensAnteriores);
 	
 	$qContagensPosteriores = "select 
-								    data, kms_viatura, valor_movimento
+								    id_movcombustivel, data, kms_viatura, valor_movimento
 								from
 								    mov_combustivel
 								where
@@ -108,7 +108,7 @@
 		//apresentar contagens do contador anteriores
 		for($i=0;$i<$nContagensAnteriores;$i++)
 		{
-			echo '(-) '.mysql_result($rContagensAnteriores,$i,'data').' - '.mysql_result($rContagensAnteriores,$i,'valor_movimento').' Litros - Contador: '.mysql_result($rContagensAnteriores,$i,'kms_viatura').' H/KM<br>';
+			echo '<a href="./index.php?pagina=editarcomb&id='.mysql_result($rContagensAnteriores,$i,'id_movcombustivel').'"> (-) '.mysql_result($rContagensAnteriores,$i,'data').' - '.mysql_result($rContagensAnteriores,$i,'valor_movimento').' Litros - Contador: '.mysql_result($rContagensAnteriores,$i,'kms_viatura').' H/KM</a><br>';
 		}
 		
 		//valor do contador da viatura
@@ -117,7 +117,7 @@
 		//apresentar contagens do contador posteriores
 		for($i=0;$i<$nContagensPosteriores;$i++)
 		{
-			echo '(+) '.mysql_result($rContagensPosteriores,$i,'data').' - '.mysql_result($rContagensPosteriores,$i,'valor_movimento').' Litros - Contador: '.mysql_result($rContagensPosteriores,$i,'kms_viatura').' H/KM<br>';
+			echo '<a href="./index.php?pagina=editarcomb&id='.mysql_result($rContagensPosteriores,$i,'id_movcombustivel').'"> (+) '.mysql_result($rContagensPosteriores,$i,'data').' - '.mysql_result($rContagensPosteriores,$i,'valor_movimento').' Litros - Contador: '.mysql_result($rContagensPosteriores,$i,'kms_viatura').' H/KM</a><br>';
 		}
 
 	//litros do movimento
