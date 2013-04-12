@@ -24,8 +24,12 @@ $n_ponto_funcionarios=mysql_num_rows($r_ponto_funcionarios);
 	echo "
 	<script>
 		$(function() {
-			$( '#datepicker_inicio' ).datepicker();
-			$( '#datepicker_fim' ).datepicker();
+			$( '#datepicker_inicio' ).datepicker({
+				dateFormat: 'yy-mm-dd'
+				});
+			$( '#datepicker_fim' ).datepicker({
+				dateFormat: 'yy-mm-dd'
+				});
 		});
 	</script>";
 	echo '<form action="index.php?pagina=ponto" method="POST"><input  name="data_ponto" value="'.$data_ponto.'" size=10 id="datepicker_inicio" type="text"><input type="image" src="./images/calendar.png" value="Procurar" alt="Procurar"></form>';

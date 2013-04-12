@@ -150,15 +150,17 @@
 
 <!doctype html>
 <html lang="pt">
+		<head>
+		<meta charset="I">
 		<title><?php  echo $titulo;?></title>
 		<!-- JAVA  -->
 		<script type="text/javascript" src="simpletreemenu.js"></script>
 		<script type="text/javascript" src="menu.js"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-		<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.13.custom.css" rel="stylesheet" />	
+		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/dark-hive/jquery-ui.css">
 		<link type="text/css" href="css/style.css" rel="stylesheet" />	
-		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/jquery-ui.min.js"></script>
-		<script type="text/javascript" src="jquery.ui.datepicker-pt-BR.js"></script>
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+		<script type="text/javascript" src="js/jquery.ui.datepicker-pt-BR.js"></script>
 		<script type="text/javascript" src="js/jquery.dropdownPlain.js"></script>
                                     <script type="text/javascript" src="js/highcharts.js"></script>
                                     <script type="text/javascript" src="js/modules/exporting.js"></script>
@@ -173,7 +175,7 @@
 		//JQUERY --------------------------------------------------- :)
 		$(document).ready(function(){
                                 //GRAFICOS
-		                <?php require 'grafico.php';?>		
+		             <?php //require 'grafico.php';?>		
 		
 				//MODS
 				//
@@ -187,8 +189,8 @@
 					autoOpen: false,
 					modal: true,
 					resizable: false,
-					height:280,
-					width:300
+					height:380,
+					width:500
 				});
 				$("#div_utilizacoes").dialog({ //dialogo das utilizacoes dos tubos
 						autoOpen: <?php if(isset($_GET['u'])){echo 'true';}else{echo 'false';}?>,

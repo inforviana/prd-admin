@@ -346,3 +346,7 @@ table.tabela_registo th{
 	height:100px;
 	width:100px;
 }
+
+#tabela_menu tr{
+	background-color: black;
+}

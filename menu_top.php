@@ -84,16 +84,40 @@
 			</div>
 			<br>-->
 						<!-- menu 2.0 -->
-						<a href="./index.php?pagina=funcionarios"><img class="menu_topo" border=0 src="./images/funcionarios_small.png"></a>
-						<a href="./index.php?pagina=grupos"><img class="menu_topo" border=0 src="./images/grupos_small.png"></a>
-						<a href="./index.php?pagina=viaturas"><img class="menu_topo" border=0 src="./images/viaturas_small.png"></a>
-						<a href="./index.php?pagina=obras"><img class="menu_topo" border=0 src="./images/obras_small.png"></a>
-						<a href="./index.php?pagina=tubos"><img class="menu_topo" border=0 src="./images/tubos_small.png"></a>
-						<a href="./index.php?pagina=ponto"><img class="menu_topo" border=0 src="./images/registo_diario_small.png"></a>
-						<a href="./index.php?pagina=extractofuncionarios"><img class="menu_topo" border=0 src="./images/horashomem_small.png"></a>
-						<a href="./index.php?pagina=extractoviaturas"><img class="menu_topo" border=0 src="./images/horasviatura_small.png"></a>
-						<a href="./index.php?pagina=opcoes"><img class="menu_topo" border=0 src="./images/opcoes_small.png"></a>
-						<a href="./index.php?accao=sair"><img class="menu_topo" border=0 src="./images/sair_small.png"></a>
+					<table id="tabela_menu">
+						<tr>
+							<td>
+								<a href="./index.php?pagina=funcionarios"><img class="menu_topo" border=0 src="./images/funcionarios_small.png"></a>
+							</td>
+							<td>
+								<a href="./index.php?pagina=grupos"><img class="menu_topo" border=0 src="./images/grupos_small.png"></a>
+							</td>
+							<td>
+								<a href="./index.php?pagina=viaturas"><img class="menu_topo" border=0 src="./images/viaturas_small.png"></a>
+							</td>
+							<td>
+								<a href="./index.php?pagina=obras"><img class="menu_topo" border=0 src="./images/obras_small.png"></a>
+							</td>
+							<td>
+								<a href="./index.php?pagina=tubos"><img class="menu_topo" border=0 src="./images/tubos_small.png"></a>
+							</td>
+							<td>
+								<a href="./index.php?pagina=ponto"><img class="menu_topo" border=0 src="./images/registo_diario_small.png"></a>
+							</td>
+							<td>
+								<a href="./index.php?pagina=extractofuncionarios"><img class="menu_topo" border=0 src="./images/horashomem_small.png"></a>
+							</td>
+							<td>	
+								<a href="./index.php?pagina=extractoviaturas"><img class="menu_topo" border=0 src="./images/horasviatura_small.png"></a>
+							</td>
+							<td>
+								<a href="./index.php?pagina=opcoes"><img class="menu_topo" border=0 src="./images/opcoes_small.png"></a>
+							</td>
+							<td>
+								<a href="./index.php?accao=sair"><img class="menu_topo" border=0 src="./images/sair_small.png"></a>
+							</td>
+						</tr>
+					</table>
 	        </center>
 	        <br>
 			';
@@ -109,8 +133,8 @@
 	            <center>
 	            <table>
 	                <tr>
-	                    <td><input name="data_i" id="data_i" type="text" placeholder="data inicial" style="width:150px;text-align:center;font-size:18px;" value="'.$data_i.'"></td>
-	                    <td><input name="data_f" id="data_f" type="text" placeholder="data final" style="width:150px;text-align:center;font-size:18px;" value="'.$data_f.'"></td>
+	                    <td><input name="data_i" id="data_i" type="text" placeholder="data inicial" style="width:150px;text-align:center;font-size:25px;" value="'.$data_i.'"></td>
+	                    <td><input name="data_f" id="data_f" type="text" placeholder="data final" style="width:150px;text-align:center;font-size:25px;" value="'.$data_f.'"></td>
 	                    <td><input type="submit" value="OK"></td>
 	                </tr>
 	            </table>
@@ -118,25 +142,25 @@
 	        </form>
 	        <center>
 				<form method="POST" action="./index.php?a=mestrabalho&pagina='.$_GET['pagina'].''.$idFuncionario.''.$idViatura.'">
-		              <select name="mes">
+		              <select name="mes" style="font-size:30px;">
 		                    	';
 	    	
-	    			//combo box meses do ano
-	    			for($i=0;$i<count($meses);$i++)
-	    			{
-	    				if(($i+1)==$data[1])
-	    				{
-	    					$sel = ' selected="selected" ';
-	    				}else{
-	    					$sel="";
-	    				}
-	    				echo '<option '.$sel.' value="'.($i+1).'">'.$meses[$i].'</option>';
-	    			}
+		    			//combo box meses do ano
+		    			for($i=0;$i<count($meses);$i++)
+		    			{
+		    				if(($i+1)==$data[1])
+		    				{
+		    					$sel = ' selected="selected" ';
+		    				}else{
+		    					$sel="";
+		    				}
+		    				echo '<option '.$sel.' value="'.($i+1).'">'.$meses[$i].'</option>';
+		    			}
 	    			
 	    			
 	    	echo '
 		              </select>
-		              <select name="ano">
+		              <select name="ano" style="font-size:30px;">
 		             	';
 	    	
 	    			//combo box anos
