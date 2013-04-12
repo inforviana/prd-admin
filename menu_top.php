@@ -89,6 +89,11 @@
 						<a href="./index.php?pagina=viaturas"><img class="menu_topo" border=0 src="./images/viaturas_small.png"></a>
 						<a href="./index.php?pagina=obras"><img class="menu_topo" border=0 src="./images/obras_small.png"></a>
 						<a href="./index.php?pagina=tubos"><img class="menu_topo" border=0 src="./images/tubos_small.png"></a>
+						<a href="./index.php?pagina=ponto"><img class="menu_topo" border=0 src="./images/registo_diario_small.png"></a>
+						<a href="./index.php?pagina=extractofuncionarios"><img class="menu_topo" border=0 src="./images/horashomem_small.png"></a>
+						<a href="./index.php?pagina=extractoviaturas"><img class="menu_topo" border=0 src="./images/horasviatura_small.png"></a>
+						<a href="./index.php?pagina=opcoes"><img class="menu_topo" border=0 src="./images/opcoes_small.png"></a>
+						<a href="./index.php?accao=sair"><img class="menu_topo" border=0 src="./images/sair_small.png"></a>
 	        </center>
 	        <br>
 			';
