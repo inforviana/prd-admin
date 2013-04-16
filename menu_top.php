@@ -163,19 +163,17 @@
 		              <select name="ano" style="font-size:30px;">
 		             	';
 	    	
-	    			//combo box anos
-	    			for($i=0;$i<count($anos);$i++)
-	    			{
-	    				if($anos[$i]==$data[0])
-	    				{
-	    					$sel = ' selected="selected" ';
-	    				}else{
-	    					$sel="";
-	    				}
-	    				echo '<option '.$sel.' value="'.$anos[$i].'">'.$anos[$i].'</option>';
-	    			}
-	    	
-	    	
+		    			//combo box anos
+		    			for($i=0;$i<count($anos);$i++)
+		    			{
+		    				if($anos[$i]==$data[0])
+		    				{
+		    					$sel = ' selected="selected" ';
+		    				}else{
+		    					$sel="";
+		    				}
+		    				echo '<option '.$sel.' value="'.$anos[$i].'">'.$anos[$i].'</option>';
+		    			}
 	    	echo '
 		              </select>
 		              <input type="submit" value="OK">

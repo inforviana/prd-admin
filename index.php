@@ -10,16 +10,21 @@
 	//
 	//
 	//
-	require("config.php"); //ficheiro de configuracao
-	require("include/funcoes.php"); //funcoes gerais
-	//
+		//livrarias externas e constantes
+		require("config.php"); //ficheiro de configuracao
+		require("include/funcoes.php"); //funcoes gerais
+
 		//ligar a base de dados
 		mysql_connect($DB_HOST,$DB_USER,$DB_PASS);
 		
 		//seleccionar a tabela a utilizar
 		mysql_select_db($DB_TABLE) or die('Erro de ligacao a base de dados!');
 		
-		require('update.php'); //actualizar a base de dados
+		//actualizar a base de dados
+		require('update.php'); 
+		
+		//funcoes de manutencao e prevencao de erros
+		require('manutencao.php');
 		
 		//variaveis globais
 		@$accao=$_GET['accao'];
@@ -41,15 +46,18 @@
 	    	}
 	    	
 	    	
+	    	//accao a efectuar
 	        switch($_GET['a'])
 	        {
+	        	//data a utilizar para as listagens
 	            case 'datatrabalho':
 	                setcookie("data_i",$_POST['data_i'],time()+3600);
 	                setcookie("data_f",$_POST['data_f'],time()+3600);
 	                header("Location:index.php".$pagina_a_redireccionar);
 	                break;
+
+	            //mes de trabalho
 	            case 'mestrabalho':
-	           
 	            	switch($_POST['mes']) //obter ultimo dia do mes
 	            	{
 	            		case 1:
@@ -158,12 +166,14 @@
 		<script type="text/javascript" src="menu.js"></script>
 		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/dark-hive/jquery-ui.css">
 		<link type="text/css" href="css/style.css" rel="stylesheet" />	
+		
+		<!--  JAVASCRIPT  -->
 		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 		<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
 		<script type="text/javascript" src="js/jquery.ui.datepicker-pt-BR.js"></script>
 		<script type="text/javascript" src="js/jquery.dropdownPlain.js"></script>
-                                    <script type="text/javascript" src="js/highcharts.js"></script>
-                                    <script type="text/javascript" src="js/modules/exporting.js"></script>
+        <script type="text/javascript" src="js/highcharts.js"></script>
+        <script type="text/javascript" src="js/modules/exporting.js"></script>
 		<script type="text/javascript">
 		//janela de confirmacao para apagar os registos
 			function apagar(url){
@@ -254,6 +264,8 @@
 			</tr>
 		</table>
        <center><b><?php echo date('Y-m-j');?>
-       	<br>WorkTruck GES - INFORVIANA 2013</b></center>
+       
+       <!-- FOOTER  -->
+       	<br><?php echo $VERSAO_APP;?></b></center>
 	</body>
 </html>

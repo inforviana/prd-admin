@@ -1,5 +1,5 @@
 <?php 
-	$ultima_versao = '0.6'; //definir ultima versao
+	$ultima_versao = '0.7'; //MANDATORY -> definir ultima versao
 	
 	$r_versao = mysql_query("select value from config where attrib = 'versao'"); //obter a versao actual
 	
@@ -13,7 +13,7 @@
 		$versao_actual = mysql_result($r_versao,0,0);
 		
 		
-		switch($versao_actual)
+		switch($versao_actual) //MANDATORY -> actualizacao a efectuar
 		{
 			case '0.1':
 				//cria a tabela de acessorios
@@ -43,6 +43,11 @@
 				mysql_query("CREATE TABLE obras_precos(id_preco_obra INT NOT NULL AUTO_INCREMENT PRIMARY KEY, id_viatura INT NOT NULL, id_obra INT NOT NULL, preco_obra FLOAT(10,2) NOT NULL)");
 				mysql_query("UPDATE config SET value='0.6' WHERE attrib='versao'");
 				break;
+			case '0.6':
+				mysql_query("UPDATE funcionario SET preco_hora_normal = 0 WHERE preco_hora_normal IS NULL");
+				mysql_query("UPDATE funcionario SET preco_hora_extra = 0 WHERE preco_hora_extra IS NULL");
+				mysql_query("UPDATE funcionario SET preco_sabado = 0 WHERE preco_sabado IS NULL");
+				mysql_query("UPDATE config SET value='0.7' WHERE attrib='versao'");
 		}
 	}
 	
