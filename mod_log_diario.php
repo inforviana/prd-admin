@@ -1,11 +1,19 @@
 <?php
         //verifica se a data esta definida 
-        if(isset($_POST['data']))
+        if(isset($_COOKIE['data_f']))
         {
-            $data=$_POST['data'];
+            $data=$_COOKIE['data_f'];
         }else{
             $data=date('Y-m-j');//aplica a data de sistema
         }
+        
+        
+        switch(date('D',strtotime($data))){
+        	case 'Mon':
+        		$diaSemanda = 'Segunda';
+        		break;
+        }
+        
         
         $q_func = "select * from funcionario order by nome_funcionario asc";
         $r_func = mysql_query($q_func);
@@ -18,13 +26,14 @@
                     $('#acord_funcionarios').accordion();
                 });
             </script>
-            <br><br><br>
+            <br><h3>Registos de ".$data." ".$diaSemana."</h3><br><br>
            <div id=\"acord_funcionarios\" style=\"width:600px;\">
         ";
             
         //desenhar o conteudo do acordeao
         for($i=0;$i<$n_func;$i++)
         {
+        	$somaHoras = 0;
             $idfunc=mysql_result($r_func, $i,'id_funcionario');
             $contador_eventos = 0; //reinicia o contador de eventos para cada funcionario
             $dados_horas_funcionario="";
@@ -32,7 +41,7 @@
             
             //verificar eventos de registo de horas ou ponto
             $r_eventos_horas = mysql_query("
-                select mov_viatura.id_viatura, mov_viatura.horas_viatura,viaturas.desc_viatura, mov_viatura.id_acessorio, mov_viatura.horas_trab_acessorio
+                select mov_viatura.transporte as deslocacao, time(mov_viatura.data) as data_registo, mov_viatura.id_viatura, mov_viatura.horas_viatura,viaturas.desc_viatura, mov_viatura.id_acessorio, mov_viatura.horas_trab_acessorio
                 from mov_viatura 
                 left join viaturas on viaturas.id_viatura = mov_viatura.id_viatura
                 where date(data)='".$data."' and id_funcionario=".$idfunc);
@@ -44,7 +53,10 @@
                 for($j=0;$j<$n_eventos_horas;$j++)
                 {
                     //linha horas
-                    $dados_horas_funcionario=$dados_horas_funcionario."Trabalhou com <b>".mysql_result($r_eventos_horas,$j,'desc_viatura')."</b> ".(mysql_result($r_eventos_horas,$j,'horas_viatura')/60)."H ".(mysql_result($r_eventos_horas,$j,'horas_viatura')%60)."m";
+                    $dados_horas_funcionario=$dados_horas_funcionario."Trabalhou com <b>".mysql_result($r_eventos_horas,$j,'desc_viatura')."</b> ".round((mysql_result($r_eventos_horas,$j,'horas_viatura')/60),0)."H ".(mysql_result($r_eventos_horas,$j,'horas_viatura')%60)."m";
+                    
+                    $somaHoras = $somaHoras + mysql_result($r_eventos_horas, $j, 'horas_viatura');
+                    $somaHoras = $somaHoras + mysql_result($r_eventos_horas, $j, 'deslocacao');
                     
                     //mostrar acessorio utilizado
                     if(mysql_result($r_eventos_horas,$j,'mov_viatura.id_acessorio') > 0)
@@ -86,21 +98,20 @@
             {
                 for($h=0;$h<$n_eventos_avarias;$h++)
                 {
-                    $dados_avarias_funcionario=$dados_avarias_funcionario."Avaria no <b>".mysql_result($r_eventos_avarias,$h,'desc_viatura')."</b>, ".(mysql_result($r_eventos_avarias, $h, 'horas')/60)."H ".(mysql_result($r_eventos_avarias, $h, 'horas')%60)."m  ".  mysql_result($r_eventos_avarias, $h, 'desc_avaria')." <br>";
+                	$somaHoras = $somaHoras + mysql_result($r_eventos_avarias, $h, 'horas');
+                    $dados_avarias_funcionario=$dados_avarias_funcionario."Avaria no <b>".mysql_result($r_eventos_avarias,$h,'desc_viatura')."</b>, ".number_format((mysql_result($r_eventos_avarias, $h, 'horas')/60),0)."H ".(mysql_result($r_eventos_avarias, $h, 'horas')%60)."m  ".  mysql_result($r_eventos_avarias, $h, 'desc_avaria')." <br>";
                 }
             }else{
                 $dados_avarias_funcionario = "";
             }
-            
-            
-            
-            
+
             //desenhar interior do acordeao
             if($contador_eventos > 0) //se houver algum evento desenha a caixa do funcionario
             echo '
                 <h3>'.mysql_result($r_func,$i,'nome_funcionario').'</h3>
                 <div>
                     <p style="text-align:left;">
+                		<b>'.mysql_result($r_eventos_horas,0,'data_registo').'</b> -> <u>'.round(($somaHoras/60),0).':'.($somaHoras%60).' Horas de trabalho</u><br>
                         '.$dados_horas_funcionario.'
                         '.$dados_combustivel_funcionario.'
                         '.$dados_avarias_funcionario.'

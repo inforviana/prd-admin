@@ -121,6 +121,15 @@
 	        </center>
 	        <br>
 			';
+			
+			
+			if(isset($_GET['pagina']))
+			{
+				$paginaRedireccionar = '&pagina='.$_GET['pagina'];
+			}else{
+				$paginaRedireccionar = "";
+			}
+						
 
 	    echo '
 	        <script>
@@ -129,19 +138,19 @@
 	            });
 	        </script>
 	        
-	        <form method="POST" action="./index.php?a=datatrabalho&pagina='.$_GET['pagina'].''.$idFuncionario.''.$idViatura.'">
+	        <form method="POST" action="./index.php?a=datatrabalho'.$paginaRedireccionar.''.$idFuncionario.''.$idViatura.'">
 	            <center>
 	            <table>
 	                <tr>
-	                    <td><input name="data_i" id="data_i" type="text" placeholder="data inicial" style="width:150px;text-align:center;font-size:25px;" value="'.$data_i.'"></td>
-	                    <td><input name="data_f" id="data_f" type="text" placeholder="data final" style="width:150px;text-align:center;font-size:25px;" value="'.$data_f.'"></td>
+	                    <td><input name="data_i" id="data_i" type="text" placeholder="data inicial" style="color:white;background-color:#0066FF;width:190px;text-align:center;font-size:30px;" value="'.$data_i.'"></td>
+	                    <td><input name="data_f" id="data_f" type="text" placeholder="data final" style="color:white;background-color:#0033FF;width:190px;text-align:center;font-size:30px;" value="'.$data_f.'"></td>
 	                    <td><input type="submit" value="OK"></td>
 	                </tr>
 	            </table>
 	            </center>
 	        </form>
 	        <center>
-				<form method="POST" action="./index.php?a=mestrabalho&pagina='.$_GET['pagina'].''.$idFuncionario.''.$idViatura.'">
+				<form method="POST" action="./index.php?a=mestrabalho'.$paginaRedireccionar.''.$idFuncionario.''.$idViatura.'">
 		              <select name="mes" style="font-size:30px;">
 		                    	';
 	    	
