@@ -10,9 +10,76 @@
 	//
 	//
 	//
+	
+  //accao a efectuar
+  switch($_GET['a'])
+  {
+  	//data a utilizar para as listagens
+  	case 'datatrabalho':
+  		setcookie("data_i",$_POST['data_i'],time()+3600);
+  		setcookie("data_f",$_POST['data_f'],time()+3600);
+  		header("Location:index.php".$pagina_a_redireccionar);
+  		break;
+  
+  		//mes de trabalho
+  	case 'mestrabalho':
+  		switch($_POST['mes']) //obter ultimo dia do mes
+  		{
+  			case 1:
+  				$dia_final = 31;
+  				break;
+  			case 2:
+  				$dia_final = 29;
+  				break;
+  			case 3:
+  				$dia_final = 31;
+  				break;
+  			case 4;
+  			$dia_final = 30;
+  			break;
+  			case 5:
+  				$dia_final = 31;
+  				break;
+  			case 6:
+  				$dia_final = 30;
+  				break;
+  			case 7:
+  				$dia_final = 31;
+  				break;
+  			case 8:
+  				$dia_final = 31;
+  				break;
+  			case 9:
+  				$dia_final = 30;
+  				break;
+  			case 10:
+  				$dia_final = 31;
+  				break;
+  			case 11:
+  				$dia_final = 30;
+  				break;
+  			case 12:
+  				$dia_final = 31;
+  				break;
+  		}
+  		$data_inicial = $_POST['ano']."-".$_POST['mes']."-01";
+  		$data_final = $_POST['ano']."-".$_POST['mes']."-".$dia_final;
+  		setcookie("data_i",$data_inicial,time()+3600);
+  		setcookie("data_f",$data_final,time()+3600);
+  		header("Location:index.php".$pagina_a_redireccionar);
+  		break;
+  }
+  
+  
+  
+  
+  
+  
 		//livrarias externas e constantes
 		require("config.php"); //ficheiro de configuracao
 		require("include/funcoes.php"); //funcoes gerais
+		
+		
 
 		//ligar a base de dados
 		mysql_connect($DB_HOST,$DB_USER,$DB_PASS);
@@ -44,67 +111,9 @@
 	    	}else{
 	    		$pagina_a_redireccionar = '';
 	    	}
-	    	
-	    	
-	    	//accao a efectuar
-	        switch($_GET['a'])
-	        {
-	        	//data a utilizar para as listagens
-	            case 'datatrabalho':
-	                setcookie("data_i",$_POST['data_i'],time()+3600);
-	                setcookie("data_f",$_POST['data_f'],time()+3600);
-	                header("Location:index.php".$pagina_a_redireccionar);
-	                break;
-
-	            //mes de trabalho
-	            case 'mestrabalho':
-	            	switch($_POST['mes']) //obter ultimo dia do mes
-	            	{
-	            		case 1:
-	            			$dia_final = 31;
-	            			break;
-	            		case 2:
-	            			$dia_final = 29;
-	            			break;
-	            		case 3:
-	            			$dia_final = 31;
-	            			break;
-	            		case 4;
-	            			$dia_final = 30;
-	            			break;
-	            		case 5:
-	            			$dia_final = 31;
-	            			break;
-	            		case 6:
-	            			$dia_final = 30;
-	            			break;
-	            		case 7:
-	            			$dia_final = 31;
-	            			break;
-	            		case 8:
-	            			$dia_final = 31;
-	            			break;
-	            		case 9:
-	            			$dia_final = 30;
-	            			break;
-	            		case 10:
-							$dia_final = 31;
-							break;
-	            		case 11:
-	            			$dia_final = 30;
-	            			break;
-	            		case 12:
-	            			$dia_final = 31;
-	            			break;
-	            	}
-	            	$data_inicial = $_POST['ano']."-".$_POST['mes']."-01";
-	            	$data_final = $_POST['ano']."-".$_POST['mes']."-".$dia_final;
-	            	setcookie("data_i",$data_inicial,time()+3600);
-	            	setcookie("data_f",$data_final,time()+3600);
-	            	header("Location:index.php".$pagina_a_redireccionar);
-	            	break;
-	        }
 	    }
+	    	
+	    	
 	    
 	    
 	if (isset($accao)) { //logout do utilizador 
