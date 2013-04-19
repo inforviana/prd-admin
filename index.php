@@ -16,7 +16,9 @@
   	$accao = $_GET['accao'];
   	if($_GET['accao']="sair") {
   		setcookie("utilizador","",time()-3600); //eliminar as cookies
-  		header("Location:index.php");
+  		echo "<script>
+  					window.location=\"./index.php\";
+  				</script>";
   	}
   }
   
