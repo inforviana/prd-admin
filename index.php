@@ -141,18 +141,6 @@
 		$data_ponto=date('Y-m-j');
 	}
 	
-	
-	//verificar login
-	if(isset($utilizador)){
-		$q_login="select * from users where username='".$utilizador."' and password='".md5($password)."'";
-		$r_login=mysql_query($q_login);
-		$n_login=mysql_num_rows($r_login);
-		if($n_login>0 || $utilizador=='admin'){
-			setcookie("utilizador",mysql_result($r_login, 0,'username'));
-			header("Location:index.php");		
-		}
-	}
-	
 	//procedimentos com dados APAGAR 
 		@$func=$_GET['func'];
 		@$tipo=$_GET['tipo'];
