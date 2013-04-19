@@ -12,8 +12,9 @@
 	//
 	
   //accao a efectuar
-  if (isset($accao)) { //logout do utilizador
-  	if($accao="sair") {
+  if (isset($_GET['accao'])) { //logout do utilizador
+  	$accao = $_GET['accao'];
+  	if($_GET['accao']="sair") {
   		setcookie("utilizador","",time()-3600); //eliminar as cookies
   		header("Location:index.php");
   	}
@@ -76,12 +77,7 @@
   		header("Location:index.php".$pagina_a_redireccionar);
   		break;
   }
-  
-  
-  
-  
-  
-  
+
 		//livrarias externas e constantes
 		require("config.php"); //ficheiro de configuracao
 		require("include/funcoes.php"); //funcoes gerais
@@ -93,6 +89,10 @@
 		
 		//seleccionar a tabela a utilizar
 		mysql_select_db($DB_TABLE) or die('Erro de ligacao a base de dados!');
+		
+		//variaveis globais
+		@$utilizador=$_POST['utilizador'];
+		@$password=$_POST['password'];
 		
 		//verificar login
 		if(isset($utilizador)){
@@ -111,10 +111,7 @@
 		//funcoes de manutencao e prevencao de erros
 		require('manutencao.php');
 		
-		//variaveis globais
-		@$accao=$_GET['accao'];
-		@$utilizador=$_POST['utilizador'];
-		@$password=$_POST['password'];
+		
 		
 	    //variaveis 
 	    if(isset($_GET['a']))
