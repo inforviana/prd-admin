@@ -12,6 +12,13 @@
 	//
 	
   //accao a efectuar
+  if (isset($accao)) { //logout do utilizador
+  	if($accao="sair") {
+  		setcookie("utilizador","",time()-3600); //eliminar as cookies
+  		header("Location:index.php");
+  	}
+  }
+  
   switch($_GET['a'])
   {
   	//data a utilizar para as listagens
@@ -123,16 +130,6 @@
 	    		$pagina_a_redireccionar = '';
 	    	}
 	    }
-	    	
-	    	
-	    
-	    
-	if (isset($accao)) { //logout do utilizador 
-		if($accao="sair") {
-			setcookie("utilizador","",time()-3600); //eliminar as cookies
-			header("Location:index.php");
-		}
-	}
 	
 	//verificar data a usar para o ponto e para os graficos
 	if(isset($_POST['data_ponto'])){ //verifica se ha passagem de dados para ver a data
