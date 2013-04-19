@@ -13,13 +13,13 @@
 	
   //accao a efectuar
   if (isset($_GET['accao'])) { //logout do utilizador
-  	$accao = $_GET['accao'];
-  	if($_GET['accao']="sair") {
+  	if($_GET['accao']=="sair") {
   		setcookie("utilizador","",time()-3600); //eliminar as cookies
   		echo "<script>
   					window.location=\"./index.php\";
   				</script>";
   	}
+  	$accao = $_GET['accao'];
   }
   
   switch($_GET['a'])
