@@ -102,7 +102,7 @@
 								<a href="./index.php?pagina=tubos"><img class="menu_topo" border=0 src="./images/tubos_small.png"></a>
 							</td>
 							<td>
-								<a href="./index.php?pagina=ponto"><img class="menu_topo" border=0 src="./images/registo_diario_small.png"></a>
+								<a href="./index.php"><img class="menu_topo" border=0 src="./images/registo_diario_small.png"></a>
 							</td>
 							<td>
 								<a href="./index.php?pagina=extractofuncionarios"><img class="menu_topo" border=0 src="./images/horashomem_small.png"></a>

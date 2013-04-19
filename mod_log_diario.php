@@ -53,7 +53,14 @@
                 for($j=0;$j<$n_eventos_horas;$j++)
                 {
                     //linha horas
-                    $dados_horas_funcionario=$dados_horas_funcionario."Trabalhou com <b>".mysql_result($r_eventos_horas,$j,'desc_viatura')."</b> ".round((mysql_result($r_eventos_horas,$j,'horas_viatura')/60),0)."H ".(mysql_result($r_eventos_horas,$j,'horas_viatura')%60)."m";
+                    if(((mysql_result($r_eventos_horas,$j,'horas_viatura')/60) % 1) >= 0.5)
+                    {
+                    	$hora = round((mysql_result($r_eventos_horas,$j,'horas_viatura')/60),0) - 1; 
+                    }else{
+                    	$hora = round((mysql_result($r_eventos_horas,$j,'horas_viatura')/60),0);
+                    }
+                    
+                    $dados_horas_funcionario=$dados_horas_funcionario."Trabalhou com <b>".mysql_result($r_eventos_horas,$j,'desc_viatura')."</b> ".floor(mysql_result($r_eventos_horas,$j,'horas_viatura')/60)."H ".(mysql_result($r_eventos_horas,$j,'horas_viatura')%60)."m";
                     
                     $somaHoras = $somaHoras + mysql_result($r_eventos_horas, $j, 'horas_viatura');
                     $somaHoras = $somaHoras + mysql_result($r_eventos_horas, $j, 'deslocacao');
@@ -65,7 +72,6 @@
                         
                         $dados_horas_funcionario = $dados_horas_funcionario." com <b>".mysql_result($r_detalhes_acessorio,0,'desc_viatura')."</b> ".(mysql_result($r_eventos_horas,$j,'mov_viatura.horas_trab_acessorio')/60)."H".(mysql_result($r_eventos_horas,$j,'mov_viatura.horas_trab_acessorio')%60)."m";
                     }
-                    
                     $dados_horas_funcionario = $dados_horas_funcionario."<br>";
                 }
             }
