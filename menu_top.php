@@ -114,7 +114,7 @@
 								<a href="./index.php?pagina=opcoes"><img class="menu_topo" border=0 src="./images/opcoes_small.png"></a>
 							</td>
 							<td>
-								<a href="./index.php?accao=sair"><img class="menu_topo" border=0 src="./images/sair_small.png"></a>
+								<a href="./sair.php"><img class="menu_topo" border=0 src="./images/sair_small.png"></a>
 							</td>
 						</tr>
 					</table>
