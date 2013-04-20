@@ -13,7 +13,7 @@
 	
   //livrarias externas e constantes
   require("config.php"); //ficheiro de configuracao
-  require("include/funcoes.php"); //funcoes gerais
+  
 
   //ligar a base de dados
   mysql_connect($DB_HOST,$DB_USER,$DB_PASS);
@@ -33,6 +33,9 @@
   		header("Location:index.php");
   	}
   }
+  
+  //funcoes gerais
+  require("include/funcoes.php"); 
   
   //actualizar a base de dados
   require('update.php');
@@ -68,7 +71,7 @@
   				$dia_final = 31;
   				break;
   			case 4;
-  			$dia_final = 30;
+  				$dia_final = 30;
   			break;
   			case 5:
   				$dia_final = 31;
