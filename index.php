@@ -15,14 +15,6 @@
   require("config.php"); //ficheiro de configuracao
   require("include/funcoes.php"); //funcoes gerais
 
-  //actualizar a base de dados
-  require('update.php');
-  
-  //funcoes de manutencao e prevencao de erros
-  require('manutencao.php');
-  
-  
-  
   //ligar a base de dados
   mysql_connect($DB_HOST,$DB_USER,$DB_PASS);
   
@@ -41,6 +33,12 @@
   		header("Location:index.php");
   	}
   }
+  
+  //actualizar a base de dados
+  require('update.php');
+  
+  //funcoes de manutencao e prevencao de erros
+  require('manutencao.php');
   
   
   if (isset($_GET['accao'])) { //logout do utilizador
