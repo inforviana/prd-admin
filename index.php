@@ -137,6 +137,9 @@
 	
 	//obter titulo da pagina
 	$titulo='WorkTruck '.$VERSAO_APP;
+	
+	//descarregar todo o texto gerado
+	ob_end_flush();
 ?>
 <!doctype html>
 <html lang="pt">
