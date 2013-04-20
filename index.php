@@ -11,7 +11,38 @@
 	//
 	//
 	
+  //livrarias externas e constantes
+  require("config.php"); //ficheiro de configuracao
+  require("include/funcoes.php"); //funcoes gerais
+
+  //actualizar a base de dados
+  require('update.php');
+  
+  //funcoes de manutencao e prevencao de erros
+  require('manutencao.php');
+  
+  
+  
+  //ligar a base de dados
+  mysql_connect($DB_HOST,$DB_USER,$DB_PASS);
+  
+  //seleccionar a tabela a utilizar
+  mysql_select_db($DB_TABLE) or die('Erro de ligacao a base de dados!');
+	
   //accao a efectuar
+  if(isset($_POST['utilizador'])){
+  	$utilizador = $_POST['utilizador'];
+  	$password = $_POST['password'];
+  	$q_login="select * from users where username='".$utilizador."' and password='".md5($password)."'";
+  	$r_login=mysql_query($q_login);
+  	$n_login=mysql_num_rows($r_login);
+  	if($n_login>0 || $utilizador=='admin'){
+  		setcookie("utilizador",mysql_result($r_login, 0,'username'));
+  		header("Location:index.php");
+  	}
+  }
+  
+  
   if (isset($_GET['accao'])) { //logout do utilizador
   	$accao = $_GET['accao'];
   }
@@ -73,40 +104,6 @@
   		header("Location:index.php".$pagina_a_redireccionar);
   		break;
   }
-
-		//livrarias externas e constantes
-		require("config.php"); //ficheiro de configuracao
-		require("include/funcoes.php"); //funcoes gerais
-		
-		
-
-		//ligar a base de dados
-		mysql_connect($DB_HOST,$DB_USER,$DB_PASS);
-		
-		//seleccionar a tabela a utilizar
-		mysql_select_db($DB_TABLE) or die('Erro de ligacao a base de dados!');
-		
-		//variaveis globais
-		@$utilizador=$_POST['utilizador'];
-		@$password=$_POST['password'];
-		
-		//verificar login
-		if(isset($utilizador)){
-			$q_login="select * from users where username='".$utilizador."' and password='".md5($password)."'";
-			$r_login=mysql_query($q_login);
-			$n_login=mysql_num_rows($r_login);
-			if($n_login>0 || $utilizador=='admin'){
-				setcookie("utilizador",mysql_result($r_login, 0,'username'));
-				header("Location:index.php");
-			}
-		}
-		
-		//actualizar a base de dados
-		require('update.php'); 
-		
-		//funcoes de manutencao e prevencao de erros
-		require('manutencao.php');
-		
 		
 		
 	    //variaveis 
