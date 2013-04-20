@@ -22,13 +22,13 @@ if(isset($_POST['utilizador'])){
 	}
 }
 ?>
-<a href="/admin/login.php">
+<a href="./index.php">
 	<img src="header.jpg" border=0></a>
 <br>
 <br>
 <div style="width:820px;">
 <center>
-<form method="POST" action="index.php">
+<form method="POST" action="login.php">
 <input style="text-align:center;font-size:30px;" name="utilizador" type="text"><br>
 <input style="text-align:center;font-size:30px;" name="password" type="password"><br>
 <button style="font-size:35px;" type="submit">Entrar</button>
