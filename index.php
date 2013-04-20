@@ -1,4 +1,5 @@
   <?php
+  	ob_start();
 	//WORKTRUCK - GESTAO DE FROTA
 	//
 	//MODULO DE ADMINISTRACAO
@@ -10,9 +11,6 @@
 	//
 	//
 	//
-
-  
-  
   if (isset($_GET['accao'])) { //logout do utilizador
   	$accao = $_GET['accao'];
   }
@@ -90,8 +88,6 @@
   		break;
   }
   
-  
-
   //livrarias externas e constantes
   require("config.php"); //ficheiro de configuracao
   
