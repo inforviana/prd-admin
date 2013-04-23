@@ -55,7 +55,7 @@ echo '<font style="font-family:Arial, Helvetica, sans-serif;font-size:14px;">';
 			inner join viaturas on viaturas.id_viatura = mov_combustivel.id_viatura
 			inner join funcionario on funcionario.id_funcionario=mov_combustivel.id_funcionario
 			".$condicao."
-			and (mov_combustivel.valor_movimento > 0 or mov_combustivel.kms_viatura > 0)
+			and mov_combustivel.valor_movimento > 0 and mov_combustivel.kms_viatura > 0
 			and date(mov_combustivel.data) >= '".$data_i."' and date(mov_combustivel.data) <= '".$data_f."'
 			order by date(mov_combustivel.data) desc";
             
@@ -106,7 +106,7 @@ echo '<font style="font-family:Arial, Helvetica, sans-serif;font-size:14px;">';
         inner join viaturas on viaturas.id_viatura = mov_combustivel.id_viatura
         inner join funcionario on funcionario.id_funcionario=mov_combustivel.id_funcionario
         ".$condicao."
-        and  (mov_combustivel.valor_movimento > 0 or mov_combustivel.kms_viatura > 0)
+        and  mov_combustivel.valor_movimento > 0 and mov_combustivel.kms_viatura > 0
         and date(mov_combustivel.data) >= '".$data_i."' and date(mov_combustivel.data) <= '".$data_f."'
         order by mov_combustivel.data desc";		
 	
