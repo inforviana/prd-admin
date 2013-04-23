@@ -11,9 +11,10 @@
 		$data=$_POST['data'];
 		$funcionario=$_POST['funcionario'];
 		$viatura=$_POST['viatura'];
+		$local = $_POST['local'];
 		
 		if(@$novo!=1){
-			$q_guardar="UPDATE mov_viatura SET id_viatura=".$viatura.", id_funcionario = ".$funcionario.", data='".$data."', horas_viatura=".(($horas*60)+$minutos)." where id_movviatura=".$id;
+			$q_guardar="UPDATE mov_viatura SET id_viatura=".$viatura.", id_funcionario = ".$funcionario.", data='".$data."', horas_viatura=".(($horas*60)+$minutos).", id_obra = ".$local." where id_movviatura=".$id;
 		}else{
 			$q_guardar="INSERT INTO grupos_funcionario (desc_grupo) VALUES ('".$valor."')"; 
 		}
@@ -44,7 +45,8 @@
 	$n_v = mysql_num_rows($r_v);
 	
 	//combo dos funcionarios
-	echo '<table id="hor-minimalist-b" summary="motd"><thead><th>EDITAR REGISTO DE HORAS '.@$id.'</th></thead><tbody><tr></tr><tr><td><form method="POST" action="index.php?pagina=editarhoras&id='.$id.'&guardar=1&idf='.mysql_result($r_mv, 0,'id_funcionario').'&novo='.@$novo.'">
+	echo '<table id="hor-minimalist-b" summary="motd"><thead><th>EDITAR REGISTO DE HORAS '.@$id.'</th></thead><tbody><tr></tr><tr><td>
+			<form method="POST" action="index.php?pagina=editarhoras&id='.$id.'&guardar=1&idf='.mysql_result($r_mv, 0,'id_funcionario').'&novo='.@$novo.'">
 	Funcionario: <select name="funcionario">';
 					for($i=0;$i<$n_f;$i++){
 						//verifica se é o funcionario do registo
@@ -68,7 +70,36 @@
 						}
 						echo '<option value="'.mysql_result($r_v,$i,'id_viatura').'" '.$selected.'>'.mysql_result($r_v,$i,'desc_viatura').' - '.mysql_result($r_v,$i,'marca_viatura').' '.mysql_result($r_v,$i,'modelo_viatura').'</option>';
 					}
-	echo'		</select><br><br>
+	echo '</select><br><br>';					
+					
+	//combo do local
+	$qLocais = "select * from obras";
+	$rLocais = mysql_query($qLocais);
+	$nLocais = mysql_num_rows($rLocais);
+	
+	
+	echo 'Obra: <select name="local">';
+			
+		//ciclo para obter as obras
+		for($i=0;$i<$nLocais;$i++)
+		{
+			//verifica qual a obra a pre seleccionar
+			if((mysql_result($r_mv,0,'id_obra')) == mysql_result($rLocais, $i,'id_obra'))
+			{
+				$selected = 'selected = "selected"';
+			}else{
+				$selected = '';
+			}
+			
+			echo '<option value="'.mysql_result($rLocais, $i,'id_obra').'">'.mysql_result($rLocais, $i,'descricao_obra').'</option>';
+		}
+	
+	echo '</select><br><br>';
+
+					
+					
+					
+	echo'		<br><br>
 	Data: <input type="text" size=20 name="data" value="'.mysql_result($r_mv,0,'data').'"><br>
 	Horas: <input type="text" size=5 name="horas" value="'.intval(mysql_result($r_mv,0,'horas_viatura')/60).'">
 	Minutos: <input type="text" size=5 name="minutos" value="'.(mysql_result($r_mv,0,'horas_viatura')%60).'">
