@@ -112,6 +112,7 @@
 												where
 												    mov_combustivel.kms_viatura > 0 and mov_combustivel.id_viatura = ".$listagem[$i]["id_viatura"]." and mov_combustivel.valor_movimento > 0 and mov_combustivel.data between '".$data_inicial."' and '".$data_final."'";
 			    		$r_valores_contador = mysql_query($q_valores_contador);
+			    		$n_valores_contador = mysql_num_rows($r_valores_contador);
 			    		
 			    		$r_valor_minimo = mysql_query("select 
 														    mov_combustivel.id_movcombustivel as id_movimento,
@@ -123,13 +124,21 @@
 														order by  mov_combustivel.kms_viatura asc");
 			    		$n_valor_minimo = mysql_num_rows($r_valor_minimo);			    		
 			    		 
-			    	
-			    echo '		
-			    <td>'.mysql_result($r_valores_contador, 0,'contador_viatura').'</td>
-			   	<td><a href="./index.php?pagina=editarcomb&id='.mysql_result($r_valor_minimo, 0,'id_movimento').'">'.mysql_result($r_valores_contador, 0,'min_contador').'</td>
-			    <td><a href="./index.php?pagina=editarcomb&id='.mysql_result($r_valor_minimo, ($n_valor_minimo-1),'id_movimento').'">'.mysql_result($r_valores_contador, 0,'max_contador').'</td>
-			  </tr>
-				';
+			    if($n_valores_contador > 0)
+			    {
+			    	echo '
+				    <td>'.mysql_result($r_valores_contador, 0,'contador_viatura').'</td>
+				   	<td><a href="./index.php?pagina=editarcomb&id='.mysql_result($r_valor_minimo, 0,'id_movimento').'">'.mysql_result($r_valores_contador, 0,'min_contador').'</td>
+				    <td><a href="./index.php?pagina=editarcomb&id='.mysql_result($r_valor_minimo, ($n_valor_minimo-1),'id_movimento').'">'.mysql_result($r_valores_contador, 0,'max_contador').'</td>
+				  </tr>
+					';
+			    }else{
+			    	echo '<td></td>
+			    			<td></td>
+			    			<td></td>
+			    			</tr>';
+			    }
+			    
 	}
 	
 	echo '</tbody>
