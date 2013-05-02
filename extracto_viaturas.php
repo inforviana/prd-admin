@@ -124,7 +124,7 @@
 														order by  mov_combustivel.kms_viatura asc");
 			    		$n_valor_minimo = mysql_num_rows($r_valor_minimo);			    		
 			    		 
-			    if($n_valores_contador > 0)
+			    if($n_valores_contador > 1)
 			    {
 			    	echo '
 				    <td>'.mysql_result($r_valores_contador, 0,'contador_viatura').'</td>
