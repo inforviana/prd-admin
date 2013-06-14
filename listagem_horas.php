@@ -23,7 +23,7 @@ if (isset($_GET['idfuncionario'])){
 	$q_dados="select * from viaturas where id_viatura=".$id_viatura;
 	$r_dados=mysql_query($q_dados);
 	$n_dados=mysql_num_rows($r_dados);
-	
+	++
 	//categoria da viatura TODO:juntar numa so query
 	$rCategoriaViatura = mysql_query("select categoria from categorias_viatura where id_categoria = ".mysql_result($r_dados,0,'tipo_viatura')." limit 1");
 	
@@ -90,7 +90,9 @@ if (isset($_GET['idfuncionario'])){
 			<th colspan=3>Operacoes</th>
 		</tr>
 		</thead>
-		<tbody>';
+		<tbody>';¨
+		
+		
 		
 		$dia_horas="";
 		for($i=0;$i<$n_mov_horas;$i++){ //obter linhas dos ultimos movimentos

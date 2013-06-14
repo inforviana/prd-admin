@@ -1,8 +1,9 @@
 <?php
-@$id_funcionario=$_GET['idfuncionario'];
-@$id_viatura=$_GET['idviatura'];
-@$procura=$_GET['procura'];
-@$texto_pesquisa = $_POST['inp_pesquisa'];
+if(isset($_GET['idfuncionario'])) $id_funcionario=$_GET['idfuncionario'];
+if(isset($_GET['idviatura'])) $id_viatura=$_GET['idviatura'];
+if(isset($_GET['procura'])) $procura=$_GET['procura'];
+if(isset($_GET['inp_pesquisa'])) $texto_pesquisa = $_POST['inp_pesquisa'];
+if(isset($_GET['impressao'])) $impressao=1;
 
 
 
@@ -12,15 +13,18 @@ if($id_funcionario>0){
 	$r_dados=mysql_query($q_dados);
 	$n_dados=mysql_num_rows($r_dados);
 	echo '<b>Nome :: </b>'.mysql_result($r_dados,0,'nome_funcionario').'<br><b>Grupo :: </b>'.mysql_result($r_dados,0,'grupo_funcionario');
-	echo '<br><br><br>
-	<form method=POST action="index.php?procura=1&pagina=listagemavarias&idfuncionario='.$id_funcionario.'">';
-	echo '
-    <input type="text" placeholder="texto a pesquisar" name="inp_pesquisa" style="width:400px; text-align:center; font-size: 24px;"> 
-    <br>
-        <button type="submit" value="Filtrar">Filtrar</button>
-        </form>';
-	
-	echo '<a id=d="hor-minimalist-b" href="index.php?pagina=listagemavarias&idfuncionario='.$id_funcionario.'">Todas as avarias</a>';	
+	if($impressao != 1)
+		{
+				echo '<br><br><br>
+			<form method=POST action="index.php?procura=1&pagina=listagemavarias&idfuncionario='.$id_funcionario.'">';
+			echo '
+		    <input type="text" placeholder="texto a pesquisar" name="inp_pesquisa" style="width:400px; text-align:center; font-size: 24px;"> 
+		    <br>
+		        <button type="submit" value="Filtrar">Filtrar</button>
+		        </form>';
+			echo '<a id=d="hor-minimalist-b" href="index.php?pagina=listagemavarias&idfuncionario='.$id_funcionario.'">Todas as avarias</a>';
+			echo '<a id=d="hor-minimalist-b" href="index.php?pagina=listagemavarias&idfuncionario='.$id_funcionario.'&impressao=1">Versao de Impressao</a>';
+		}	
 	$condicao="where mov_avarias.id_funcionario=".$id_funcionario;
 }else{
 	//obter detalhes da viatura
@@ -41,12 +45,16 @@ if($id_funcionario>0){
 	Viatura :: </b>'.mysql_result($r_dados,0,'desc_viatura').'<br><b>
 	Tipo :: </b>'.mysql_result($r_cat_vi,0,'categoria').'
 	</tr></table>';
-	echo '<br><br><br><form method=POST action="index.php?procura=1&pagina=listagemavarias&idviatura='.$id_viatura.'">';
-	echo '
-         <input type="text" placeholder="texto a pesquisar" name="inp_pesquisa" style="width:400px; text-align:center; font-size: 24px;"> ';
-    echo '<button type="submit" value="Filtrar">Filtrar</button>
-        </form>';
-	echo '<a id=d="hor-minimalist-b" href="index.php?pagina=listagemavarias&idviatura='.$id_viatura.'">Todas as avarias</a>';	
+	if($impressao != 1)
+	{
+		echo '<br><br><br><form method=POST action="index.php?procura=1&pagina=listagemavarias&idviatura='.$id_viatura.'">';
+		echo '
+	         <input type="text" placeholder="texto a pesquisar" name="inp_pesquisa" style="width:400px; text-align:center; font-size: 24px;"> ';
+	    echo '<button type="submit" value="Filtrar">Filtrar</button>
+	        </form>';
+		echo '<a id=d="hor-minimalist-b" href="index.php?pagina=listagemavarias&idviatura='.$id_viatura.'">Todas as avarias</a>';
+		echo '<a id=d="hor-minimalist-b" href="index.php?pagina=listagemavarias&idviatura='.$id_viatura.'&impressao=1">Versao de Impressao</a>';
+	}
 	$condicao="where mov_avarias.id_viatura=".$id_viatura;
 }
 
@@ -96,10 +104,13 @@ if($id_funcionario>0){
 			<th>Descricao</th>
 			<th>Categoria</th>
 			<th>Descricao</th>
-			<th>Custo</th>
-			<th>Concluida</th>
+			<th>Custo</th>';
+		
+		if($impressao != 1) echo	'<th>Concluida</th>
 			<th>Tempo Gasto</th>
-			<th colspan=3>Operacoes</th>
+			<th colspan=3>Operacoes</th>';
+		
+		echo '
 		</tr>
 		</thead>
 		<tbody>';
@@ -131,8 +142,9 @@ if($id_funcionario>0){
 					</td>
 					<td>
 						'.mysql_result($r_mov_avarias,$i,'preco').' Eur
-					</td>
-					<td>
+					</td>';
+					
+					if($impressao != 1) echo '<td>
 						'.mysql_result($r_mov_avarias,$i,'estado').'
 					</td>
 					<td>
@@ -140,8 +152,10 @@ if($id_funcionario>0){
 					</td>				
 					<td align="center">
 						<a href="./index.php?pagina=editaravarias&id='.mysql_result($r_mov_avarias,$i,'id_avaria').'"><img src="editar.png" border=0></a>
-					</td>
-					<td align="center">
+					</td>';
+					
+					
+					echo '<td align="center">
                                                                                 ';
                                                                                  
                         
