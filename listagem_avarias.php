@@ -23,7 +23,7 @@ if($id_funcionario>0){
 		        <button type="submit" value="Filtrar">Filtrar</button>
 		        </form>';
 			echo '<a id=d="hor-minimalist-b" href="index.php?pagina=listagemavarias&idfuncionario='.$id_funcionario.'">Todas as avarias</a>';
-			echo '<a id=d="hor-minimalist-b" href="index.php?pagina=listagemavarias&idfuncionario='.$id_funcionario.'&impressao=1">Versao de Impressao</a>';
+			echo '<a id=d="hor-minimalist-b" href="index.php?pagina=listagemavarias&idfuncionario='.$id_funcionario.'&impressao=1"> Versao de Impressao</a>';
 		}	
 	$condicao="where mov_avarias.id_funcionario=".$id_funcionario;
 }else{
@@ -38,13 +38,17 @@ if($id_funcionario>0){
         /* FIM BUGFIX CATEGORIA */
         
         /* detalhes viatura */
-	echo '
-	<table><tr>
+        echo '<table>
+	<tr>';
+        
+	if ($impressao != 1) echo '
 	<td><img class="img_viatura" src="imagem.php?idviatura='.mysql_result($r_dados,0,'id_viatura').'"></td>
-	<td><b>
+	';
+	echo '<td><b>
 	Viatura :: </b>'.mysql_result($r_dados,0,'desc_viatura').'<br><b>
 	Tipo :: </b>'.mysql_result($r_cat_vi,0,'categoria').'
 	</tr></table>';
+	
 	if($impressao != 1)
 	{
 		echo '<br><br><br><form method=POST action="index.php?procura=1&pagina=listagemavarias&idviatura='.$id_viatura.'">';
@@ -53,7 +57,7 @@ if($id_funcionario>0){
 	    echo '<button type="submit" value="Filtrar">Filtrar</button>
 	        </form>';
 		echo '<a id=d="hor-minimalist-b" href="index.php?pagina=listagemavarias&idviatura='.$id_viatura.'">Todas as avarias</a>';
-		echo '<a id=d="hor-minimalist-b" href="index.php?pagina=listagemavarias&idviatura='.$id_viatura.'&impressao=1">Versao de Impressao</a>';
+		echo '<a id=d="hor-minimalist-b" href="index.php?pagina=listagemavarias&idviatura='.$id_viatura.'&impressao=1"> Versao de Impressao</a>';
 	}
 	$condicao="where mov_avarias.id_viatura=".$id_viatura;
 }
@@ -101,7 +105,6 @@ if($id_funcionario>0){
 			<th></th>
 			<th>Data e Hora</th>
 			<th>Colaborador</th>
-			<th>Descricao</th>
 			<th>Categoria</th>
 			<th>Descricao</th>
 			<th>Custo</th>';
@@ -131,9 +134,6 @@ if($id_funcionario>0){
 					<td>
 						<a href="index.php?pagina=listagemavarias&idfuncionario='.mysql_result($r_mov_avarias,$i,'id_funcionario').'">'.mysql_result($r_mov_avarias,$i,'nome_funcionario').'</a>
 					</td>					
-					<td>
-						<a href="index.php?pagina=listagemavarias&idviatura='.mysql_result($r_mov_avarias,$i,'id_viatura').'">'.mysql_result($r_mov_avarias,$i,'desc_viatura').'</a>
-					</td>
 					<td>
 						'.mysql_result($r_mov_avarias,$i,'categoria').'
 					</td>
