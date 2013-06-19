@@ -1,7 +1,12 @@
 <?php
 	$id_funcionario=$_GET['id'];
-	@$novo=$_GET['novo'];
-	@$guardar=$_GET['guardar'];
+	if(isset($_GET['novo'])) $novo=$_GET['novo'];
+	if(isset($_GET['guardar'])) $guardar=$_GET['guardar'];
+	
+	//obter proximo pin
+	$r_max_pin = mysql_query("select max(pin_funcionario) from funcionario");
+	$proximoPin = mysql_result($r_max_pin,0,0) + 1;
+	
 	
 	if($guardar==1){ //CONDICAO PRINCIPAL PARA VERIFICAR A OPERAÇÃO A EFETUAR (CRIAR NOVO)------------------------------------------------------------------------------------------------------------
 		$nome=$_POST['nome'];
@@ -62,7 +67,7 @@
                 <input type="file" name="imgfile" class="inputfoto">
                 </div>
                 <br>
-		PIN PRD:<input type="text" name="pin" size=6 value="">	
+		PIN PRD:<input type="text" name="pin" size=6 value="'.$proximoPin.'">	
 		<br><br>
 		Grupo : ';
 		
@@ -112,6 +117,15 @@
 	}
 	if(isset($query)){mysql_query($query); }//query para apagar os dados
 	
+	//verificar se ha pin gravado senao aplica o proximo 
+	
+	if(mysql_result($r_funcionario,0,'pin_funcionario') > 1)
+	{
+		$pinNovo = mysql_result($r_funcionario,0,'pin_funcionario');
+	}else{
+		$pinNovo = $proximoPin;
+	}
+	
 	echo '
 	<table id="hor-minimalist-b" summary="motd"><thead><th>DADOS DO FUNCIONARIO</th><th></th></thead>
 	<tbody><tr></tr>
@@ -131,7 +145,7 @@
                 <input type="file" name="imgfile" class="inputfoto">
                 </div>
                 <br>
-		PIN PRD:<input type="text" name="pin" size=6 value="'.mysql_result($r_funcionario,0,'pin_funcionario').'">	
+		PIN PRD:<input type="text" name="pin" size=6 value="'.$pinNovo.'">	
 		<br><br>
 		Grupo : ';
 	
