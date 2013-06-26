@@ -90,9 +90,7 @@ if (isset($_GET['idfuncionario'])){
 			<th colspan=3>Operacoes</th>
 		</tr>
 		</thead>
-		<tbody>';¨
-		
-		
+		<tbody>';
 		
 		$dia_horas="";
 		for($i=0;$i<$n_mov_horas;$i++){ //obter linhas dos ultimos movimentos
