@@ -63,7 +63,6 @@ if (isset($_GET['idfuncionario'])){
 	$r_mov_horas = mysql_query($q_mov_horas); //resultados da query
 	$n_mov_horas = mysql_num_rows($r_mov_horas); //numero de linhas
 	
-	
 	$r_totais_horas = mysql_query($q_totais);
 	
 	//tabela com os totais de horas e faturado

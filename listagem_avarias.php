@@ -2,7 +2,7 @@
 if(isset($_GET['idfuncionario'])) $id_funcionario=$_GET['idfuncionario'];
 if(isset($_GET['idviatura'])) $id_viatura=$_GET['idviatura'];
 if(isset($_GET['procura'])) $procura=$_GET['procura'];
-if(isset($_GET['inp_pesquisa'])) $texto_pesquisa = $_POST['inp_pesquisa'];
+if(isset($_POST['inp_pesquisa'])) $texto_pesquisa = $_POST['inp_pesquisa'];
 if(isset($_GET['impressao'])) $impressao=1;
 
 
