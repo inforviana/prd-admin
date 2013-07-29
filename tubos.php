@@ -175,6 +175,7 @@ echo '
 				<th>Funcionario</th>
 				<th>Preco</th>
 				<th></th>
+				<th></th>
 			</thead>
 			<tbody>
 	';
@@ -195,6 +196,7 @@ echo '
 						<td>'.mysql_result($r_ut,$i,2).'</td>
 						<td>'.mysql_result($r_ut,$i,3).'</td>
 						<td>€ '.mysql_result($r_ut,$i,1).'</td>
+						<td><a href="./index.php?pagina=tubos&editar='.mysql_result($r_ut,$i,4).'"><img src="./editar.png"></a></td>
 						<td><button onclick="eliminar(\'index.php?pagina=tubos&eu='.mysql_result($r_ut,$i,4).'\',\'Deseja eliminar a utilizacao?\')"><label class="but_tub">Apagar</label></button></td>
 					</tr>';
 				}
