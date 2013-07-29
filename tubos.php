@@ -1,5 +1,11 @@
 <?php
 
+if(isset($_GET['guardarcomponente']) && isset($_GET['idcomponente']))
+{
+	$qAlterarComponente = "UPDATE componentes_tubos SET componente = '".str_replace('\'\'','"',$_POST['descricao_componente'])."',id_tipo_componente_tubo=".$_POST['tipo_componente'].",qtd_componente=".$_POST['quantidade']."  WHERE id_componentes_tubos = ".$_GET['idcomponente'];
+	mysql_query($qAlterarComponente);
+}
+
 if(isset($_GET['eu'])) /* eliminar utilizacao */
 	{
 		mysql_query("delete from utilizacao where id_utilizacao=".$_GET['eu']);
@@ -33,9 +39,16 @@ if(isset($_GET['ac'])) /* adicionar componente */
 	}
 
 	
-if(isset($_POST['ordem']))
+if(isset($_POST['ordem']) || isset($_GET['ordem']))
 	{
-            $ordem=$_POST['ordem'];
+            if(isset($_POST['ordem'])) 
+			{
+				$ordem=$_POST['ordem'];
+			}else{
+				$ordem = $_GET['ordem'];
+			}
+
+			
             switch($ordem)
             {
                 case 'utilizacao':
@@ -98,12 +111,14 @@ echo '
 			<tbody>
 				';
 				
+				
+				//listar os tubos
 				for($i=0;$i<$n_tubos;$i++)
 				{
 					echo '<tr>
 							<td><h1>'.mysql_result($r_tubos,$i,'referencia_tubo').'</h1></td>
 							<td>';
-								$q_c="SELECT componentes_tubos.ref_tubo, componentes_tubos.qtd_componente, tipos_componentes_tubos.tipo_componente, componentes_tubos.componente, componentes_tubos.id_componentes_tubos
+								$q_c="SELECT componentes_tubos.ref_tubo, componentes_tubos.qtd_componente, tipos_componentes_tubos.tipo_componente, componentes_tubos.componente, componentes_tubos.id_componentes_tubos, componentes_tubos.id_tipo_componente_tubo
 										FROM componentes_tubos
 										JOIN tipos_componentes_tubos ON tipos_componentes_tubos.id_tipo_componente = componentes_tubos.id_tipo_componente_tubo
 										WHERE componentes_tubos.ref_tubo=".mysql_result($r_tubos,$i,'referencia_tubo')." 
@@ -113,7 +128,56 @@ echo '
 								
 								for($j=0;$j<$n_c;$j++)
 								{
-									echo mysql_result($r_c,$j,'qtd_componente').' X '.mysql_result($r_c,$j,'tipo_componente').' '.mysql_result($r_c,$j,'componente').' <a href="index.php?pagina=tubos&ec='.mysql_result($r_c,$j,'id_componentes_tubos').'"><img height=14 border=0 src="delete.gif"></a><br>';
+									//mostrar componentes do tubo e se for o caso input de texto para o alterar
+									if(isset($_GET['editar']) && ($_GET['editar'] == mysql_result($r_c,$j,'id_componentes_tubos')))
+										{
+											//preencher a combos dos tipos de tubo para a edicao
+											$qTiposComponentes = "select * from tipos_componentes_tubos";
+											$rTiposComponentes = mysql_query($qTiposComponentes);
+											$nTiposComponentes = mysql_num_rows($rTiposComponentes);
+											
+											$opcoes = "";
+											
+											//verifica qual o tipo seleccionado
+											for($k=0;$k<$nTiposComponentes;$k++)
+											{
+												if(mysql_result($rTiposComponentes,$k,'id_tipo_componente') == mysql_result($r_c,$j,'id_tipo_componente_tubo'))
+												{
+													$sel = ' selected="selected" ';
+												}else{
+													$sel = "";
+												}
+												
+												//guarda os tipos de tubos
+												$opcoes = $opcoes.'<option value="'.mysql_result($rTiposComponentes,$k,'id_tipo_componente').'" '.$sel.'>'.mysql_result($rTiposComponentes,$k,'tipo_componente').'</option>';
+											}
+										
+											//formulario para editar os dados do tubo
+											echo '<form method="POST" action="./index.php?pagina=tubos&guardarcomponente=1&idcomponente='.mysql_result($r_c,$j,'id_componentes_tubos').'">
+														<input style="text-align:center;font-size:20px;width:50px;" type="text" name="quantidade" value="'.mysql_result($r_c,$j,'qtd_componente').'"> X ';
+														
+														//manter a ordem na lista
+														if(isset($ordem))
+														{
+															echo '<input type="hidden" name="ordem" value="'.$ordem.'">';
+														}
+														
+														echo '<select name="tipo_componente">
+																	'.$opcoes.'
+																	</select>';
+														echo '<input name="descricao_componente" type="text" value="'.str_replace("\"","''",mysql_result($r_c,$j,'componente')).'"><input type="submit" value="OK"><a href="index.php?pagina=tubos&ec='.mysql_result($r_c,$j,'id_componentes_tubos').'">
+														<img height=14 border=0 src="delete.gif"></a></form><br>';
+									}else{
+										
+										if(isset($ordem))
+										{
+											$ordemLista = "&ordem=".$ordem;
+										}else{
+											$ordemLista = "";
+										}
+										
+										echo mysql_result($r_c,$j,'qtd_componente').' X '.mysql_result($r_c,$j,'tipo_componente').' '.mysql_result($r_c,$j,'componente').'<a href="index.php?pagina=tubos&editar='.mysql_result($r_c,$j,'id_componentes_tubos').''.$ordemLista.'"><img src="./square.png" border=0></a><br>';
+									}
 								}
 							
 							/* butoes */
@@ -175,7 +239,6 @@ echo '
 				<th>Funcionario</th>
 				<th>Preco</th>
 				<th></th>
-				<th></th>
 			</thead>
 			<tbody>
 	';
@@ -196,7 +259,6 @@ echo '
 						<td>'.mysql_result($r_ut,$i,2).'</td>
 						<td>'.mysql_result($r_ut,$i,3).'</td>
 						<td>€ '.mysql_result($r_ut,$i,1).'</td>
-						<td><a href="./index.php?pagina=tubos&editar='.mysql_result($r_ut,$i,4).'"><img src="./editar.png"></a></td>
 						<td><button onclick="eliminar(\'index.php?pagina=tubos&eu='.mysql_result($r_ut,$i,4).'\',\'Deseja eliminar a utilizacao?\')"><label class="but_tub">Apagar</label></button></td>
 					</tr>';
 				}
