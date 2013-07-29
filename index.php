@@ -195,6 +195,17 @@
 						height:500,
 						width:700
 					});
+					
+					
+				<?php
+					if(isset($_GET['editar']) || isset($_GET['guardarcomponente']))
+					{
+						echo "location.hash = 'tubo".$_GET['tubo']."';
+								var top = $('[id=tubo".$_GET['tubo']."]').offset().top;
+								$(document).scrollTop(top-($(window).height()/2));
+						";
+					}
+				?>
 		});
 		//FIM JQUERY ----------------------------------------------- :)
 		</script> 

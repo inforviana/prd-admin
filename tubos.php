@@ -116,7 +116,7 @@ echo '
 				for($i=0;$i<$n_tubos;$i++)
 				{
 					echo '<tr>
-							<td><h1>'.mysql_result($r_tubos,$i,'referencia_tubo').'</h1></td>
+							<td><h1><a id="tubo'.mysql_result($r_tubos,$i,'referencia_tubo').'">'.mysql_result($r_tubos,$i,'referencia_tubo').'</a></h1></td>
 							<td>';
 								$q_c="SELECT componentes_tubos.ref_tubo, componentes_tubos.qtd_componente, tipos_componentes_tubos.tipo_componente, componentes_tubos.componente, componentes_tubos.id_componentes_tubos, componentes_tubos.id_tipo_componente_tubo
 										FROM componentes_tubos
@@ -153,7 +153,7 @@ echo '
 											}
 										
 											//formulario para editar os dados do tubo
-											echo '<form method="POST" action="./index.php?pagina=tubos&guardarcomponente=1&idcomponente='.mysql_result($r_c,$j,'id_componentes_tubos').'">
+											echo '<form method="POST" action="./index.php?pagina=tubos&guardarcomponente=1&tubo='.mysql_result($r_tubos,$i,'referencia_tubo').'&idcomponente='.mysql_result($r_c,$j,'id_componentes_tubos').'">
 														<input style="text-align:center;font-size:20px;width:50px;" type="text" name="quantidade" value="'.mysql_result($r_c,$j,'qtd_componente').'"> X ';
 														
 														//manter a ordem na lista
@@ -176,7 +176,7 @@ echo '
 											$ordemLista = "";
 										}
 										
-										echo mysql_result($r_c,$j,'qtd_componente').' X '.mysql_result($r_c,$j,'tipo_componente').' '.mysql_result($r_c,$j,'componente').'<a href="index.php?pagina=tubos&editar='.mysql_result($r_c,$j,'id_componentes_tubos').''.$ordemLista.'"><img src="./square.png" border=0></a><br>';
+										echo mysql_result($r_c,$j,'qtd_componente').' X '.mysql_result($r_c,$j,'tipo_componente').' '.mysql_result($r_c,$j,'componente').'<a href="index.php?pagina=tubos&editar='.mysql_result($r_c,$j,'id_componentes_tubos').''.$ordemLista.'&tubo='.mysql_result($r_tubos,$i,'referencia_tubo').'"><img src="./square.png" border=0></a><br>';
 									}
 								}
 							
@@ -269,5 +269,6 @@ echo '
 	</table><br><br>
 		<center><h1>'.$msg_t.'</h1></center>
 	</div>
-'
+';
+
 ?>
