@@ -69,7 +69,7 @@
 	while($resultado = mysql_fetch_assoc($r_extracto_viaturas))
 	{
 		//preencher o primeiro array com a linha
-		$linha = array("id_viatura"=>$resultado["id_viatura"],"desc_viatura"=>$resultado["desc_viatura"],"total_horas"=>$resultado["total_horas"],"preco_total"=>$resultado["preco_total"],"dias_trabalho"=>$resultado["dias_trabalho"],"contador"=>$resultado["contador_viatura"]);
+		$linha = array("id_viatura"=>$resultado["id_viatura"],"desc_viatura"=>$resultado["desc_viatura"],"total_horas"=>$resultado["total_horas"],"preco_total"=>$resultado["preco_total"],"dias_trabalho"=>$resultado["dias_trabalho"]);
 		$listagem[]=$linha; //guarda o array com a linha no array principal
 	}
 	
