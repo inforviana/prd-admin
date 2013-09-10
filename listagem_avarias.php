@@ -2,18 +2,22 @@
 if(isset($_GET['idfuncionario'])) $id_funcionario=$_GET['idfuncionario'];
 if(isset($_GET['idviatura'])) $id_viatura=$_GET['idviatura'];
 if(isset($_GET['procura'])) $procura=$_GET['procura'];
-if(isset($_POST['inp_pesquisa'])) $texto_pesquisa = $_POST['inp_pesquisa'];
+if(isset($_POST['inp_pesquisa'])) {
+	$texto_pesquisa = $_POST['inp_pesquisa'];
+}else{
+	$texto_pesquisa = "";
+}
 if(isset($_GET['impressao'])) $impressao=1;
 
 
 
-if($id_funcionario>0){
+if(isset($id_funcionario)){
 	//obter detalhes do funcionario
 	$q_dados="select * from funcionario where id_funcionario=".$id_funcionario;
 	$r_dados=mysql_query($q_dados);
 	$n_dados=mysql_num_rows($r_dados);
 	echo '<b>Nome :: </b>'.mysql_result($r_dados,0,'nome_funcionario').'<br><b>Grupo :: </b>'.mysql_result($r_dados,0,'grupo_funcionario');
-	if($impressao != 1)
+	if(!isset($_GET['impressao']))
 		{
 				echo '<br><br><br>
 			<form method=POST action="index.php?procura=1&pagina=listagemavarias&idfuncionario='.$id_funcionario.'">';
@@ -41,7 +45,7 @@ if($id_funcionario>0){
         echo '<table>
 	<tr>';
         
-	if ($impressao != 1) echo '
+	if (!isset($_GET['impressao'])) echo '
 	<td><img class="img_viatura" src="imagem.php?idviatura='.mysql_result($r_dados,0,'id_viatura').'"></td>
 	';
 	echo '<td><b>
@@ -49,7 +53,7 @@ if($id_funcionario>0){
 	Tipo :: </b>'.mysql_result($r_cat_vi,0,'categoria').'
 	</tr></table>';
 	
-	if($impressao != 1)
+	if(!isset($_GET['impressao']))
 	{
 		echo '<br><br><br><form method=POST action="index.php?procura=1&pagina=listagemavarias&idviatura='.$id_viatura.'">';
 		echo '
@@ -105,11 +109,12 @@ if($id_funcionario>0){
 			<th></th>
 			<th>Data e Hora</th>
 			<th>Colaborador</th>
+			<th>Viatura</th>
 			<th>Categoria</th>
 			<th>Descricao</th>
 			<th>Custo</th>';
 		
-		if($impressao != 1) echo	'<th>Concluida</th>
+		if(!isset($_GET['impressao'])) echo	'<th>Concluida</th>
 			<th>Tempo Gasto</th>
 			<th colspan=3>Operacoes</th>';
 		
@@ -132,7 +137,10 @@ if($id_funcionario>0){
 						'.mysql_result($r_mov_avarias,$i,'horas').'
 					</td>
 					<td>
-						<a href="index.php?pagina=listagemavarias&idfuncionario='.mysql_result($r_mov_avarias,$i,'id_funcionario').'">'.mysql_result($r_mov_avarias,$i,'nome_funcionario').'</a>
+						<a href="./index.php?pagina=listagemavarias&idfuncionario='.mysql_result($r_mov_avarias,$i,'id_funcionario').'">'.mysql_result($r_mov_avarias,$i,'nome_funcionario').'</a>
+					</td>
+					<td>
+						'.mysql_result($r_mov_avarias,$i,'desc_viatura').'
 					</td>					
 					<td>
 						'.mysql_result($r_mov_avarias,$i,'categoria').'
@@ -144,7 +152,7 @@ if($id_funcionario>0){
 						'.mysql_result($r_mov_avarias,$i,'preco').' Eur
 					</td>';
 					
-					if($impressao != 1) echo '<td>
+					if(!isset($_GET['impressao'])) echo '<td>
 						'.mysql_result($r_mov_avarias,$i,'estado').'
 					</td>
 					<td>

@@ -1,5 +1,5 @@
 <?php 
-	$ultima_versao = '0.7'; //MANDATORY -> definir ultima versao
+	$ultima_versao = '0.8'; //MANDATORY -> definir ultima versao
 	
 	$r_versao = mysql_query("select value from config where attrib = 'versao'"); //obter a versao actual
 	
@@ -48,7 +48,12 @@
 				mysql_query("UPDATE funcionario SET preco_hora_extra = 0 WHERE preco_hora_extra IS NULL");
 				mysql_query("UPDATE funcionario SET preco_sabado = 0 WHERE preco_sabado IS NULL");
 				mysql_query("UPDATE config SET value='0.7' WHERE attrib='versao'");
+				break;
+			case '0.7':
+				//altera locais nulos para coelho gomes
+				mysql_query("UPDATE mov_viatura SET local = 7 WHERE local = 0");
+				mysql_query("UPDATE config SET value='0.8' WHERE attrib='versao'");
+				break;
 		}
 	}
-	
 ?>

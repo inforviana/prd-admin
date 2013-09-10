@@ -7,14 +7,32 @@
             $data=date('Y-m-j');//aplica a data de sistema
         }
         
-        
+        //dias da semana
         switch(date('D',strtotime($data))){
         	case 'Mon':
-        		$diaSemanda = 'Segunda';
+        		$diaSemana = 'Segunda-Feira';
         		break;
+            case 'Tue':
+                $diaSemana = 'Terca-Feira';
+                break;
+            case 'Wed':
+                $diaSemana = 'Quarta-Feira';
+                break;
+            case 'Thu':
+                $diaSemana = 'Quinta-Feira';
+                break;
+            case 'Fri':
+                $diaSemana = 'Sexta-Feira';
+                break;
+            case 'Sat':
+                $diaSemana = 'Sabado';
+                break;
+            case 'Sun':
+                $diaSemana = 'Domingo';
+                break;
         }
         
-        
+        //obter todos os funcionarios
         $q_func = "select * from funcionario order by nome_funcionario asc";
         $r_func = mysql_query($q_func);
         $n_func = mysql_num_rows($r_func);
@@ -26,7 +44,7 @@
                     $('#acord_funcionarios').accordion();
                 });
             </script>
-            <br><h3>Registos de ".$data." ".$diaSemana."</h3><br><br>
+            <br><h3>Registos de ".$data." (".$diaSemana.")</h3><br><br>
            <div id=\"acord_funcionarios\" style=\"width:600px;\">
         ";
             
@@ -41,9 +59,10 @@
             
             //verificar eventos de registo de horas ou ponto
             $r_eventos_horas = mysql_query("
-                select mov_viatura.transporte as deslocacao, time(mov_viatura.data) as data_registo, mov_viatura.id_viatura, mov_viatura.horas_viatura,viaturas.desc_viatura, mov_viatura.id_acessorio, mov_viatura.horas_trab_acessorio
+                select mov_viatura.transporte as deslocacao, time(mov_viatura.data) as data_registo, mov_viatura.id_viatura, mov_viatura.horas_viatura,viaturas.desc_viatura, mov_viatura.id_acessorio, mov_viatura.horas_trab_acessorio, obras.descricao_obra as local
                 from mov_viatura 
                 left join viaturas on viaturas.id_viatura = mov_viatura.id_viatura
+                left join obras on obras.id_obra = mov_viatura.local
                 where date(data)='".$data."' and id_funcionario=".$idfunc);
             $n_eventos_horas = mysql_num_rows($r_eventos_horas);
             $contador_eventos = $n_eventos_horas ;
@@ -60,10 +79,10 @@
                     	$hora = round((mysql_result($r_eventos_horas,$j,'horas_viatura')/60),0);
                     }
                     
-                    $dados_horas_funcionario=$dados_horas_funcionario."Trabalhou com <b>".mysql_result($r_eventos_horas,$j,'desc_viatura')."</b> ".floor(mysql_result($r_eventos_horas,$j,'horas_viatura')/60)."H ".(mysql_result($r_eventos_horas,$j,'horas_viatura')%60)."m";
+                    $dados_horas_funcionario=$dados_horas_funcionario."Trabalhou com <b>".mysql_result($r_eventos_horas,$j,'desc_viatura')."</b> ".floor(mysql_result($r_eventos_horas,$j,'horas_viatura')/60)."H ".(mysql_result($r_eventos_horas,$j,'horas_viatura')%60)."m em ".mysql_result($r_eventos_horas, $j,'local');
                     
-                    $somaHoras = $somaHoras + mysql_result($r_eventos_horas, $j, 'horas_viatura');
-                    $somaHoras = $somaHoras + mysql_result($r_eventos_horas, $j, 'deslocacao');
+                    $somaHoras = $somaHoras + mysql_result($r_eventos_horas, $j, 'horas_viatura'); //adiciona horas de trabalho
+                    $somaHoras = $somaHoras + mysql_result($r_eventos_horas, $j, 'deslocacao'); //adiciona tempo de deslocacao
                     
                     //mostrar acessorio utilizado
                     if(mysql_result($r_eventos_horas,$j,'mov_viatura.id_acessorio') > 0)
@@ -126,4 +145,4 @@
             ';
         }
         echo "</div><br>"; //fim da div do acordeao
-?>  
+?>
