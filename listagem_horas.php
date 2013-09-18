@@ -95,7 +95,7 @@ if (isset($_GET['idfuncionario'])){
 		$dia_horas="";
 		for($i=0;$i<$n_mov_horas;$i++){ //obter linhas dos ultimos movimentos
 			if(mysql_result($r_mov_horas,$i,'dia')!=$dia_horas){
-				echo '<tr><td style="color:white;background-color:#404040 ;" colspan=8><img src="./images/calendar.png"><font style="font-size:14;">'.mysql_result($r_mov_horas,$i,'dia').'</font></td></tr>';
+				echo '<tr><td style="color:white;background-color:#404040 ;" colspan=9><img src="./images/calendar.png"><font style="font-size:14;">'.mysql_result($r_mov_horas,$i,'dia').'</font></td></tr>';
 				$dia_horas=mysql_result($r_mov_horas,$i,'dia');
 			}
 			echo '<tr>
