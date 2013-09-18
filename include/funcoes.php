@@ -76,7 +76,7 @@ function ler_acessorios($viatura)
             }
         }
         echo '<input type="checkbox" name="acessorios[]" '.$checked.' value="'.mysql_result($r_ace,$i,'id_viatura').'" > '.mysql_result($r_ace,$i,'desc_viatura').'<br>';
-        if(($i%MAX_ACESSORIOS==0)&&($i>0))
+        if(($i%$MAX_ACESSORIOS==0)&&($i>0))
         {
             echo '</td><td>';
         }
