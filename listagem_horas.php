@@ -15,6 +15,7 @@ if (isset($_GET['idfuncionario'])){
 	echo '<b>Nome: </b>'.mysql_result($r_dados,0,'nome_funcionario').'<br><b>Grupo: </b>'.mysql_result($r_dados,0,'grupo_funcionario');
 	echo '<br><br>';
 	$condicao="where mov_viatura.id_funcionario=".$id_funcionario;
+	$id = 'idfuncionario='.$id_funcionario;
 		
 }elseif(isset($_GET['idviatura'])){
 	
@@ -38,6 +39,7 @@ if (isset($_GET['idfuncionario'])){
 	echo '<br><br>';
     
 	$condicao="where mov_viatura.id_viatura=".$id_viatura;
+	$id = 'idviatura='.$id_viatura;
 }
 
 
@@ -125,7 +127,7 @@ if (isset($_GET['idfuncionario'])){
 						<a href="./index.php?pagina=editarhoras&id='.mysql_result($r_mov_horas,$i,'id_movviatura').'"><img src="editar.png" border=0></a>
 					</td>
 					<td align="center">
-						<input type="image" onclick="apagar(\'./index.php?pagina=listagemhoras&idfuncionario='.$id_funcionario.'&func=apagar&tipo=horas&id='.mysql_result($r_mov_horas,$i,'id_movviatura').'\')" src="delete.gif">
+						<input type="image" onclick="apagar(\'./index.php?pagina=listagemhoras&'.$id.'&func=apagar&tipo=horas&id='.mysql_result($r_mov_horas,$i,'id_movviatura').'\')" src="delete.gif">
 					</td>								
 			</tr>';
 		}
