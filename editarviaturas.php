@@ -185,7 +185,7 @@
             <td style="vertical-align:middle;width:300px;">
                         ';
                 /* ACESSORIOS PARA A VIATURA */
-                ler_acessorios($id);
+                ler_acessorios($id,$MAX_ACESSORIOS);
                 echo '
             </td>
             </tr>

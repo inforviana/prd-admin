@@ -1,5 +1,4 @@
 <?php
-require '../config.php'; //bugfix max_acessorios
 
 /* converter meses do ano de inteiro para string em portugues */
 function mes($m)
@@ -46,7 +45,7 @@ return $mes;
 }
 
 /* mostrar os acessorios para aquela viatura */
-function ler_acessorios($viatura)
+function ler_acessorios($viatura,$maxacessorios)
 {
     $q_ace="select * from viaturas where acessorio=1 order by desc_viatura"; //seleccionar todos os acessorios
     $q_av="select * from acessorios_viatura where id_viatura=".$viatura;
@@ -77,7 +76,7 @@ function ler_acessorios($viatura)
             }
         }
         echo '<input type="checkbox" name="acessorios[]" '.$checked.' value="'.mysql_result($r_ace,$i,'id_viatura').'" > '.mysql_result($r_ace,$i,'desc_viatura').'<br>';
-        if(($i%$MAX_ACESSORIOS==0)&&($i>0))
+        if(($i%$maxacessorios==0)&&($i>0))
         {
             echo '</td><td>';
         }
