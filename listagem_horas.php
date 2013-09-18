@@ -43,7 +43,7 @@ if (isset($_GET['idfuncionario'])){
 
 
 //ultimos registos do funcionario
-		$q_mov_horas="select time(mov_viatura.data) as 'horas',date(mov_viatura.data) as 'dia', mov_viatura.id_funcionario,mov_viatura.id_viatura, mov_viatura.id_movviatura, mov_viatura.data, funcionario.nome_funcionario, viaturas.desc_viatura, viaturas.marca_viatura, viaturas.modelo_viatura, mov_viatura.horas_viatura, obras.descricao_obra
+		$q_mov_horas="select time(mov_viatura.data) as 'horas',date(mov_viatura.data) as 'dia', mov_viatura.id_funcionario,mov_viatura.id_viatura, mov_viatura.id_movviatura, mov_viatura.data, funcionario.nome_funcionario, viaturas.desc_viatura, viaturas.marca_viatura, viaturas.modelo_viatura, mov_viatura.horas_viatura, obras.descricao_obra, mov_viatura.contador
 			from mov_viatura
 			inner join funcionario on funcionario.id_funcionario = mov_viatura.id_funcionario
 			inner join viaturas on viaturas.id_viatura = mov_viatura.id_viatura
@@ -84,6 +84,7 @@ if (isset($_GET['idfuncionario'])){
 			<th>Data e Hora</th>
 			<th>Colaborador</th>
 			<th>Viatura</th>
+			<th>Contador</th>
 			<th>Obra</th>
 			<th>Horas</th>
 			<th colspan=3>Operacoes</th>
@@ -110,6 +111,9 @@ if (isset($_GET['idfuncionario'])){
 					</td>
 					<td>
 						<a href="./index.php?pagina=listagemhoras&idviatura='.mysql_result($r_mov_horas,$i,'id_viatura').'">'.mysql_result($r_mov_horas,$i,'desc_viatura').'</a>
+					</td>
+					<td>
+						'.mysql_result($r_mov_horas,$i,'contador').' H/KM
 					</td>
 					<td style="text-align:center;">
 						'.mysql_result($r_mov_horas,$i,'descricao_obra').'		
