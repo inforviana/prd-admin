@@ -1,5 +1,5 @@
 <?php
-require 'config.php'; //bugfix max_acessorios
+require '../config.php'; //bugfix max_acessorios
 
 /* converter meses do ano de inteiro para string em portugues */
 function mes($m)
