@@ -1,5 +1,5 @@
 <?php 
-	$ultima_versao = '0.8'; //MANDATORY -> definir ultima versao
+	$ultima_versao = '0.9'; //MANDATORY -> definir ultima versao
 	
 	$r_versao = mysql_query("select value from config where attrib = 'versao'"); //obter a versao actual
 	
@@ -54,6 +54,9 @@
 				mysql_query("UPDATE mov_viatura SET local = 7 WHERE local = 0");
 				mysql_query("UPDATE config SET value='0.8' WHERE attrib='versao'");
 				break;
+			case '0.8':
+				mysql_query("ALTER TABLE mov_viatura ADD contador INT NULL");
+				mysql_query("UPDATE config SET value='0.9' WHERE attrib='versao'");
 		}
 	}
 ?>
