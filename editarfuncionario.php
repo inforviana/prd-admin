@@ -67,6 +67,8 @@
 		Activo: <select name="activo">
 					<option value=1>Sim</option>
 					<option value=0>Nao</option>
+					<option value=2>Baixa</option>
+					<option value=3>Ferias</option>
 				</select>
 		<br><br>
 		Nome:<input type="text" size=40 name="nome" value="">
@@ -162,6 +164,8 @@
 		Activo: <select name="activo">
 					<option value=1 '.$sim.'>Sim</option>
 					<option value=0 '.$nao.'>Nao</option>
+					<option value=2>Baixa</option>
+					<option value=3>Ferias</option>
 				</select>
 		<br><br>
 		Nome:<input type="text" size=40 name="nome" value="'.mysql_result($r_funcionario,0,'nome_funcionario').'">

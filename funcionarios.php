@@ -24,7 +24,7 @@
 	{
 		if($_POST['activo']==1)
 		{
-			$pactivo = " activo = 1 and "; //apenas os activos
+			$pactivo = " activo >= 1 and "; //apenas os activos
 		}else{
 			$pactivo = "";
 		}
@@ -55,9 +55,17 @@
 		{
 			case 1:
 				$cor = ' style="color:green;" ';
+				$estado = "Activo";
 				break;
+			case 2:
+				$cor = ' style="color:orange;" ';
+				$estado = "Baixa";
+			case 3:
+				$cor = ' style = "color:blue" ';
+				$estado = "Ferias";
 			default:
 				$cor = ' style="color:red; "';
+				$estado = "Desactivado";
 				break;
 		}
 
@@ -65,7 +73,7 @@
 			echo '<td align="center"><a '.$cor.' href="index.php?pagina=editarfuncionario&id='.mysql_result($r_funcionarios,$i,'id_funcionario').'" class="botao_detalhes">Detalhes</a></td>';
 			echo '<td>'.mysql_result($r_funcionarios,$i,'nome_funcionario').'</td>';
 			echo '<td>'.mysql_result($r_funcionarios,$i,'grupo_funcionario').'</td>';
-			echo '<td>'.mysql_result($r_funcionarios,$i,'estado').'</td>';
+			echo '<td>'.$estado.'</td>';
 			echo '<td><a href="index.php?pagina=listagemcombustivel&idfuncionario='.mysql_result($r_funcionarios,$i,'id_funcionario').'"><img height=16 src="gasoleo.png" border=0></a></td>';
 			echo '<td><a href="index.php?pagina=listagemavarias&idfuncionario='.mysql_result($r_funcionarios,$i,'id_funcionario').'"><img src="avarias.gif" border=0></a></td>';
 			echo '<td><a href="index.php?pagina=listagemhoras&idfuncionario='.mysql_result($r_funcionarios,$i,'id_funcionario').'"><img src="grafico.gif" border=0></a></td>';
