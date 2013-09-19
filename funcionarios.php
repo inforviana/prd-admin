@@ -48,8 +48,19 @@
 	echo '<table id="hor-minimalist-b" summary="motd"><tbody>';
 	//inicio do loop de preenchimento da tabela de funcionarios
 	for($i=0;$i<$n_funcionarios;$i++){
+		//cor conforme o estado do funcionario
+		switch(mysql_result($r_funcionarios, $i,'activo'))
+		{
+			case 1:
+				$cor = ' style="color:green;" ';
+				break;
+			default:
+				$cor = ' style="color:red; "';
+				break;
+		}
+
 		echo '<tr>';
-			echo '<td align="center"><a href="index.php?pagina=editarfuncionario&id='.mysql_result($r_funcionarios,$i,'id_funcionario').'" class="botao_detalhes">Detalhes</a></td>';
+			echo '<td align="center"><a '.$cor.' href="index.php?pagina=editarfuncionario&id='.mysql_result($r_funcionarios,$i,'id_funcionario').'" class="botao_detalhes">Detalhes</a></td>';
 			echo '<td>'.mysql_result($r_funcionarios,$i,'nome_funcionario').'</td>';
 			echo '<td>'.mysql_result($r_funcionarios,$i,'grupo_funcionario').'</td>';
 			echo '<td>'.mysql_result($r_funcionarios,$i,'estado').'</td>';
