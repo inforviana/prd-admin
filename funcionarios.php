@@ -69,7 +69,7 @@
 			echo '<td><a href="index.php?pagina=listagemcombustivel&idfuncionario='.mysql_result($r_funcionarios,$i,'id_funcionario').'"><img height=16 src="gasoleo.png" border=0></a></td>';
 			echo '<td><a href="index.php?pagina=listagemavarias&idfuncionario='.mysql_result($r_funcionarios,$i,'id_funcionario').'"><img src="avarias.gif" border=0></a></td>';
 			echo '<td><a href="index.php?pagina=listagemhoras&idfuncionario='.mysql_result($r_funcionarios,$i,'id_funcionario').'"><img src="grafico.gif" border=0></a></td>';
-			echo '<td><input type="image" onclick="apagar(\'index.php?pagina=funcionarios&apagar=1&id='.mysql_result($r_funcionarios,$i,'id_funcionario').'\')" src="delete.gif"></td>';
+			//echo '<td><input type="image" onclick="apagar(\'index.php?pagina=funcionarios&apagar=1&id='.mysql_result($r_funcionarios,$i,'id_funcionario').'\')" src="delete.gif"></td>';
 		echo '</tr>';
 	}
 	echo '</tbody></table>';
