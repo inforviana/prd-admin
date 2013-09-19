@@ -47,7 +47,11 @@
 	$n_viaturas=mysql_num_rows($r_viaturas);
 	
 	echo '<table width=700><tr><td>'.@$msg.'<br><b><img src="CAMIAO.gif">Viaturas</b></td>';
-	echo '<td align="right"><form method="POST" action="index.php?pagina=viaturas"></td><td><input type="text" name="procura"><input type="image" src="lupa.gif" value="Procurar" alt="Procurar"></form></td></tr>
+	echo '<td align="right"><form method="POST" action="index.php?pagina=viaturas"></td><td><input type="text" name="procura"><input type="image" src="lupa.gif" value="Procurar" alt="Procurar"></td><td>
+        <select name="activo" onchange="javascript:document.getElementById(\'frm_cat\').submit()">
+				<option value=1 >Activos</option>
+				<option value=0 >Todos</option>
+			</select></form></td></tr>
 	</table><br>
         
         <table>
@@ -65,13 +69,8 @@
                     echo '<option value="'.mysql_result($r_tipo_viatura,$i,'id_categoria').'">'.mysql_result($r_tipo_viatura,$i,'categoria').'</option>';
                 }
 
-        echo '</select></td><td>
-        <select name="activo" onchange="javascript:document.getElementById(\'frm_cat\').submit()">
-				<option value=1 >Activos</option>
-				<option value=0 >Todos</option>
-			</select>
+        echo '</select>
 			</form></td></tr></table>';
-        
         
 	echo '
     <!-- form para seleccionar o grafico a utilizar -->
