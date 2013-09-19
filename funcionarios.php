@@ -58,7 +58,7 @@
 				$estado = "Activo";
 				break;
 			case 2:
-				$cor = ' style="color:orange;" ';
+				$cor = ' style="color:gray;" ';
 				$estado = "Baixa";
 				break;
 			case 3:
