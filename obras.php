@@ -49,10 +49,10 @@
 		if(mysql_result($rObras, $i,'activo') == 1)
 		{
 			$cor = "green";
-			$texto = "Desactivar":
+			$texto = "Desactivar";
 		}else{
 			$cor = "red";
-			$texto = "Activar"
+			$texto = "Activar";
 		}
 
 		echo '<tr>
