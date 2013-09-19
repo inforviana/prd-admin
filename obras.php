@@ -5,7 +5,7 @@
 	//criar nova obra
 	if(isset($_POST['inputObra']))
 	{
-		mysql_query("insert into obras (descricao_obra) values ('".$_POST['inputObra']."')");
+		mysql_query("insert into obras (descricao_obra, activo) values ('".$_POST['inputObra']."',1)");
 	}
 	
 	//apagar uma obra
@@ -14,12 +14,14 @@
 		$idObra = $_GET['apagar'];
 		
 		//verificar se existem movimentos com esta obra
-		$r_obrasExistentes = mysql_query("select count(id_movviatura) from mov_viatura where id_obra = ".$idObra);
+		$r_obrasExistentes = mysql_query("select activo from obras where id_obra = ".$idObra);
 		
 		if(mysql_result($r_obrasExistentes, 0, 0) == 0)
 		{
 			//apagar a obra
-			mysql_query("delete from obras where id_obra = ".$idObra);
+			mysql_query("UPDATE obras SET activo = 1 WHERE id_obra = ".$idObra);
+		}else{
+			mysql_query("UPDATE obras SET activo = 0 WHERE id_obra = ".$idObra);
 		}
 	}
 	
@@ -37,18 +39,27 @@
 					';
 	
 	//mostrar as obras existentes
-	$rObras = mysql_query("select * from obras");
+	$rObras = mysql_query("select * from obras order by descricao_obra");
 	$nObras = mysql_num_rows($rObras);
+
+
 	
 	for($i=0;$i<$nObras;$i++)
 	{
+		if(mysql_result($rObras, $i,'activo') == 1)
+		{
+			$cor = "green";
+			$texto = "Desactivar":
+		}else{
+			$cor = "red";
+			$texto = "Activar"
+		}
+
 		echo '<tr>
-					<td>'.mysql_result($rObras, $i,'descricao_obra').'</td>
-				 	<td><a href="./index.php?pagina=obras&apagar='.mysql_result($rObras, $i,'id_obra').'">Apagar</a></td>
+					<td><font style="color:'.$cor.'" >'.mysql_result($rObras, $i,'descricao_obra').'</font></td>
+				 	<td><a style="color:'.$cor.';" href="./index.php?pagina=obras&apagar='.mysql_result($rObras, $i,'id_obra').'">'.$texto.'</a></td>
 			  </tr>';
 	}
-	
-	
 	
 	//mostra form para inserir nova obra
 	echo '<tr>
