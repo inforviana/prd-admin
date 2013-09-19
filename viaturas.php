@@ -66,7 +66,7 @@
                 }
 
         echo '</select></td><td>
-        <select name="activo">
+        <select name="activo" onchange="javascript:document.getElementById(\'frm_cat\').submit()">
 				<option value=1 >Activos</option>
 				<option value=0 >Todos</option>
 			</select>
