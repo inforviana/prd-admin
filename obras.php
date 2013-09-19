@@ -5,7 +5,13 @@
 	//criar nova obra
 	if(isset($_POST['inputObra']))
 	{
-		mysql_query("insert into obras (descricao_obra, activo) values ('".$_POST['inputObra']."',1)");
+		mysql_query("insert into obras (descricao_obra, activo, preco) values ('".$_POST['inputObra']."',1,'0')");
+	}
+
+	//alterar preco da obra
+	if(isset($_POST['preconovo']))
+	{
+		mysql_query("UPDATE obras SET preco = '".$_POST['precoObra']."' WHERE id_obra=".$_POST['preconovo']);
 	}
 	
 	//apagar uma obra
@@ -33,6 +39,7 @@
 			<table id="tabela_obras">
 				<thead>
 					<th>Nome Obra</th>
+					<th>Preco</th>
 					<th>Operacoes</th>
 			 	</thead>
 			    <tbody>
@@ -57,6 +64,10 @@
 
 		echo '<tr>
 					<td><font style="color:'.$cor.'" >'.mysql_result($rObras, $i,'descricao_obra').'</font></td>
+					<td><form method="POST" action="./index.php?pagina=obras&preconovo='.mysql_result($rObras, $i,'id_obra').'">
+						<input type="text" name="precoObra" value="'.mysql_result($rObras,$i,'preco').'">
+						<input type="submit" value="OK"> 
+					</form></td>
 				 	<td><a style="color:'.$cor.';" href="./index.php?pagina=obras&apagar='.mysql_result($rObras, $i,'id_obra').'">'.$texto.'</a></td>
 			  </tr>';
 	}

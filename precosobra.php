@@ -17,7 +17,7 @@
 		
 		
 		//mostrar a listagem de obras
-		$rDadosViatura = mysql_query("select * from viaturas where id_viatura = ".$_GET['idviatura']);
+		$rDadosViatura = mysql_query("select * from viaturas where activo=1 and id_viatura = ".$_GET['idviatura']);
 		
 		echo '
 				<h2>Precos Obras - Viatura : '.mysql_result($rDadosViatura, 0,'desc_viatura').'</h2><br>

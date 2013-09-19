@@ -1,5 +1,5 @@
 <?php 
-	$ultima_versao = '0.9.1'; //MANDATORY -> definir ultima versao
+	$ultima_versao = '0.9.2'; //MANDATORY -> definir ultima versao
 	
 	$r_versao = mysql_query("select value from config where attrib = 'versao'"); //obter a versao actual
 	
@@ -69,6 +69,11 @@
 				mysql_query("UPDATE funcionario SET activo = 1");
 				mysql_query("UPDATE viaturas SET activo = 1");
 				mysql_query("UPDATE config SET value='0.9.1' WHERE attrib='versao'");
+				break;
+			case '0.9.1':
+				//bugfix avarias a zero
+				mysql_query("DELETE FROM mov_avarias WHERE desc_avaria = '' and preco = 0 and horas = 0");
+				mysql_query("UPDATE config SET value='0.9.2' WHERE attrib='versao'");
 				break;
 		}
 	}
