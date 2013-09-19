@@ -1,6 +1,10 @@
 <?php
-	@$apagar=$_GET['apagar'];
-	@$id=$_GET['id'];
+	if(isset($_GET['apagar'])){ 
+		$apagar=$_GET['apagar'];
+	}else{
+		$apagar = "";
+	}
+	if(isset($_GET['id'])) $id=$_GET['id'];
 	if($apagar==1){
 		$q_apagar="DELETE FROM viaturas WHERE id_viatura=".$id;
 		if (mysql_query($q_apagar)){
@@ -9,7 +13,14 @@
 			$msg='<font class="font_titulo_erro"><img src="erro.gif">Erro ao gravar as altera��es!</font>';
 		}
 	}
-	@$p_viaturas=$_POST['procura'];
+
+			//se houver algum texto a pesquisar
+		if(isset($_POST['procura']))
+		{
+			$p_viaturas=$_POST['procura'];
+		}else{
+			$p_viaturas = "";
+		}
         
         if(isset($_POST['tipo_viatura']))
         {
@@ -17,7 +28,21 @@
         }else{
             $cond="";
         }
-	$q_viaturas="select * from viaturas where (desc_viatura like '%".$p_viaturas."%' or marca_viatura like '%".$p_viaturas."%' or modelo_viatura like '%".$p_viaturas."%' or matricula_viatura like '%".$p_viaturas."%') ".$cond."  order by desc_viatura asc"; //query para seleccionar todos os viaturas
+
+    //se activo estiver definido procura todos os estados
+	if(isset($_POST['activo']))
+	{
+		if($_POST['activo']==1)
+		{
+			$pactivo = " activo = 1 and "; //apenas os activos
+		}else{
+			$pactivo = "";
+		}
+	}else{
+		$pactivo = " activo = 1 and "; //apenas os activos
+	}
+
+	$q_viaturas="select * from viaturas where ".$pactivo." (desc_viatura like '%".$p_viaturas."%' or marca_viatura like '%".$p_viaturas."%' or modelo_viatura like '%".$p_viaturas."%' or matricula_viatura like '%".$p_viaturas."%') ".$cond."  order by desc_viatura asc"; //query para seleccionar todos os viaturas
 	$r_viaturas=mysql_query($q_viaturas);
 	$n_viaturas=mysql_num_rows($r_viaturas);
 	
@@ -39,7 +64,10 @@
                 {
                     echo '<option value="'.mysql_result($r_tipo_viatura,$i,'id_categoria').'">'.mysql_result($r_tipo_viatura,$i,'categoria').'</option>';
                 }
-        echo '</select></form></td></tr></table>';
+        echo '</select></td><td>			<select name="activo">
+				<option value=1 >Activos</option>
+				<option value=0 >Todos</option>
+			</select></form></td></tr></table>';
         
         
 	echo '
@@ -64,9 +92,20 @@
 	<tbody>'; 
 	//inicio do loop de preenchimento da tabela
 	for($i=0;$i<$n_viaturas;$i++){
+		switch(mysql_result($r_viaturas, $i,'activo'))
+		{
+			case 1:
+				$cor = ' style="color:green;" ';
+				break;
+			default:
+				$cor = ' style="color:red; "';
+				break;
+		}
+
+
 		echo '<tr>';
                         echo '<td align="center"><input name="sel_viatura[]" value="'.mysql_result($r_viaturas,$i,'id_viatura').'" type="checkbox"></td>';
-			echo '<td align="center"><a class="botao_detalhes" href="index.php?pagina=editarviaturas&id='.mysql_result($r_viaturas,$i,'id_viatura').'">Detalhes</a></td>';
+			echo '<td align="center"><a '.$cor.' class="botao_detalhes" href="index.php?pagina=editarviaturas&id='.mysql_result($r_viaturas,$i,'id_viatura').'">Detalhes</a></td>';
 			echo '<td>'.mysql_result($r_viaturas,$i,'desc_viatura').'</td>';
 			echo '<td>';
 			$qt="select categoria from categorias_viatura where id_categoria=".mysql_result($r_viaturas,$i,'tipo_viatura');

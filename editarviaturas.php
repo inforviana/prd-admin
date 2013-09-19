@@ -1,8 +1,19 @@
 <?php
-	@$id=$_GET['id'];
-	@$novo=$_GET['novo'];
-	@$guardar=$_GET['guardar'];
+	if(isset($_GET['id'])) $id=$_GET['id'];
+	if(isset($_GET['novo'])) {
+		$novo=$_GET['novo'];
+	}else{
+		$novo = "";
+	}
+	if(isset($_GET['guardar'])) 
+		{
+			$guardar=$_GET['guardar'];
+		}else{
+			$guardar = "";
+		}
+
 	if($guardar==1){ //dados a guardar da viatura
+		$activo=$_POST['activo'];
 		$desc_viatura=$_POST['desc_viatura'];
 		$marca_viatura=$_POST['marca_viatura'];
 		$modelo_viatura=$_POST['modelo_viatura'];
@@ -33,9 +44,9 @@
 		
 		if($novo!=1){ //verifica se e para fazer update ou insert
 			if((strlen($imgdata)>5)){
-						$q_guardar="UPDATE viaturas SET img='".$imgdata."', marca_viatura='".$marca_viatura."',modelo_viatura='".$modelo_viatura."',matricula_viatura='".$matricula_viatura."',ano_viatura=".$ano_viatura.",mes_viatura=".$mes_viatura.",tipo_combustivel='".$tipo_combustivel."',tipo_viatura='".$tipo_viatura."',imagem_viatura='".$imagem_viatura."',desc_viatura='".$desc_viatura."',nserie='".$nserie."',nidentificacao='".$nidentificacao."',preco_hora=".$preco_hora.",acessorio=".$acessorio." where id_viatura=".$id;
+						$q_guardar="UPDATE viaturas SET activo=".$activo.",img='".$imgdata."', marca_viatura='".$marca_viatura."',modelo_viatura='".$modelo_viatura."',matricula_viatura='".$matricula_viatura."',ano_viatura=".$ano_viatura.",mes_viatura=".$mes_viatura.",tipo_combustivel='".$tipo_combustivel."',tipo_viatura='".$tipo_viatura."',imagem_viatura='".$imagem_viatura."',desc_viatura='".$desc_viatura."',nserie='".$nserie."',nidentificacao='".$nidentificacao."',preco_hora=".$preco_hora.",acessorio=".$acessorio." where id_viatura=".$id;
 			}else{
-						$q_guardar="UPDATE viaturas SET marca_viatura='".$marca_viatura."',modelo_viatura='".$modelo_viatura."',matricula_viatura='".$matricula_viatura."',ano_viatura=".$ano_viatura.",mes_viatura=".$mes_viatura.",tipo_combustivel='".$tipo_combustivel."',tipo_viatura='".$tipo_viatura."',imagem_viatura='".$imagem_viatura."',desc_viatura='".$desc_viatura."',nserie='".$nserie."',nidentificacao='".$nidentificacao."', preco_hora=".$preco_hora.",acessorio=".$acessorio." where id_viatura=".$id;			
+						$q_guardar="UPDATE viaturas SET activo=".$activo.",marca_viatura='".$marca_viatura."',modelo_viatura='".$modelo_viatura."',matricula_viatura='".$matricula_viatura."',ano_viatura=".$ano_viatura.",mes_viatura=".$mes_viatura.",tipo_combustivel='".$tipo_combustivel."',tipo_viatura='".$tipo_viatura."',imagem_viatura='".$imagem_viatura."',desc_viatura='".$desc_viatura."',nserie='".$nserie."',nidentificacao='".$nidentificacao."', preco_hora=".$preco_hora.",acessorio=".$acessorio." where id_viatura=".$id;			
 			}
                         
                         $acess=$_POST['acessorios']; //obtem os acessorios seleccionados para a viatura
@@ -47,7 +58,7 @@
                         }
                         
 		}else{
-			$q_guardar="INSERT INTO viaturas (img,marca_viatura,modelo_viatura,matricula_viatura,ano_viatura,mes_viatura,tipo_combustivel,tipo_viatura,imagem_viatura,desc_viatura,nserie,nidentificacao,preco_hora,acessorio) VALUES ('".$imgdata."','".$marca_viatura."','".$modelo_viatura."','".$matricula_viatura."',".$ano_viatura.",".$mes_viatura.",'".$tipo_combustivel."','".$tipo_viatura."','".$imagem_viatura."','".$desc_viatura."','".$nserie."','".$nidentificacao."',".$preco_hora.",".$acessorio.")";
+			$q_guardar="INSERT INTO viaturas (img,marca_viatura,modelo_viatura,matricula_viatura,ano_viatura,mes_viatura,tipo_combustivel,tipo_viatura,imagem_viatura,desc_viatura,nserie,nidentificacao,preco_hora,acessorio, activo) VALUES ('".$imgdata."','".$marca_viatura."','".$modelo_viatura."','".$matricula_viatura."',".$ano_viatura.",".$mes_viatura.",'".$tipo_combustivel."','".$tipo_viatura."','".$imagem_viatura."','".$desc_viatura."','".$nserie."','".$nidentificacao."',".$preco_hora.",".$acessorio.",".$activo.")";
 		}
 		if(mysql_query($q_guardar)){ //mensagem 
 			$msg= '<font class="font_titulo"><img src="ok.gif">Alterações salvas com sucesso!</font>';
@@ -80,6 +91,11 @@
                         <tr>
                         <td>
 	<form enctype="multipart/form-data" method="POST" action="index.php?pagina=editarviaturas&id='.$id.'&guardar=1&novo='.$novo.'">
+		Activo: <select name="activo">
+					<option value=1>Sim</option>
+					<option value=0>Nao</option>
+				</select>
+		<br><br>		
 		Nome: <input type="text" class="inp_viatura" name="desc_viatura" value="">
 		<br><br>';
 	echo 'Marca: <input type="text" class="inp_viatura" name="marca_viatura" value="">
@@ -124,6 +140,18 @@
 	echo '</td></tr><tr><td align="right">'.@$msg.'<br><button type="submit">Guardar Alterações</button></form></td></tr></tbody></table>';
 		
 	}else{  //mostrar dados da viatura
+    	//obter estado do funcionario, activo ou desactivado
+	$estadoActivo = mysql_result($r_viatura,0,'activo');
+
+	if($estadoActivo == 1)
+	{
+		$sim = ' selected="selected" ';
+		$nao = '';
+	}else{
+		$sim = '';
+		$nao = ' selected="selected" ';
+	}
+	
 	
 	echo '<table id="hor-minimalist-b" summary="motd">
             <thead>
@@ -131,6 +159,11 @@
             </thead>
             <tbody><tr></tr><tr><td>
 	<form  enctype="multipart/form-data" method="POST" action="index.php?pagina=editarviaturas&id='.$id.'&guardar=1&novo='.$novo.'">
+		Activo: <select name="activo">
+					<option value=1 '.$sim.'>Sim</option>
+					<option value=0 '.$nao.'>Nao</option>
+				</select>
+		<br><br>		
 		Nome: <input type="text" name="desc_viatura" value="'.@mysql_result($r_viatura,0,'desc_viatura').'">
 		<br><br>';
 	echo 'Marca: <input type="text" class="inp_viatura" name="marca_viatura" value="'.@mysql_result($r_viatura,0,'marca_viatura').'">
@@ -165,9 +198,9 @@
 			//FIM
                 /*CHECK DO ACESSORIO*/
                 if(mysql_result($r_viatura,0,'acessorio')==1){
-                    $checked=' checked ';
+                    $checked = ' checked ';
                 }else{
-                    $checked="";
+                    $checked = "";
                 }
 	echo'</select><br><br><input type="checkbox" name="acessorio" value="1" '.$checked.'> Acessorio
 		<br><br>';

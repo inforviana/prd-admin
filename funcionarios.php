@@ -38,11 +38,13 @@
 	
 	echo '<table width=700><tr><td>'.@$msg.'<br><b><img src="funcionario.gif">Funcionarios</b></td>';
 	echo '<td align="right"><form method="POST" action="index.php?pagina=funcionarios"></td><td><input type="text" name="procura"><input type="image" src="lupa.gif" value="Procurar" alt="Procurar"></td><td>
-	<select name="activo">
-		<option value=1>Activos</option>
-		<option value=0>Todos</option>
-	</select>
-	</form></td></tr>
+			<select name="activo">
+				<option value=1 >Activos</option>
+				<option value=0 >Todos</option>
+			</select>
+			</form>
+		</td>
+	</tr>
 	</table><br><a href="index.php?pagina=editarfuncionario&novo=1"><img src="novo.gif" border=0><font class="font_novo">Adicionar Funcionario</font></a>';
 	
 	echo '<table id="hor-minimalist-b" summary="motd"><tbody>';
