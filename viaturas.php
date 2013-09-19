@@ -34,15 +34,15 @@
 	{
 		if($_POST['activo']==1)
 		{
-			$pactivo = " activo = 1 and "; //apenas os activos
+			$pactivo = " and activo=1 "; //apenas os activos
 		}else{
 			$pactivo = "";
 		}
 	}else{
-		$pactivo = " activo = 1 and "; //apenas os activos
+		$pactivo = " and activo=1 "; //apenas os activos
 	}
 
-	$q_viaturas="select * from viaturas where ".$pactivo." (desc_viatura like '%".$p_viaturas."%' or marca_viatura like '%".$p_viaturas."%' or modelo_viatura like '%".$p_viaturas."%' or matricula_viatura like '%".$p_viaturas."%') ".$cond."  order by desc_viatura asc"; //query para seleccionar todos os viaturas
+	$q_viaturas="select * from viaturas where  (desc_viatura like '%".$p_viaturas."%' or marca_viatura like '%".$p_viaturas."%' or modelo_viatura like '%".$p_viaturas."%' or matricula_viatura like '%".$p_viaturas."%') ".$cond." ".$pactivo."  order by desc_viatura asc"; //query para seleccionar todos os viaturas
 	$r_viaturas=mysql_query($q_viaturas);
 	$n_viaturas=mysql_num_rows($r_viaturas);
 	
@@ -64,10 +64,13 @@
                 {
                     echo '<option value="'.mysql_result($r_tipo_viatura,$i,'id_categoria').'">'.mysql_result($r_tipo_viatura,$i,'categoria').'</option>';
                 }
-        echo '</select></td><td>			<select name="activo">
+
+        echo '</select></td><td>
+        <select name="activo">
 				<option value=1 >Activos</option>
 				<option value=0 >Todos</option>
-			</select></form></td></tr></table>';
+			</select>
+			</form></td></tr></table>';
         
         
 	echo '
@@ -98,7 +101,7 @@
 				$cor = ' style="color:green;" ';
 				break;
 			default:
-				$cor = ' style="color:red; "';
+				$cor = ' style="color:red;" ';
 				break;
 		}
 
