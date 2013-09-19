@@ -25,5 +25,5 @@
 	$MAX_FOTOS_LOGIN=7;
 	$MAX_ACESSORIOS = 20;
 	//define('MAX_ACESSORIOS','20');
-	//define('MAX_HISTORICO_CONTADOR','4');
+	define('MAX_HISTORICO_CONTADOR','4');
 ?>
