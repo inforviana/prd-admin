@@ -1,7 +1,18 @@
 <?php
 	$id_funcionario=$_GET['id'];
-	if(isset($_GET['novo'])) $novo=$_GET['novo'];
-	if(isset($_GET['guardar'])) $guardar=$_GET['guardar'];
+
+	if(isset($_GET['novo']))
+	{
+		$novo=$_GET['novo'];
+	} else {
+		$novo = "";
+	}
+
+	if(isset($_GET['guardar'])) {
+		$guardar=$_GET['guardar'];
+	}else{
+		$guardar = "";
+	}
 	
 	//obter proximo pin
 	$r_max_pin = mysql_query("select max(pin_funcionario) from funcionario");
@@ -9,6 +20,7 @@
 	
 	
 	if($guardar==1){ //CONDICAO PRINCIPAL PARA VERIFICAR A OPERAÇÃO A EFETUAR (CRIAR NOVO)------------------------------------------------------------------------------------------------------------
+		$activo = $_POST['activo'];
 		$nome=$_POST['nome'];
 		$morada=$_POST['morada'];
 		$cp=$_POST['cp'];
@@ -29,9 +41,9 @@
 			fclose($fp);
 		}
 		if($novo!=1){
-			$q_guardar="UPDATE funcionario SET nome_funcionario='".$nome."',grupo_funcionario='".$grupo."',morada_funcionario='".$morada."',cp='".$cp."',localidade='".$localidade."',telefone_funcionario='".$telefone."',telemovel_funcionario='".$telemovel."',pin_funcionario='".$pin."', preco_hora_normal='".$preco_hora_normal."',preco_hora_extra='".$preco_hora_extra."', preco_sabado='".$preco_sabado."' where id_funcionario=".$id_funcionario;
+			$q_guardar="UPDATE funcionario SET activo='".$activo."', nome_funcionario='".$nome."',grupo_funcionario='".$grupo."',morada_funcionario='".$morada."',cp='".$cp."',localidade='".$localidade."',telefone_funcionario='".$telefone."',telemovel_funcionario='".$telemovel."',pin_funcionario='".$pin."', preco_hora_normal='".$preco_hora_normal."',preco_hora_extra='".$preco_hora_extra."', preco_sabado='".$preco_sabado."' where id_funcionario=".$id_funcionario;
 		}else{
-			$q_guardar="INSERT INTO funcionario (nome_funcionario,grupo_funcionario,morada_funcionario,cp,localidade,telefone_funcionario,telemovel_funcionario,pin_funcionario,preco_hora_normal,preco_hora_extra, preco_sabado) VALUES ('".$nome."','".$grupo."','".$morada."','".$cp."','".$localidade."','".$telefone."','".$telemovel."','".$pin."','".$preco_hora_normal."','".$preco_hora_extra."','".$preco_sabado."')";
+			$q_guardar="INSERT INTO funcionario (nome_funcionario,grupo_funcionario,morada_funcionario,cp,localidade,telefone_funcionario,telemovel_funcionario,pin_funcionario,preco_hora_normal,preco_hora_extra, preco_sabado, activo) VALUES ('".$nome."','".$grupo."','".$morada."','".$cp."','".$localidade."','".$telefone."','".$telemovel."','".$pin."','".$preco_hora_normal."','".$preco_hora_extra."','".$preco_sabado."',1)";
 		}
 		if(mysql_query($q_guardar)){
                         
@@ -52,6 +64,11 @@
 	<table id="hor-minimalist-b" summary="motd"><thead><th>DADOS DO FUNCIONARIO</th><th></th></thead>
 	<tbody><tr></tr>
 	<tr><td><form enctype="multipart/form-data" method="POST" action="index.php?pagina=editarfuncionario&id='.$id_funcionario.'&guardar=1&novo='.$novo.'">
+		Activo: <select name="activo">
+					<option value=1>Sim</option>
+					<option value=0>Nao</option>
+				</select>
+		<br><br>
 		Nome:<input type="text" size=40 name="nome" value="">
 		<br><br>
 		Morada:<input type="text" size=40 name="morada" value="">
@@ -125,11 +142,28 @@
 	}else{
 		$pinNovo = $proximoPin;
 	}
+
+	//obter estado do funcionario, activo ou desactivado
+	$estadoActivo = mysql_result($r_funcionario,0,'activo');
+
+	if($estadoActivo == 1)
+	{
+		$sim = ' selected="selected" ';
+		$nao = '';
+	}else{
+		$sim = '';
+		$nao = ' selected="selected" ';
+	}
 	
 	echo '
 	<table id="hor-minimalist-b" summary="motd"><thead><th>DADOS DO FUNCIONARIO</th><th></th></thead>
 	<tbody><tr></tr>
 	<tr><td><form method="POST" action="index.php?pagina=editarfuncionario&id='.$id_funcionario.'&guardar=1&novo='.$novo.'" enctype="multipart/form-data">
+		Activo: <select name="activo">
+					<option value=1 '.$sim.'>Sim</option>
+					<option value=0 '.$nao.'>Nao</option>
+				</select>
+		<br><br>
 		Nome:<input type="text" size=40 name="nome" value="'.mysql_result($r_funcionario,0,'nome_funcionario').'">
 		<br><br>
 		Morada:<input type="text" size=40 name="morada" value="'.mysql_result($r_funcionario,0,'morada_funcionario').'">

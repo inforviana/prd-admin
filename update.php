@@ -1,5 +1,5 @@
 <?php 
-	$ultima_versao = '0.9'; //MANDATORY -> definir ultima versao
+	$ultima_versao = '0.9.1'; //MANDATORY -> definir ultima versao
 	
 	$r_versao = mysql_query("select value from config where attrib = 'versao'"); //obter a versao actual
 	
@@ -55,8 +55,21 @@
 				mysql_query("UPDATE config SET value='0.8' WHERE attrib='versao'");
 				break;
 			case '0.8':
+				//adiciona coluna para o contador da viatura no registo das horas
 				mysql_query("ALTER TABLE mov_viatura ADD contador INT NULL");
 				mysql_query("UPDATE config SET value='0.9' WHERE attrib='versao'");
+				break;
+			case '0.9':
+				//adiciona coluna para activar e desactivar as obras, funcionarios e viaturas
+				//por defeito tudo esta activo
+				mysql_query("ALTER TABLE obras ADD activo INT NULL");
+				mysql_query("ALTER TABLE funcionario ADD activo INT NULL");
+				mysql_query("ALTER TABLE viaturas ADD activo INT NULL");
+				mysql_query("UPDATE obras SET activo = 1");
+				mysql_query("UPDATE funcionario SET activo = 1");
+				mysql_query("UPDATE viaturas SET activo = 1");
+				mysql_query("UPDATE config SET value='0.9.1' WHERE attrib='versao'");
+				break;
 		}
 	}
 ?>

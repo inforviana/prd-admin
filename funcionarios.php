@@ -1,7 +1,8 @@
 <?php
-	@$apagar=$_GET['apagar'];
-	@$id=$_GET['id'];
-	if($apagar==1){
+	if(isset($_GET['apagar'])) $apagar=$_GET['apagar'];
+	if(isset($_GET['id'])) $id=$_GET['id'];
+
+	if(isset($_GET['apagar']) && $apagar==1){
 		$q_apagar="DELETE FROM funcionario WHERE id_funcionario=".$id;
 		if (mysql_query($q_apagar)){
 			$msg= '<font class="font_titulo"><img src="ok.gif">Funcionario apagado com sucesso!</font>';
@@ -9,8 +10,24 @@
 			$msg='<font class="font_titulo_erro"><img src="erro.gif">Erro ao gravar as alterações!</font>';
 		}
 	}
-	@$p_funcionarios=$_POST['procura'];
-	$q_funcionarios="select * from funcionario where nome_funcionario like '%".$p_funcionarios."%' order by nome_funcionario asc"; //query para seleccionar todos os funcionarios
+
+	//se houver algum texto a pesquisar
+	if(isset($_POST['procura']))
+	{
+		$p_funcionarios=$_POST['procura'];
+	}else{
+		$p_funcionarios = "";
+	}
+
+	//se activo estiver definido procura todos os estados
+	if(isset($_GET['activo']))
+	{
+		$pactivo = ""; //todos
+	}else{
+		$pactivo = " activo = 1 and "; //apenas os activos
+	}
+
+	$q_funcionarios="select * from funcionario where ".$pactivo." nome_funcionario like '%".$p_funcionarios."%' order by nome_funcionario asc"; //query para seleccionar todos os funcionarios
 	$r_funcionarios=mysql_query($q_funcionarios);
 	$n_funcionarios=mysql_num_rows($r_funcionarios);
 	
