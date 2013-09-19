@@ -48,7 +48,7 @@
 	
 	echo '<table width=700><tr><td>'.@$msg.'<br><b><img src="CAMIAO.gif">Viaturas</b></td>';
 	echo '<td align="right"><form method="POST" action="index.php?pagina=viaturas"></td><td><input type="text" name="procura"><input type="image" src="lupa.gif" value="Procurar" alt="Procurar"></td><td>
-        <select name="activo" onchange="javascript:document.getElementById(\'frm_cat\').submit()">
+        <select name="activo">
 				<option value=1 >Activos</option>
 				<option value=0 >Todos</option>
 			</select></form></td></tr>
