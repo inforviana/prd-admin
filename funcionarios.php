@@ -60,9 +60,11 @@
 			case 2:
 				$cor = ' style="color:orange;" ';
 				$estado = "Baixa";
+				break;
 			case 3:
 				$cor = ' style = "color:blue" ';
 				$estado = "Ferias";
+				break;
 			default:
 				$cor = ' style="color:red; "';
 				$estado = "Desactivado";
