@@ -29,7 +29,7 @@
 			$pactivo = "";
 		}
 	}else{
-		$pactivo = " activo = 1 and "; //apenas os activos
+		$pactivo = " activo >= 1 and "; //apenas os activos
 	}
 
 	$q_funcionarios="select * from funcionario where ".$pactivo." nome_funcionario like '%".$p_funcionarios."%' order by nome_funcionario asc"; //query para seleccionar todos os funcionarios
